@@ -16,6 +16,9 @@ cp .env.example .env
 
 # Push the Prisma schema to the database
 pnpm db:push
+
+# Rename project
+pnpm rename <name_instead_of_xenous>
 ```
 
 ### 3a. When it's time to add a new UI component
