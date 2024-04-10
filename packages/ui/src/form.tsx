@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Slot } from '@radix-ui/react-slot';
 import { useForm as __useForm, Controller, FormProvider, useFormContext } from 'react-hook-form';
 
-import { cn } from '@acme/ui';
+import { cn } from '@xenous/ui';
 
 import { Label } from './label';
 

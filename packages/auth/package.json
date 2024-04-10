@@ -1,5 +1,5 @@
 {
-    "name": "@acme/auth",
+    "name": "@xenous/auth",
     "version": "0.1.0",
     "private": true,
     "type": "module",
@@ -18,7 +18,7 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@acme/db": "workspace:*",
+        "@xenous/db": "workspace:*",
         "@auth/prisma-adapter": "^1.6.0",
         "@t3-oss/env-nextjs": "^0.9.2",
         "bcryptjs": "^2.4.3",
@@ -29,13 +29,13 @@
         "zod": "^3.22.4"
     },
     "devDependencies": {
-        "@acme/eslint-config": "workspace:*",
-        "@acme/prettier-config": "workspace:*",
-        "@acme/tsconfig": "workspace:*",
+        "@xenous/eslint-config": "workspace:*",
+        "@xenous/prettier-config": "workspace:*",
+        "@xenous/tsconfig": "workspace:*",
         "@types/bcryptjs": "^2.4.6",
         "eslint": "^9.0.0",
         "prettier": "^3.2.5",
         "typescript": "^5.4.4"
     },
-    "prettier": "@acme/prettier-config"
+    "prettier": "@xenous/prettier-config"
 }

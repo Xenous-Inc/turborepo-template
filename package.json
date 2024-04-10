@@ -1,5 +1,5 @@
 {
-  "name": "acme",
+  "name": "xenous",
   "private": true,
   "engines": {
     "node": ">=20.12.0"
@@ -23,11 +23,11 @@
     "ui-add": "pnpm -F ui ui-add"
   },
   "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
+    "@xenous/prettier-config": "workspace:*",
     "@turbo/gen": "^1.13.2",
     "prettier": "^3.2.5",
     "turbo": "^1.13.2",
     "typescript": "^5.4.4"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@xenous/prettier-config"
 }

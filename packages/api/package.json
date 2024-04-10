@@ -1,5 +1,5 @@
 {
-    "name": "@acme/api",
+    "name": "@xenous/api",
     "version": "0.1.0",
     "private": true,
     "type": "module",
@@ -19,20 +19,20 @@
         "typecheck": "tsc --noEmit --emitDeclarationOnly false"
     },
     "dependencies": {
-        "@acme/auth": "workspace:*",
-        "@acme/db": "workspace:*",
-        "@acme/schema": "workspace:*",
+        "@xenous/auth": "workspace:*",
+        "@xenous/db": "workspace:*",
+        "@xenous/schema": "workspace:*",
         "@trpc/server": "11.0.0-next.320",
         "superjson": "2.2.1",
         "zod": "^3.22.4"
     },
     "devDependencies": {
-        "@acme/eslint-config": "workspace:*",
-        "@acme/prettier-config": "workspace:*",
-        "@acme/tsconfig": "workspace:*",
+        "@xenous/eslint-config": "workspace:*",
+        "@xenous/prettier-config": "workspace:*",
+        "@xenous/tsconfig": "workspace:*",
         "eslint": "^9.0.0",
         "prettier": "^3.2.5",
         "typescript": "^5.4.4"
     },
-    "prettier": "@acme/prettier-config"
+    "prettier": "@xenous/prettier-config"
 }

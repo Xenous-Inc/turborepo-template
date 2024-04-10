@@ -1,7 +1,7 @@
 // import type { TRPCRouterRecord } from "@trpc/server";
 // import { z } from "zod";
 //
-// import { CreatePostSchema } from "@acme/schema";
+// import { CreatePostSchema } from "@xenous/schema";
 //
 // import { protectedProcedure, publicProcedure } from "../trpc";
 //

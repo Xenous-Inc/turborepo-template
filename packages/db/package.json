@@ -1,5 +1,5 @@
 {
-    "name": "@acme/db",
+    "name": "@xenous/db",
     "version": "0.1.0",
     "private": true,
     "type": "module",
@@ -25,14 +25,14 @@
         "@t3-oss/env-core": "^0.9.2"
     },
     "devDependencies": {
-        "@acme/eslint-config": "workspace:*",
-        "@acme/prettier-config": "workspace:*",
-        "@acme/tsconfig": "workspace:*",
+        "@xenous/eslint-config": "workspace:*",
+        "@xenous/prettier-config": "workspace:*",
+        "@xenous/tsconfig": "workspace:*",
         "dotenv-cli": "^7.4.1",
         "eslint": "^9.0.0",
         "prettier": "^3.2.5",
         "prisma": "^5.12.1",
         "typescript": "^5.4.4"
     },
-    "prettier": "@acme/prettier-config"
+    "prettier": "@xenous/prettier-config"
 }
