@@ -1,0 +1,251 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+// * USER * //
+
+enum UserRole {
+  USER
+  ADMIN
+  PARTNER
+}
+
+model User {
+  id String @id @default(uuid())
+
+  role          UserRole
+  email         String?   @unique
+  refreshHash   String?
+  password      String?
+  emailVerified DateTime?
+
+  userProfile    UserProfile?
+  partnerProfile PartnerProfile?
+  adminProfile   AdminProfile?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PasswordRecovery {
+  id String @id @default(uuid())
+
+  email  String  @unique
+  token  String
+  isUsed Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// * PROFILES * //
+
+model UserProfile {
+  userId String @id
+  user   User   @relation(fields: [userId], references: [id])
+
+  name     String?
+  imageURL String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookmarks Bookmark[]
+  ratings   Rating[]
+}
+
+model PartnerProfile {
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  name     String
+  isActive Boolean @default(false)
+}
+
+model AdminProfile {
+  userId String @id
+  user   User   @relation(fields: [userId], references: [id])
+
+  name     String?
+  imageURL String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// * CATEGORY * //
+
+model Category {
+  id String @id @default(uuid())
+
+  name   String @unique
+  value  String
+  values Json?  @db.JsonB
+
+  books Book[]
+}
+
+// * TAG * //
+
+model Tag {
+  id String @id @default(uuid())
+
+  name   String @unique
+  value  String
+  values Json?  @db.JsonB
+
+  books Book[]
+}
+
+// * RATING * // 
+/// INSERT ONLY ///
+
+model Rating {
+  bookId String
+  book   Book        @relation(fields: [bookId], references: [id])
+  userId String
+  user   UserProfile @relation(fields: [userId], references: [userId])
+  value  Int
+
+  createdAt DateTime @default(now())
+
+  @@id([bookId, userId])
+}
+
+// * AUHTOR * // 
+
+model Author {
+  id String @id @default(uuid())
+
+  name        String
+  description String?
+  imageURL    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  authorBooks Book[] @relation("author_books")
+  readerBooks Book[] @relation("reader_books")
+}
+
+// * PUBLISHER * // 
+
+model Publisher {
+  id String @id @default(uuid())
+
+  title       String
+  description String?
+  imageURL    String?
+  address     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  books      Book[]
+}
+
+// * BOOK * //
+
+enum AgeLimit {
+  AGE_0
+  AGE_6
+  AGE_12
+  AGE_16
+  AGE_18
+}
+
+model Book {
+  id String @id @default(uuid())
+
+  publisherId String
+  publisher   Publisher @relation(fields: [publisherId], references: [id])
+
+  title       String
+  description String?
+  tracksCount Int       @default(0)
+  ageLimit    AgeLimit  @default(AGE_0)
+  isActive    Boolean   @default(false)
+  imageURL    String?
+  releaseDate DateTime?
+
+  year   Int?
+  ISBN   String?
+  series String?
+
+  fakeRating      Float?
+  fakeRatingCount Int?
+
+  // ALWAYS IN CENTS 
+  price Int?
+  note  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  chapters Chapter[]
+
+  categories Category[]
+  tags       Tag[]
+
+  bookmarks Bookmark[]
+  ratings   Rating[]
+
+  recomendations  Recomendation[] @relation("require_recomendation")
+  isRecomendation Recomendation[] @relation("recomendation")
+
+  authors Author[] @relation("author_books")
+  readers Author[] @relation("reader_books")
+
+  @@index([isActive])
+}
+
+model Chapter {
+  id String @id @default(uuid())
+
+  bookId String
+  book   Book   @relation(fields: [bookId], references: [id])
+
+  title       String
+  description String?
+
+  // IF 0 - UNKNOWN DURATION
+  duration Int @default(0)
+
+  audioURL String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Recomendation {
+  id String @id @default(uuid())
+
+  bookId          String
+  book            Book   @relation("require_recomendation", fields: [bookId], references: [id])
+  recomendationId String
+  recomendation   Book   @relation("recomendation", fields: [recomendationId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([bookId, recomendationId])
+}
+
+model Bookmark {
+  id String @id @default(uuid())
+
+  bookId String
+  book   Book        @relation(fields: [bookId], references: [id])
+  userId String
+  user   UserProfile @relation(fields: [userId], references: [userId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([bookId, userId])
+}
