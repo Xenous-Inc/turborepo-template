@@ -5,12 +5,14 @@
         "jsx": "preserve",
         "baseUrl": ".",
         "paths": {
+            "~/trpc/*": ["./trpc/*"],
+            "~/public/*": ["./public/*"],
             "~/*": ["./src/*"]
         },
         "plugins": [{ "name": "next" }],
         "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
         "module": "esnext"
     },
-    "include": [".", ".next/types/**/*.ts"],
+    "include": ["types/*.d.ts", ".", ".next/types/**/*.ts"],
     "exclude": ["node_modules"]
 }

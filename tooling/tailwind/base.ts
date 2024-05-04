@@ -43,6 +43,7 @@ export default {
                 },
                 primary: 'rgb(var(--primary) / <alpha-value>)',
                 secondary: 'rgb(var(--secondary) / <alpha-value>)',
+                accent: 'rgb(var(--accent) / <alpha-value>)',
             },
             borderWidth: {
                 px: '1px',
