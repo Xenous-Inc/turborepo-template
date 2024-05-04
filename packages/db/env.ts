@@ -1,12 +1,10 @@
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
-import { env as dbEnv } from '@xenous/db/env';
-
 export const env = createEnv({
-    extends: [dbEnv],
     server: {
-        NEXTAUTH_SECRET: process.env.NODE_ENV === 'production' ? z.string().min(1) : z.string().min(1).optional(),
+        POSTGRES_PRISMA_URL: z.string().url(),
+        POSTGRES_URL_NON_POOLING: z.string().url(),
     },
     client: {},
     experimental__runtimeEnv: {},

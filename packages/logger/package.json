@@ -1,11 +1,13 @@
 {
-    "name": "@xenous/tailwind-config",
-    "version": "0.1.0",
+    "name": "@xenous/logger",
     "private": true,
+    "version": "0.1.0",
     "type": "module",
     "exports": {
-        "./native": "./native.ts",
-        "./web": "./web.ts"
+        ".": {
+            "default": "./src/index.ts"
+        },
+        "./env": "./env.ts"
     },
     "license": "MIT",
     "scripts": {
@@ -14,16 +16,19 @@
         "lint": "eslint",
         "typecheck": "tsc --noEmit"
     },
+    "dependencies": {
+        "@t3-oss/env-nextjs": "^0.9.2",
+        "loglevel": "^1.9.1",
+        "loglevel-plugin-prefix": "^0.8.4",
+        "ansi-styles": "^6.2.1",
+        "zod": "^3.22.4"
+    },
     "devDependencies": {
-        "@tailwindcss/forms": "^0.5.7",
         "@xenous/eslint-config": "workspace:*",
         "@xenous/prettier-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
         "eslint": "^9.0.0",
-        "postcss": "^8.4.38",
         "prettier": "^3.2.5",
-        "tailwindcss": "^3.4.1",
-        "tailwindcss-animate": "^1.0.7",
         "typescript": "^5.4.4"
     },
     "prettier": "@xenous/prettier-config"

@@ -3,7 +3,8 @@ import CredentialsProvider from '@auth/core/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import bcrypt from 'bcryptjs';
 
-import { db, UserRole } from '@xenous/db';
+import type { UserRole } from '@xenous/db';
+import { db } from '@xenous/db';
 
 declare module 'next-auth' {
     interface Session extends DefaultSession {
@@ -21,22 +22,12 @@ export const authConfig = {
         jwt: async ({ token }) => {
             if (!token.email) return token;
 
-            const user = await db.user.findUnique({
-                where: { id: token.sub },
-                include: { userProfile: true, partnerProfile: true, adminProfile: true },
-            });
+            const user = await db.user.findUnique({ where: { id: token.sub } });
 
             if (!user) return token;
 
-            const name = {
-                [UserRole.USER]: user.userProfile?.name,
-                [UserRole.PARTNER]: user.partnerProfile?.name,
-                [UserRole.ADMIN]: user.adminProfile?.name,
-            }[user.role];
-
             return {
                 ...token,
-                name: name,
                 role: user.role,
             };
         },

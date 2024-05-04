@@ -4,6 +4,7 @@ import { ZodError } from 'zod';
 
 import type { Session } from '@xenous/auth';
 import { db } from '@xenous/db';
+import { http } from '@xenous/http';
 
 export const createTRPCContext = (opts: { headers: Headers; session: Session | null }) => {
     const session = opts.session;
@@ -12,8 +13,9 @@ export const createTRPCContext = (opts: { headers: Headers; session: Session | n
     console.log('>>> tRPC Request from', source, 'by', session?.user);
 
     return {
-        session,
         db,
+        http,
+        ...opts,
     };
 };
 
@@ -40,7 +42,6 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
     }
     return next({
         ctx: {
-            // infers the `session` as non-nullable
             session: { ...ctx.session, user: ctx.session.user },
         },
     });

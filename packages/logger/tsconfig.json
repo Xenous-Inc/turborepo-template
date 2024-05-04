@@ -1,7 +1,6 @@
 {
-    "extends": "@xenous/tsconfig/internal-package.json",
+    "extends": "@xenous/tsconfig/base.json",
     "compilerOptions": {
-        "outDir": "dist",
         "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
     },
     "include": ["src", "*.ts"],

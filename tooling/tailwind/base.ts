@@ -362,8 +362,6 @@ export default {
         },
     },
     plugins: [
-        require('@tailwindcss/forms'),
-        require('tailwindcss-animate'),
         plugin(({ addVariant, matchVariant }) => {
             addVariant('child', '& > *');
             addVariant('child-first', '& > *:first-child');
