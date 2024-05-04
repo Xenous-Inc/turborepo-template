@@ -34,8 +34,18 @@ export default tseslint.config(
                     allowConstantLoopConditions: true,
                 },
             ],
+            '@typescript-eslint/array-type': [
+                'error',
+                {
+                    default: 'array-simple',
+                    readonly: 'array-simple',
+                },
+            ],
             '@typescript-eslint/no-non-null-assertion': 'error',
             'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/consistent-type-definitions': 'off',
         },
     },
     {

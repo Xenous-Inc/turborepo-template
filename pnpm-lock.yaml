@@ -8,12 +8,12 @@ importers:
 
   .:
     devDependencies:
-      '@xenous/prettier-config':
-        specifier: workspace:*
-        version: link:tooling/prettier
       '@turbo/gen':
         specifier: ^1.13.2
         version: 1.13.2(@types/node@20.12.7)(typescript@5.4.4)
+      '@xenous/prettier-config':
+        specifier: workspace:*
+        version: link:tooling/prettier
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -26,21 +26,6 @@ importers:
 
   apps/admin:
     dependencies:
-      '@xenous/api':
-        specifier: workspace:*
-        version: link:../../packages/api
-      '@xenous/auth':
-        specifier: workspace:*
-        version: link:../../packages/auth
-      '@xenous/db':
-        specifier: workspace:*
-        version: link:../../packages/db
-      '@xenous/schema':
-        specifier: workspace:*
-        version: link:../../packages/schema
-      '@xenous/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@t3-oss/env-nextjs':
         specifier: ^0.9.2
         version: 0.9.2(typescript@5.4.4)(zod@3.22.4)
@@ -56,6 +41,21 @@ importers:
       '@trpc/server':
         specifier: 11.0.0-next.320
         version: 11.0.0-next.320
+      '@xenous/api':
+        specifier: workspace:*
+        version: link:../../packages/api
+      '@xenous/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
+      '@xenous/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@xenous/schema':
+        specifier: workspace:*
+        version: link:../../packages/schema
+      '@xenous/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       geist:
         specifier: ^1.3.0
         version: 1.3.0(next@14.1.4)
@@ -75,6 +75,15 @@ importers:
         specifier: ^3.22.4
         version: 3.22.4
     devDependencies:
+      '@types/node':
+        specifier: ^20.12.5
+        version: 20.12.7
+      '@types/react':
+        specifier: ^18.2.74
+        version: 18.2.75
+      '@types/react-dom':
+        specifier: ^18.2.24
+        version: 18.2.24
       '@xenous/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
@@ -87,15 +96,6 @@ importers:
       '@xenous/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@types/node':
-        specifier: ^20.12.5
-        version: 20.12.7
-      '@types/react':
-        specifier: ^18.2.74
-        version: 18.2.75
-      '@types/react-dom':
-        specifier: ^18.2.24
-        version: 18.2.24
       dotenv-cli:
         specifier: ^7.4.1
         version: 7.4.1
@@ -117,21 +117,6 @@ importers:
 
   apps/client:
     dependencies:
-      '@xenous/api':
-        specifier: workspace:*
-        version: link:../../packages/api
-      '@xenous/auth':
-        specifier: workspace:*
-        version: link:../../packages/auth
-      '@xenous/db':
-        specifier: workspace:*
-        version: link:../../packages/db
-      '@xenous/schema':
-        specifier: workspace:*
-        version: link:../../packages/schema
-      '@xenous/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@t3-oss/env-nextjs':
         specifier: ^0.9.2
         version: 0.9.2(typescript@5.4.4)(zod@3.22.4)
@@ -147,6 +132,21 @@ importers:
       '@trpc/server':
         specifier: 11.0.0-next.320
         version: 11.0.0-next.320
+      '@xenous/api':
+        specifier: workspace:*
+        version: link:../../packages/api
+      '@xenous/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
+      '@xenous/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@xenous/schema':
+        specifier: workspace:*
+        version: link:../../packages/schema
+      '@xenous/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       geist:
         specifier: ^1.3.0
         version: 1.3.0(next@14.1.4)
@@ -166,6 +166,15 @@ importers:
         specifier: ^3.22.4
         version: 3.22.4
     devDependencies:
+      '@types/node':
+        specifier: ^20.12.5
+        version: 20.12.7
+      '@types/react':
+        specifier: ^18.2.74
+        version: 18.2.75
+      '@types/react-dom':
+        specifier: ^18.2.24
+        version: 18.2.24
       '@xenous/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
@@ -178,15 +187,6 @@ importers:
       '@xenous/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@types/node':
-        specifier: ^20.12.5
-        version: 20.12.7
-      '@types/react':
-        specifier: ^18.2.74
-        version: 18.2.75
-      '@types/react-dom':
-        specifier: ^18.2.24
-        version: 18.2.24
       dotenv-cli:
         specifier: ^7.4.1
         version: 7.4.1
@@ -208,6 +208,9 @@ importers:
 
   packages/api:
     dependencies:
+      '@trpc/server':
+        specifier: 11.0.0-next.320
+        version: 11.0.0-next.320
       '@xenous/auth':
         specifier: workspace:*
         version: link:../auth
@@ -217,9 +220,6 @@ importers:
       '@xenous/schema':
         specifier: workspace:*
         version: link:../schema
-      '@trpc/server':
-        specifier: 11.0.0-next.320
-        version: 11.0.0-next.320
       superjson:
         specifier: 2.2.1
         version: 2.2.1
@@ -248,15 +248,15 @@ importers:
 
   packages/auth:
     dependencies:
-      '@xenous/db':
-        specifier: workspace:*
-        version: link:../db
       '@auth/prisma-adapter':
         specifier: ^1.6.0
         version: 1.6.0(@prisma/client@5.12.1)
       '@t3-oss/env-nextjs':
         specifier: ^0.9.2
         version: 0.9.2(typescript@5.4.4)(zod@3.22.4)
+      '@xenous/db':
+        specifier: workspace:*
+        version: link:../db
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -276,6 +276,9 @@ importers:
         specifier: ^3.22.4
         version: 3.22.4
     devDependencies:
+      '@types/bcryptjs':
+        specifier: ^2.4.6
+        version: 2.4.6
       '@xenous/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
@@ -285,9 +288,6 @@ importers:
       '@xenous/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@types/bcryptjs':
-        specifier: ^2.4.6
-        version: 2.4.6
       eslint:
         specifier: ^9.0.0
         version: 9.0.0
@@ -393,6 +393,9 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.3)
     devDependencies:
+      '@types/react':
+        specifier: ^18.2.74
+        version: 18.2.75
       '@xenous/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
@@ -405,9 +408,6 @@ importers:
       '@xenous/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@types/react':
-        specifier: ^18.2.74
-        version: 18.2.75
       eslint:
         specifier: ^9.0.0
         version: 9.0.0
@@ -451,15 +451,15 @@ importers:
         specifier: ^7.5.0
         version: 7.6.0(eslint@9.0.0)(typescript@5.4.4)
     devDependencies:
+      '@types/eslint-config-prettier':
+        specifier: ^6.11.3
+        version: 6.11.3
       '@xenous/prettier-config':
         specifier: workspace:*
         version: link:../prettier
       '@xenous/tsconfig':
         specifier: workspace:*
         version: link:../typescript
-      '@types/eslint-config-prettier':
-        specifier: ^6.11.3
-        version: 6.11.3
       eslint:
         specifier: ^9.0.0
         version: 9.0.0
@@ -498,17 +498,10 @@ importers:
         version: 5.4.4
 
   tooling/tailwind:
-    dependencies:
-      postcss:
-        specifier: ^8.4.38
-        version: 8.4.38
-      tailwindcss:
-        specifier: ^3.4.1
-        version: 3.4.3
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.3)
     devDependencies:
+      '@tailwindcss/forms':
+        specifier: ^0.5.7
+        version: 0.5.7(tailwindcss@3.4.3)
       '@xenous/eslint-config':
         specifier: workspace:*
         version: link:../eslint
@@ -521,9 +514,18 @@ importers:
       eslint:
         specifier: ^9.0.0
         version: 9.0.0
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.38
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
+      tailwindcss:
+        specifier: ^3.4.3
+        version: 3.4.3
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.3)
       typescript:
         specifier: ^5.4.4
         version: 5.4.4
@@ -1650,6 +1652,15 @@ packages:
       typescript: 5.4.4
       zod: 3.22.4
     dev: false
+
+  /@tailwindcss/forms@0.5.7(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.4.3
+    dev: true
 
   /@tanstack/query-core@5.29.0:
     resolution: {integrity: sha512-WgPTRs58hm9CMzEr5jpISe8HXa3qKQ8CxewdYZeVnA54JrPY9B1CZiwsCoLpLkf0dGRZq+LcX5OiJb0bEsOFww==}
@@ -4024,6 +4035,11 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
+    dev: true
+
   /minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -5202,7 +5218,6 @@ packages:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
       tailwindcss: 3.4.3
-    dev: false
 
   /tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
