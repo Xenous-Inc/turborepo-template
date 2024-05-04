@@ -9,7 +9,7 @@ import { env as httpEnv } from '@xenous/http/env';
 
 export const env = createEnv({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    extends: [authEnv, dbEnv, emailEnv, httpEnv] as any,
+    extends: [authEnv, dbEnv, httpEnv] as any,
     server: {},
     client: {},
     shared: {},
