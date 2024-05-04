@@ -1,10 +1,7 @@
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
-import { env as loggerEnv } from '@xenous/logger/env';
-
 export const env = createEnv({
-    extends: [loggerEnv],
     server: {},
     client: {
         NEXT_PUBLIC_HTTP_URL: z.preprocess(
