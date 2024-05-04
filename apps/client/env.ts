@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
 import { createEnv } from '@t3-oss/env-nextjs';
@@ -10,12 +11,13 @@ import { env as httpEnv } from '@xenous/http/env';
 import { env as loggerEnv } from '@xenous/logger/env';
 
 export const env = createEnv({
-    extends: [apiEnv, authEnv, dbEnv, httpEnv, loggerEnv],
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    extends: [apiEnv, authEnv, dbEnv, httpEnv, loggerEnv] as any,
+    server: {},
+    client: {},
     shared: {
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
     },
-    server: {},
-    client: {},
     experimental__runtimeEnv: {
         NODE_ENV: process.env.NODE_ENV,
     },

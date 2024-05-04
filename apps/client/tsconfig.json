@@ -5,6 +5,7 @@
         "jsx": "preserve",
         "baseUrl": ".",
         "paths": {
+            "~/env": ["./env"],
             "~/trpc/*": ["./trpc/*"],
             "~/public/*": ["./public/*"],
             "~/*": ["./src/*"]
