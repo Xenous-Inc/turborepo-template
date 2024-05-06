@@ -15,7 +15,7 @@ const levels = {
 } satisfies { [k in string]: (str: string) => string };
 
 const configure = (logger: log.Logger, isRoot = false) => {
-    logger.setLevel(env.NODE_ENV === 'development' ? log.levels.TRACE : log.levels.INFO);
+    logger.setLevel(env.NEXT_PUBLIC_NODE_ENV === 'development' ? log.levels.TRACE : log.levels.INFO);
     prefix.apply(logger, {
         timestampFormatter: toLoggerTimestamp,
         levelFormatter: level => level.toLowerCase(),
