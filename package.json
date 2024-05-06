@@ -6,6 +6,7 @@
     },
     "packageManager": "pnpm@8.15.5",
     "scripts": {
+        "prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
         "build": "turbo build",
         "clean": "git clean -xdf node_modules",
         "clean:workspaces": "turbo clean",
@@ -24,11 +25,16 @@
         "rename": "bash ./rename.sh"
     },
     "devDependencies": {
-        "@xenous/prettier-config": "workspace:*",
         "@turbo/gen": "^1.13.2",
+        "@xenous/prettier-config": "workspace:*",
+        "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
         "turbo": "^1.13.2",
         "typescript": "^5.4.4"
     },
-    "prettier": "@xenous/prettier-config"
+    "prettier": "@xenous/prettier-config",
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": "turbo --output-logs none lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
+        "*.{js,jsx,ts,tsx,html,css}": "pnpm prettier --check --write"
+    }
 }
