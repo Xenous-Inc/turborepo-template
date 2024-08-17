@@ -4,34 +4,27 @@
 
 To get it running, follow the steps below:
 
-### 1. Setup dependencies
+### 0. Requirements
+- Node.js, version `20.12.0` or higher
+- PNPM, version `9.7.1`
+
+The best option is to use NVM and Corepack via `corepack enable`, so required versions will be installed automatically
+
+### 1. Bootstrap project
 
 ```bash
+# Rename project
+pnpm rename <name_instead_of_xenous>
+
 # Install dependencies
 pnpm i
 
 # Configure environment variables
 # There is an `.env.example` in the root directory you can use for reference
 cp .env.example .env
-
-# Push the Prisma schema to the database
-pnpm db:push
-
-# Rename project
-pnpm rename <name_instead_of_xenous>
 ```
 
-### 3a. When it's time to add a new UI component
-
-Run the `ui-add` script to add a new UI component using the interactive `shadcn/ui` CLI:
-
-```bash
-pnpm ui-add
-```
-
-When the component(s) has been installed, you should be good to go and start using it in your app.
-
-### 3b. When it's time to add a new package
+### 2. When it's time to add a new package
 
 To add a new package, simply run `pnpm turbo gen init` in the monorepo root. This will prompt you for a package name as well as if you want to install any dependencies to the new package (of course you can also do this yourself later).
 
