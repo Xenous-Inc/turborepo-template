@@ -9,7 +9,15 @@ export const env = createEnv({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     extends: [dbEnv] as any,
     server: {
-        NEXTAUTH_SECRET: process.env.NODE_ENV === 'production' ? z.string().min(1) : z.string().min(1).optional(),
+        NEXTAUTH_SECRET: process.env.NODE_ENV === 'production' ? z.string().min(16) : z.string().min(16).optional(),
+        NEXTAUTH_URL: z.preprocess(
+            str =>
+                str ||
+                (process.env.VERCEL
+                    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+                    : `http://localhost:${process.env.PORT ?? 3000}`),
+            z.string().url()
+        ),
         NEXTAUTH_TRUST_HOST: z
             .enum(['true', 'false', ''])
             .optional()
