@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: 'Xenous',
     icons: [
         { rel: 'icon', url: '/favicon.ico' },
-        { rel: 'manifest', url: '/site.webmanifest' },
+        { rel: 'manifest', url: '/manifest.json' },
         {
             rel: 'apple-touch-icon',
             sizes: '180x180',

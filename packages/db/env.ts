@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
 import { createEnv } from '@t3-oss/env-nextjs';
@@ -13,10 +12,10 @@ export const env = createEnv({
     },
     client: {},
     shared: {
-        NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+        NEXT_PUBLIC_NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
     },
     experimental__runtimeEnv: {
-        NODE_ENV: process.env.NODE_ENV,
+        NEXT_PUBLIC_NODE_ENV: process.env.NODE_ENV,
     },
     skipValidation: !!process.env.CI || !!process.env.SKIP_ENV_VALIDATION,
 });
