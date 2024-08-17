@@ -4,6 +4,7 @@ import styles from 'ansi-styles';
 import { logger } from '@xenous/logger';
 
 import { env } from '../../env';
+import { HttpError } from '../error';
 
 type ExtendedInternalAxiosRequestConfig<D = unknown> = InternalAxiosRequestConfig<D> & {
     withToken?: boolean;
@@ -40,5 +41,12 @@ export const loggingResponseInterceptorHandlers = [
         }
 
         throw error;
+    },
+] as const;
+
+export const transformErrorResponseInterceptorHandlers = [
+    (response: AxiosResponse) => response,
+    (error?: AxiosError) => {
+        throw new HttpError(error);
     },
 ] as const;

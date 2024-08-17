@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
 import { createEnv } from '@t3-oss/env-nextjs';
@@ -14,12 +13,24 @@ export const env = createEnv({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     extends: [apiEnv, authEnv, dbEnv, httpEnv, loggerEnv] as any,
     server: {},
-    client: {},
+    client: {
+        NEXT_PUBLIC_QUERY_DEVTOOLS: z
+            .enum(['true', 'false', ''])
+            .optional()
+            .transform(s => s === 'true')
+            .pipe(z.boolean()),
+    },
     shared: {
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+        DOCKER: z
+            .enum(['true', 'false', ''])
+            .optional()
+            .transform(s => s === 'true')
+            .pipe(z.boolean()),
     },
     experimental__runtimeEnv: {
         NODE_ENV: process.env.NODE_ENV,
+        NEXT_PUBLIC_QUERY_DEVTOOLS: process.env.NEXT_PUBLIC_QUERY_DEVTOOLS,
     },
     skipValidation: !!process.env.CI || !!process.env.SKIP_ENV_VALIDATION || process.env.npm_lifecycle_event === 'lint',
 });

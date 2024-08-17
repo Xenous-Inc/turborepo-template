@@ -4,7 +4,7 @@ type ReactTag = keyof JSX.IntrinsicElements | JSXElementConstructor<any>;
 
 export type PropsOf<TTag extends ReactTag> = TTag extends React.ElementType ? React.ComponentProps<TTag> : never;
 
-export type EnumType<T> = T[keyof T];
+export type EnumType<T> = { [Key in keyof T]: T[Key] extends string | number | symbol ? T[Key] : never }[keyof T];
 
 export type SearchParams<
     T extends Record<string, string | string[] | undefined> = Record<string, string | string[] | undefined>,

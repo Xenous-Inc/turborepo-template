@@ -30,17 +30,7 @@ const configure = (logger: log.Logger, isRoot = false) => {
     });
 };
 
-const loggerExtensions = [
-    'ui',
-    'hooks',
-    'redux',
-    'api',
-    'middlewares',
-    'actions',
-    'reducers',
-    'decorators',
-    'utils',
-] as const;
+const loggerExtensions = ['ui', 'hooks', 'api', 'callbacks', 'middlewares', 'utils'] as const;
 
 export const logger = log as ExtendedLogger;
 prefix.reg(log);

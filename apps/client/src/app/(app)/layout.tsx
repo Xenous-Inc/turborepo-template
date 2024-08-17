@@ -3,11 +3,12 @@ import { Noto_Sans } from 'next/font/google';
 
 import { cn } from '@xenous/ui';
 
-import '~/styles/globals.scss';
-
 import { Providers } from '../(_providers)';
 
+import '~/styles/globals.scss';
+
 export const metadata: Metadata = {
+    applicationName: 'Xenous',
     title: 'Xenous',
     description: 'Xenous',
     icons: [
@@ -48,11 +49,11 @@ const notoSans = Noto_Sans({
 
 export default ({ children }: React.PropsWithChildren) => {
     return (
-        <html suppressHydrationWarning>
+        <html lang={'ru'} dir={'ltr'} suppressHydrationWarning>
             <head />
             <body
                 className={cn(
-                    'min-h-[100dvh] w-full min-w-fit',
+                    'min-h-dvh w-full min-w-full scroll-smooth bg-argent-900',
                     'font-noto-sans text-primary antialiased',
                     notoSans.variable
                 )}

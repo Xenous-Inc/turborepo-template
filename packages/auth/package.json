@@ -8,6 +8,10 @@
             "react-server": "./src/index.rsc.ts",
             "default": "./src/index.ts"
         },
+        "./sign-up/*": {
+            "types": "./src/sign-up/*/index.ts",
+            "default": "./src/sign-up/*/index.ts"
+        },
         "./env": "./env.ts"
     },
     "license": "MIT",

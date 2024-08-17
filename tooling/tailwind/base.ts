@@ -278,6 +278,8 @@ export default {
                 '10/12': '83.333333%',
                 '11/12': '91.666667%',
                 'full': '100%',
+                'screen': '100dvh',
+                'page': 'var(--page-height)',
             },
             maxHeight: {
                 '0': '0px',
@@ -344,6 +346,8 @@ export default {
                 '10/12': '83.333333%',
                 '11/12': '91.666667%',
                 'full': '100%',
+                'screen': '100dvh',
+                'page': 'var(--page-height)',
             },
             height: {
                 page: 'var(--page-height)',
@@ -360,14 +364,23 @@ export default {
             inset: {
                 page: 'var(--page-inset)',
             },
+            zIndex: {
+                100: '100',
+                150: '150',
+                200: '200',
+                250: '250',
+                300: '300',
+                400: '400',
+                500: '500',
+            },
         },
     },
     plugins: [
         plugin(({ addVariant, matchVariant }) => {
             addVariant('child', '& > *');
-            addVariant('child-first', '& > *:first-child');
-            addVariant('child-last', '& > *:last-child');
-            matchVariant('child-nth', value => `& > *:nth-child(${value})`, {
+            addVariant('first-child', '& > *:first-child');
+            addVariant('last-child', '& > *:last-child');
+            matchVariant('nth-child', value => `& > *:nth-child(${value})`, {
                 values: {
                     1: '1',
                     2: '2',

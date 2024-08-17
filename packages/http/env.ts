@@ -1,14 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
-import { env as loggerEnv } from '@xenous/logger/env';
-
 export const env = createEnv({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    extends: [loggerEnv] as any,
+    extends: [] as any,
     server: {},
     client: {
         NEXT_PUBLIC_HTTP_URL: z.preprocess(
