@@ -29,7 +29,6 @@ export const env = createEnv({
             .pipe(z.boolean()),
     },
     experimental__runtimeEnv: {
-        NODE_ENV: process.env.NODE_ENV,
         NEXT_PUBLIC_QUERY_DEVTOOLS: process.env.NEXT_PUBLIC_QUERY_DEVTOOLS,
     },
     skipValidation: !!process.env.CI || !!process.env.SKIP_ENV_VALIDATION || process.env.npm_lifecycle_event === 'lint',
