@@ -6,6 +6,8 @@ import bcrypt from 'bcryptjs';
 import type { UserRole } from '@xenous/db';
 import { db } from '@xenous/db';
 
+import { env } from '../env';
+
 declare module 'next-auth' {
     interface Session extends DefaultSession {
         user: {
@@ -18,6 +20,7 @@ declare module 'next-auth' {
 export const authConfig = {
     adapter: PrismaAdapter(db),
     session: { strategy: 'jwt' },
+    trustHost: env.NEXTAUTH_TRUST_HOST,
     callbacks: {
         jwt: async ({ token }) => {
             if (!token.email) return token;
