@@ -22,9 +22,9 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@xenous/db": "workspace:*",
         "@auth/prisma-adapter": "^1.6.0",
         "@t3-oss/env-nextjs": "^0.9.2",
+        "@xenous/db": "workspace:*",
         "bcryptjs": "^2.4.3",
         "next": "^14.1.4",
         "next-auth": "5.0.0-beta.16",
@@ -33,10 +33,10 @@
         "zod": "^3.22.4"
     },
     "devDependencies": {
+        "@types/bcryptjs": "^2.4.6",
         "@xenous/eslint-config": "workspace:*",
         "@xenous/prettier-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
-        "@types/bcryptjs": "^2.4.6",
         "eslint": "^9.0.0",
         "prettier": "^3.2.5",
         "typescript": "^5.4.4"

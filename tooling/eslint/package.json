@@ -23,9 +23,9 @@
         "typescript-eslint": "^7.5.0"
     },
     "devDependencies": {
+        "@types/eslint-config-prettier": "^6.11.3",
         "@xenous/prettier-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
-        "@types/eslint-config-prettier": "^6.11.3",
         "eslint": "^9.0.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.1.3",
