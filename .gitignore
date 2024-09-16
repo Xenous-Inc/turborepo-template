@@ -4,6 +4,7 @@
 node_modules
 .pnp
 .pnp.js
+v8-compile-cache-*
 
 # testing
 coverage
