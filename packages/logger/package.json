@@ -14,7 +14,8 @@
         "clean": "rm -rf .turbo node_modules",
         "format": "prettier --check . --ignore-path ../../.gitignore",
         "lint": "eslint",
-        "typecheck": "tsc --noEmit"
+        "typecheck": "tsc --noEmit",
+        "knip": "knip --config ../../knip.json"
     },
     "dependencies": {
         "@t3-oss/env-nextjs": "^0.9.2",
