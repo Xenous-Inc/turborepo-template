@@ -5,8 +5,9 @@
 To get it running, follow the steps below:
 
 ### 0. Requirements
-- Node.js, version `20.12.0` or higher
-- PNPM, version `9.7.1`
+
+-   Node.js, version `20.17.0` or higher
+-   PNPM, version `9.11.0`
 
 The best option is to use NVM and Corepack via `corepack enable`, so required versions will be installed automatically
 
