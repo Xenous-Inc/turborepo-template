@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority';
 
 import { cn } from '@xenous/ui';
 
-const spinnerVariants = cva('animate-spin motion-safe:duration-700', {
+const spinnerVariants = cva('animate-spin !bg-transparent motion-safe:duration-700', {
     variants: {
         variant: {
             icon: 'fill-primary',
@@ -14,14 +14,14 @@ const spinnerVariants = cva('animate-spin motion-safe:duration-700', {
             link: 'fill-secondary',
         },
         size: {
-            sm: 'h-6 w-6',
-            md: 'h-8 w-8',
-            lg: 'h-10 w-10',
+            6: 'size-6',
+            8: 'size-8',
+            10: 'size-10',
         },
     },
     defaultVariants: {
         variant: 'primary',
-        size: 'md',
+        size: 8,
     },
 });
 
