@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { fileURLToPath } from 'url';
 import createJiti from 'jiti';
 
@@ -30,6 +28,7 @@ const config = {
 
     webpack: config => {
         // Grab the existing rule that handles SVG imports
+        // @ts-expect-error
         const fileLoaderRule = config.module.rules.find(rule => rule.test?.test?.('.svg'));
 
         config.module.rules.push(
