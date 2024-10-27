@@ -66,6 +66,20 @@ export default {
                 3: '3px',
                 3.5: '3.5px',
             },
+            ringWidth: {
+                px: '1px',
+                1.5: '1.5px',
+                2.5: '2.5px',
+                3: '3px',
+                3.5: '3.5px',
+            },
+            ringOffsetWidth: {
+                px: '1px',
+                1.5: '1.5px',
+                2.5: '2.5px',
+                3: '3px',
+                3.5: '3.5px',
+            },
             borderRadius: {
                 2: '0.125rem',
                 4: '0.25rem',
