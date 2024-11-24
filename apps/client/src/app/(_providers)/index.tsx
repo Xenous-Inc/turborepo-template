@@ -4,7 +4,7 @@ import { ThemeProvider } from './ThemeProvider';
 import { ToastProvider } from './ToastProvider';
 import { TRPCProvider } from './TRPCProvider';
 
-export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
+const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (
         <RwdotProvider>
             <ThemeProvider>
@@ -17,3 +17,6 @@ export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
         </RwdotProvider>
     );
 };
+Providers.displayName = 'Providers';
+
+export { Providers };
