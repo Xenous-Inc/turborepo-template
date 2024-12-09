@@ -1,13 +1,16 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "packageRules": [
-    {
-      "matchPackagePatterns": ["^@xenous/"],
-      "enabled": false
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:base"],
+    "packageRules": [
+        {
+            "matchPackagePatterns": ["^@xenous/"],
+            "enabled": false
+        }
+    ],
+    "updateInternalDeps": true,
+    "rangeStrategy": "bump",
+    "automerge": true,
+    "npm": {
+        "fileMatch": ["(^|/)package\\.json$", "(^|/)package\\.json\\.hbs$"]
     }
-  ],
-  "updateInternalDeps": true,
-  "rangeStrategy": "bump",
-  "automerge": true
 }
