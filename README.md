@@ -56,8 +56,8 @@ To get it running, follow the steps below:
 
 ### 1. Setup dependencies
 
--   Node.js, version `20.9.0` or higher
--   PNPM, version `9.14.2`
+-   Node.js, version `22.11.0` or higher
+-   PNPM, version `9.15.4`
 
 ```bash
 # Use required Node version if using NVM
