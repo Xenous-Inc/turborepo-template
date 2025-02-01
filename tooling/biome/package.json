@@ -12,14 +12,9 @@
     "scripts": {
         "clean": "git clean -xdf .cache .turbo node_modules",
         "format-and-lint": "biome check .",
-        "ci": "biome ci",
-        "typecheck": "tsc --noEmit"
+        "ci": "biome ci"
     },
     "dependencies": {
         "@biomejs/biome": "catalog:"
-    },
-    "devDependencies": {
-        "@xenous/tsconfig": "workspace:*",
-        "typescript": "catalog:"
     }
 }
