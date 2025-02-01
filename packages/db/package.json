@@ -6,36 +6,42 @@
     "type": "module",
     "exports": {
         ".": {
-            "types": "./src/index.ts",
+            "types": "./dist/index.d.ts",
             "default": "./src/index.ts"
+        },
+        "./client": {
+            "types": "./dist/client.d.ts",
+            "default": "./src/client.ts"
+        },
+        "./schema": {
+            "types": "./dist/schema.d.ts",
+            "default": "./src/schema.ts"
         },
         "./env": "./env.ts"
     },
-    "license": "MIT",
     "scripts": {
-        "clean": "rm -rf .turbo node_modules",
-        "format": "prettier --check . --ignore-path ../../.gitignore",
-        "lint": "eslint",
-        "db:generate": "pnpm with-env prisma generate",
-        "db:push": "pnpm with-env prisma db push --skip-generate",
-        "db:studio": "pnpm with-env prisma studio --port 5556",
+        "build": "tsc",
+        "clean": "git clean -xdf .cache .turbo dist node_modules",
+        "dev": "tsc",
+        "format-and-lint": "biome check .",
+        "ci": "biome ci",
+        "push": "pnpm with-env drizzle-kit push",
+        "studio": "pnpm with-env drizzle-kit studio",
         "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-        "with-env": "dotenv -e ../../.env --",
-        "knip": "knip --config ../../knip.json"
+        "with-env": "dotenv -e ../../.env --"
     },
     "dependencies": {
-        "@prisma/client": "^5.12.1",
-        "@t3-oss/env-core": "^0.9.2"
+        "@vercel/postgres": "^0.10.0",
+        "drizzle-orm": "^0.36.4",
+        "drizzle-zod": "^0.5.1",
+        "zod": "catalog:"
     },
     "devDependencies": {
-        "@xenous/eslint-config": "workspace:*",
-        "@xenous/prettier-config": "workspace:*",
+        "@biomejs/biome": "catalog:",
+        "@xenous/biome-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
-        "dotenv-cli": "^7.4.1",
-        "eslint": "^9.0.0",
-        "prettier": "^3.2.5",
-        "prisma": "^5.12.1",
-        "typescript": "^5.4.4"
-    },
-    "prettier": "@xenous/prettier-config"
+        "dotenv-cli": "^7.4.4",
+        "drizzle-kit": "^0.28.1",
+        "typescript": "catalog:"
+    }
 }

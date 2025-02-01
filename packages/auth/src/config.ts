@@ -1,78 +1,69 @@
-import type { DefaultSession, NextAuthConfig } from 'next-auth';
-import CredentialsProvider from '@auth/core/providers/credentials';
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import bcrypt from 'bcryptjs';
+import { skipCSRFCheck } from '@auth/core';
+import { DrizzleAdapter } from '@auth/drizzle-adapter';
+import type { DefaultSession, NextAuthConfig, Session as NextAuthSession } from 'next-auth';
+import Discord from 'next-auth/providers/discord';
 
-import type { UserRole } from '@xenous/db';
-import { db } from '@xenous/db';
+import { db } from '@xenous/db/client';
+import { Account, Session, User } from '@xenous/db/schema';
 
 import { env } from '../env';
 
 declare module 'next-auth' {
-    interface Session extends DefaultSession {
+    interface Session {
         user: {
             id: string;
-            role: UserRole;
         } & DefaultSession['user'];
     }
 }
 
+const adapter = DrizzleAdapter(db, {
+    usersTable: User,
+    accountsTable: Account,
+    sessionsTable: Session,
+});
+
+export const isSecureContext = env.NODE_ENV !== 'development';
+
 export const authConfig = {
-    adapter: PrismaAdapter(db),
-    session: { strategy: 'jwt' },
-    trustHost: env.NEXTAUTH_TRUST_HOST,
+    adapter,
+    // In development, we need to skip checks to allow Expo to work
+    ...(!isSecureContext
+        ? {
+              skipCSRFCheck: skipCSRFCheck,
+              trustHost: true,
+          }
+        : {}),
+    secret: env.AUTH_SECRET,
+    providers: [Discord],
     callbacks: {
-        jwt: async ({ token }) => {
-            if (!token.email) return token;
-
-            const user = await db.user.findUnique({ where: { id: token.sub } });
-
-            if (!user) return token;
+        session: opts => {
+            if (!('user' in opts)) throw new Error('unreachable with session strategy');
 
             return {
-                ...token,
-                role: user.role,
-            };
-        },
-        session: ({ session, token }) => {
-            return {
-                ...session,
+                ...opts.session,
                 user: {
-                    ...session.user,
-                    id: token.sub,
-                    name: token.name,
-                    role: token.role,
+                    ...opts.session.user,
+                    id: opts.user.id,
                 },
             };
         },
     },
-    providers: [
-        CredentialsProvider({
-            id: 'credentials',
-            credentials: {
-                email: { type: 'email' },
-                password: { type: 'password' },
-                role: { type: 'text' },
-            },
-            authorize: async credentials => {
-                if (!credentials.email || !credentials.password) {
-                    return null;
-                }
-
-                const user = await db.user.findUnique({
-                    where: { email: credentials.email as string },
-                });
-
-                if (!user?.password || user.role !== credentials.role) {
-                    return null;
-                }
-
-                const passwordsMatch = await bcrypt.compare(credentials.password as string, user.password);
-
-                if (!passwordsMatch) return null;
-
-                return user;
-            },
-        }),
-    ],
 } satisfies NextAuthConfig;
+
+export const validateToken = async (token: string): Promise<NextAuthSession | null> => {
+    const sessionToken = token.slice('Bearer '.length);
+    const session = await adapter.getSessionAndUser?.(sessionToken);
+    return session
+        ? {
+              user: {
+                  ...session.user,
+              },
+              expires: session.session.expires.toISOString(),
+          }
+        : null;
+};
+
+export const invalidateSessionToken = async (token: string) => {
+    const sessionToken = token.slice('Bearer '.length);
+    await adapter.deleteSession?.(sessionToken);
+};

@@ -7,7 +7,9 @@
             "request": "launch",
             "command": "pnpm dev",
             "cwd": "${workspaceFolder}/apps/nextjs",
-            "skipFiles": ["<node_internals>/**"],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
             "sourceMaps": true,
             "sourceMapPathOverrides": {
                 "/turbopack/[project]/*": "${webRoot}/*" //https://github.com/vercel/next.js/issues/62008

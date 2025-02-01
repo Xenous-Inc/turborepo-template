@@ -3,40 +3,33 @@
     "name": "xenous",
     "private": true,
     "engines": {
-        "node": ">=20.9.0"
+        "node": ">=22.11.0",
+        "pnpm": "^9.15.4"
     },
-    "packageManager": "pnpm@9.11.0",
+    "packageManager": "pnpm@9.15.4",
     "scripts": {
         "prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
-        "build": "turbo build",
         "clean": "git clean -xdf node_modules",
         "clean:workspaces": "turbo clean",
-        "db:generate": "turbo db:generate",
-        "db:push": "turbo db:push",
-        "db:studio": "turbo db:studio",
-        "dev": "turbo dev --parallel",
-        "format": "turbo format --continue -- --cache --cache-location node_modules/.cache/.prettiercache",
-        "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
-        "lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
-        "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
+        "db:push": "turbo -F @xenous/db push",
+        "db:studio": "turbo -F @xenous/db studio",
+        "dev": "turbo watch dev --continue",
+        "dev:next": "turbo watch dev -F @xenous/nextjs...",
+        "build": "turbo build",
+        "format-and-lint": "turbo run format-and-lint --continue",
+        "format-and-lint:fix": "turbo run format-and-lint --continue -- --write",
         "lint:ws": "pnpm dlx sherif@latest",
-        "postinstall": "pnpm lint:ws && pnpm db:generate",
-        "typecheck": "turbo typecheck",
-        "ui-add": "pnpm -F ui ui-add",
+        "ci": "turbo run ci --continue",
+        "postinstall": "pnpm lint:ws",
+        "typecheck": "turbo run typecheck",
+        "ui-add": "turbo run ui-add",
         "rename": "bash ./rename.sh"
     },
     "devDependencies": {
-        "@turbo/gen": "^1.13.2",
-        "@xenous/prettier-config": "workspace:*",
-        "knip": "^5.30.2",
-        "lint-staged": "^15.2.2",
-        "prettier": "^3.2.5",
-        "turbo": "^1.13.2",
-        "typescript": "^5.4.4"
-    },
-    "prettier": "@xenous/prettier-config",
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx}": "turbo --output-logs none lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-        "*.{js,jsx,ts,tsx,html,css}": "pnpm prettier --check --write"
+        "@biomejs/biome": "catalog:",
+        "@turbo/gen": "^2.3.1",
+        "@xenous/biome-config": "workspace:*",
+        "turbo": "^2.3.1",
+        "typescript": "catalog:"
     }
 }

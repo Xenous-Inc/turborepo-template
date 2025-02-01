@@ -1,0 +1,37 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "files": {
+        "include": [
+            "**/*.js",
+            "**/*.ts",
+            "**/*.jsx",
+            "**/*.tsx"
+        ]
+    },
+    "linter": {
+        "rules": {
+            "nursery": {
+                "useSortedClasses": {
+                    "level": "warn",
+                    "options": {
+                        "attributes": [
+                            "class",
+                            "className",
+                            "class:list",
+                            "classList",
+                            "ngClass"
+                        ],
+                        "functions": [
+                            "cn",
+                            "cx",
+                            "clsx",
+                            "cva",
+                            "tw",
+                            "tw.*"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

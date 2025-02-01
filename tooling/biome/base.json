@@ -1,0 +1,91 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "files": {
+        "include": [
+            "**/*.js",
+            "**/*.ts",
+            "**/*.jsx",
+            "**/*.tsx",
+            "**/*.css",
+            "**/*.scss",
+            "**/*.html",
+            "**/*.json",
+            "**/*.jsonc",
+            "**/*.yaml",
+            "**/*.yml",
+            "**/*.md"
+        ]
+    },
+    "organizeImports": {
+        "enabled": true
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "complexity": {
+                "noForEach": "off",
+                "noUselessFragments": "off"
+            },
+            "correctness": {
+                "useExhaustiveDependencies": "off",
+                "noUnusedVariables": "error",
+                "noConstantCondition": "error"
+            },
+            "style": {
+                "useImportType": "warn",
+                "useConsistentArrayType": {
+                    "level": "error",
+                    "options": {
+                        "syntax": "shorthand"
+                    }
+                },
+                "noNonNullAssertion": "error"
+            },
+            "suspicious": {
+                "noExplicitAny": "off"
+            }
+        }
+    },
+    "formatter": {
+        "enabled": true,
+        "ignore": [
+            "node_modules/*",
+            "*.config.*",
+            "*.json",
+            "tsconfig.json",
+            ".turbo"
+        ],
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "useEditorconfig": true
+    },
+    "javascript": {
+        "formatter": {
+            "indentStyle": "space",
+            "quoteProperties": "preserve",
+            "bracketSameLine": false,
+            "jsxQuoteStyle": "single",
+            "bracketSpacing": true,
+            "trailingCommas": "es5",
+            "arrowParentheses": "asNeeded",
+            "quoteStyle": "single",
+            "lineWidth": 120,
+            "indentWidth": 4,
+            "semicolons": "always"
+        }
+    },
+    "json": {
+        "formatter": {
+            "trailingCommas": "none",
+            "indentWidth": 4,
+            "indentStyle": "space"
+        }
+    },
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true,
+        "defaultBranch": "main"
+    }
+}

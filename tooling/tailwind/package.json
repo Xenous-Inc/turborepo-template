@@ -8,24 +8,21 @@
         "./native": "./native.ts",
         "./web": "./web.ts"
     },
-    "license": "MIT",
     "scripts": {
-        "clean": "rm -rf .turbo node_modules",
-        "format": "prettier --check . --ignore-path ../../.gitignore",
-        "lint": "eslint",
+        "clean": "git clean -xdf .cache .turbo node_modules",
+        "format-and-lint": "biome check .",
+        "ci": "biome ci",
         "typecheck": "tsc --noEmit"
     },
-    "devDependencies": {
-        "@tailwindcss/forms": "^0.5.7",
-        "@xenous/eslint-config": "workspace:*",
-        "@xenous/prettier-config": "workspace:*",
-        "@xenous/tsconfig": "workspace:*",
-        "eslint": "^9.0.0",
-        "postcss": "^8.4.38",
-        "prettier": "^3.2.5",
-        "tailwindcss": "^3.4.1",
-        "tailwindcss-animate": "^1.0.7",
-        "typescript": "^5.4.4"
+    "dependencies": {
+        "postcss": "^8.5.1",
+        "tailwindcss": "catalog:",
+        "tailwindcss-animate": "^1.0.7"
     },
-    "prettier": "@xenous/prettier-config"
+    "devDependencies": {
+        "@biomejs/biome": "catalog:",
+        "@xenous/biome-config": "workspace:*",
+        "@xenous/tsconfig": "workspace:*",
+        "typescript": "catalog:"
+    }
 }

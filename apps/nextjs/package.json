@@ -1,0 +1,48 @@
+{
+    "$schema": "https://json.schemastore.org/package.json",
+    "name": "@xenous/nextjs",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "pnpm with-env next build",
+        "clean": "git clean -xdf .cache .next .turbo node_modules",
+        "dev": "pnpm with-env next dev",
+        "format-and-lint": "biome check .",
+        "ci": "biome ci",
+        "start": "pnpm with-env next start",
+        "typecheck": "tsc --noEmit",
+        "with-env": "dotenv -e ../../.env --"
+    },
+    "dependencies": {
+        "@t3-oss/env-nextjs": "^0.11.1",
+        "@tanstack/react-query": "catalog:",
+        "@trpc/client": "catalog:",
+        "@trpc/react-query": "catalog:",
+        "@trpc/server": "catalog:",
+        "@xenous/api": "workspace:*",
+        "@xenous/auth": "workspace:*",
+        "@xenous/db": "workspace:*",
+        "@xenous/ui": "workspace:*",
+        "@xenous/validators": "workspace:*",
+        "geist": "^1.3.1",
+        "next": "^14.2.15",
+        "react": "catalog:react18",
+        "react-dom": "catalog:react18",
+        "superjson": "2.2.1",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "catalog:",
+        "@types/node": "^20.17.7",
+        "@types/react": "catalog:react18",
+        "@types/react-dom": "catalog:react18",
+        "@xenous/biome-config": "workspace:*",
+        "@xenous/tailwind-config": "workspace:*",
+        "@xenous/tsconfig": "workspace:*",
+        "dotenv-cli": "^7.4.4",
+        "jiti": "^1.21.6",
+        "tailwindcss": "catalog:",
+        "typescript": "catalog:"
+    }
+}

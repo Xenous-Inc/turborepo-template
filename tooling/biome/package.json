@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json.schemastore.org/package.json",
+    "name": "@xenous/biome-config",
+    "version": "0.3.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./base": "./base.json",
+        "./react": "./react.json",
+        "./restirct-env": "./restirct-env.json"
+    },
+    "scripts": {
+        "clean": "git clean -xdf .cache .turbo node_modules",
+        "format-and-lint": "biome check .",
+        "ci": "biome ci",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@biomejs/biome": "catalog:"
+    },
+    "devDependencies": {
+        "@xenous/tsconfig": "workspace:*",
+        "typescript": "catalog:"
+    }
+}

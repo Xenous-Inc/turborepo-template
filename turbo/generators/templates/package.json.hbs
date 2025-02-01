@@ -5,22 +5,20 @@
     "private": true,
     "type": "module",
     "exports": {
-      ".": "./src/index.ts"
+        ".": "./src/index.ts"
     },
-    "license": "MIT",
     "scripts": {
-      "clean": "rm -rf .turbo node_modules",
-      "format": "prettier --check . --ignore-path ../../.gitignore",
-      "lint": "eslint",
-      "typecheck": "tsc --noEmit"
+        "build": "tsc",
+        "clean": "git clean -xdf .cache .turbo dist node_modules",
+        "dev": "tsc",
+        "format": "biome format .",
+        "lint": "biome lint",
+        "typecheck": "tsc --noEmit --emitDeclarationOnly false"
     },
     "devDependencies": {
-      "@xenous/eslint-config": "workspace:*",
-      "@xenous/prettier-config": "workspace:*",
-      "@xenous/tsconfig": "workspace:*",
-      "eslint": "^9.0.0",
-      "prettier": "^3.2.5",
-      "typescript": "^5.4.3"
-    },
-    "prettier": "@xenous/prettier-config"
+        "@biomejs/biome": "catalog:",
+        "@xenous/biome-config": "workspace:*",
+        "@xenous/tsconfig": "workspace:*",
+        "typescript": "catalog:"
+    }
 }

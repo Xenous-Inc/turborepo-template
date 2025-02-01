@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig.json",
+    "extends": "@xenous/tsconfig/base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "~/env": [
+                "./env"
+            ]
+        },
+        "module": "esnext"
+    },
+    "include": [
+        "routes"
+    ]
+}

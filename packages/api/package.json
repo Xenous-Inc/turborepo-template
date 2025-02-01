@@ -8,37 +8,28 @@
         ".": {
             "types": "./dist/index.d.ts",
             "default": "./src/index.ts"
-        },
-        "./env": "./env.ts"
+        }
     },
-    "license": "MIT",
     "scripts": {
         "build": "tsc",
-        "dev": "tsc --watch",
-        "clean": "rm -rf .turbo node_modules",
-        "format": "prettier --check . --ignore-path ../../.gitignore",
-        "lint": "eslint",
-        "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-        "knip": "knip --config ../../knip.json"
+        "clean": "git clean -xdf .cache .turbo dist node_modules",
+        "dev": "tsc",
+        "format-and-lint": "biome check .",
+        "ci": "biome ci",
+        "typecheck": "tsc --noEmit --emitDeclarationOnly false"
     },
     "dependencies": {
-        "@t3-oss/env-nextjs": "^0.9.2",
-        "@trpc/server": "11.0.0-next.320",
+        "@trpc/server": "catalog:",
         "@xenous/auth": "workspace:*",
         "@xenous/db": "workspace:*",
-        "@xenous/http": "workspace:*",
-        "@xenous/logger": "workspace:*",
-        "@xenous/schema": "workspace:*",
+        "@xenous/validators": "workspace:*",
         "superjson": "2.2.1",
-        "zod": "^3.22.4"
+        "zod": "catalog:"
     },
     "devDependencies": {
-        "@xenous/eslint-config": "workspace:*",
-        "@xenous/prettier-config": "workspace:*",
+        "@biomejs/biome": "catalog:",
+        "@xenous/biome-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
-        "eslint": "^9.0.0",
-        "prettier": "^3.2.5",
-        "typescript": "^5.4.4"
-    },
-    "prettier": "@xenous/prettier-config"
+        "typescript": "catalog:"
+    }
 }

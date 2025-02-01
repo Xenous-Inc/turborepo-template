@@ -1,0 +1,29 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "files": {
+        "include": [
+            "**/*.js",
+            "**/*.ts",
+            "**/*.tsx"
+        ],
+        "ignore": [
+            "**/env.ts"
+        ]
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "nursery": {
+                "noProcessEnv": "error",
+                "noRestrictedImports": {
+                    "level": "error",
+                    "options": {
+                        "paths": {
+                            "process": "env"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

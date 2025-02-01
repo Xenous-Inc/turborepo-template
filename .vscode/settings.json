@@ -1,37 +1,52 @@
 {
+    "$schema": "vscode://schemas/settings/user",
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
+        "quickfix.biome": "explicit",
+        "source.organizeImports.biome": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[typescript,typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "[javascript,typescript,typescriptreact]": {
+        "editor.defaultFormatter": "biomejs.biome"
     },
     "editor.formatOnSave": true,
-    "eslint.rules.customizations": [
-        {
-            "rule": "*",
-            "severity": "warn"
-        }
+    "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        "class:list",
+        "classList",
+        "ngClass"
     ],
-    "eslint.runtime": "node",
-    "eslint.workingDirectories": [
-        {
-            "pattern": "apps/*/"
-        },
-        {
-            "pattern": "packages/*/"
-        },
-        {
-            "pattern": "tooling/*/"
-        }
-    ],
-    "prettier.ignorePath": ".gitignore",
     "tailwindCSS.experimental.classRegex": [
-        ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-        ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+        [
+            "\\b\\w+[cC]lassName\\s*=\\s*[\"']([^\"']*)[\"']"
+        ],
+        [
+            "\\b\\w+[cC]lassName\\s*=\\s*`([^`]*)`"
+        ],
+        [
+            "[\\w]+[cC]lassName[\"']?\\s*:\\s*[\"']([^\"']*)[\"']"
+        ],
+        [
+            "[\\w]+[cC]lassName[\"']?\\s*:\\s*`([^`]*)`"
+        ],
+        [
+            "\\b\\w+[cC]lassName\\s*=\\s*\\{\\s*cn\\([\"']([^\"']*)[\"']\\)\\s*\\}"
+        ],
+        [
+            "\\b\\w+[cC]lassName\\s*=\\s*\\{\\s*cn\\(`([^`]*)`\\)\\s*\\}"
+        ],
+        [
+            "\\b\\w+[cC]lassName\\s*=\\s*\\{\\s*cn\\(([^)]*)\\)\\s*\\}"
+        ],
+        [
+            "cva\\(([^)]*)\\)"
+        ]
     ],
     "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
     "typescript.enablePromptUseWorkspaceTsdk": true,
-    "typescript.preferences.autoImportFileExcludePatterns": ["next/router.d.ts", "next/dist/client/router.d.ts"],
+    "typescript.preferences.autoImportFileExcludePatterns": [
+        "next/router.d.ts",
+        "next/dist/client/router.d.ts"
+    ],
     "typescript.tsdk": "node_modules/typescript/lib"
 }
