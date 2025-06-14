@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json.schemastore.org/package.json",
+    "$schema": "https://schemastore.org/package.json",
     "name": "@xenous/biome-config",
     "version": "0.3.0",
     "private": true,
@@ -11,7 +11,8 @@
     },
     "scripts": {
         "clean": "git clean -xdf .cache .turbo node_modules",
-        "format-and-lint": "biome check .",
+        "check": "biome check .",
+        "check:fix": "biome check . --write",
         "ci": "biome ci"
     },
     "dependencies": {

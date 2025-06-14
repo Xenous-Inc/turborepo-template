@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json.schemastore.org/package.json",
+    "$schema": "https://schemastore.org/package.json",
     "name": "@xenous/tailwind-config",
     "version": "0.1.0",
     "private": true,
@@ -10,12 +10,12 @@
     },
     "scripts": {
         "clean": "git clean -xdf .cache .turbo node_modules",
-        "format-and-lint": "biome check .",
+        "check": "biome check .",
+        "check:fix": "biome check . --write",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "postcss": "^8.5.1",
         "tailwindcss": "catalog:",
         "tailwindcss-animate": "^1.0.7"
     },

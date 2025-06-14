@@ -1,14 +1,9 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:base",
-        "customManagers:biomeVersions"
-    ],
+    "extends": ["config:base", "customManagers:biomeVersions"],
     "packageRules": [
         {
-            "matchPackagePatterns": [
-                "^@xenous/"
-            ],
+            "matchPackagePatterns": ["^@xenous/"],
             "enabled": false
         }
     ],
@@ -16,9 +11,6 @@
     "rangeStrategy": "bump",
     "automerge": true,
     "npm": {
-        "fileMatch": [
-            "(^|/)package\\.json$",
-            "(^|/)package\\.json\\.hbs$"
-        ]
+        "fileMatch": ["(^|/)package\\.json$", "(^|/)package\\.json\\.hbs$"]
     }
 }

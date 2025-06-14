@@ -4,14 +4,17 @@
     "rsc": true,
     "tsx": true,
     "tailwind": {
-        "config": "../../tooling/tailwind/web.ts",
-        "css": "unused.css",
-        "baseColor": "zinc",
+        "config": "tailwind.config.ts",
+        "css": "src/styles/globals.scss",
+        "baseColor": "neutral",
         "cssVariables": true
     },
     "aliases": {
-        "utils": "@xenous/ui",
-        "components": "src/",
-        "ui": "src/"
-    }
+        "components": "src/components",
+        "hooks": "src/hooks",
+        "lib": "src/lib",
+        "ui": "src/components",
+        "utils": "src/lib/index.ts"
+    },
+    "iconLibrary": "lucide"
 }

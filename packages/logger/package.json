@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schemastore.org/package.json",
+    "name": "@xenous/logger",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/src/index.d.ts",
+            "default": "./src/index.ts"
+        },
+        "./utils": {
+            "types": "./dist/src/utils.d.ts",
+            "default": "./src/utils.ts"
+        }
+    },
+    "scripts": {
+        "clean": "git clean -xdf .cache .turbo dist node_modules",
+        "dev": "tsc",
+        "build": "tsc",
+        "check": "biome check .",
+        "check:fix": "biome check . --write",
+        "ci": "biome ci",
+        "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    },
+    "dependencies": {
+        "consola": "^3.4.2",
+        "std-env": "^3.9.0"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "catalog:",
+        "@xenous/biome-config": "workspace:*",
+        "@xenous/tsconfig": "workspace:*",
+        "typescript": "catalog:"
+    }
+}

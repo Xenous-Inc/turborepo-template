@@ -65,7 +65,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
                             if (!pkg.dependencies) pkg.dependencies = {};
                             pkg.dependencies[dep] = `^${version}`;
                         }
-                        return JSON.stringify(pkg, null, 2);
+                        return JSON.stringify(pkg, null, 4);
                     }
                     return content;
                 },

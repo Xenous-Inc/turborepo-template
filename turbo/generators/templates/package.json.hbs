@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json.schemastore.org/package.json",
+    "$schema": "https://schemastore.org/package.json",
     "name": "@xenous/{{ name }}",
     "version": "0.1.0",
     "private": true,
@@ -8,17 +8,18 @@
         ".": "./src/index.ts"
     },
     "scripts": {
-        "build": "tsc",
         "clean": "git clean -xdf .cache .turbo dist node_modules",
         "dev": "tsc",
-        "format-and-lint": "biome check .",
+        "build": "tsc",
+        "check": "biome check .",
+        "check:fix": "biome check . --write",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit --emitDeclarationOnly false"
     },
     "devDependencies": {
-        "@biomejs/biome": "catalog:",
         "@xenous/biome-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
+        "@biomejs/biome": "catalog:",
         "typescript": "catalog:"
     }
 }

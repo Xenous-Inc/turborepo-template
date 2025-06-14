@@ -1,13 +1,15 @@
-import { createEnv } from '@t3-oss/env-nextjs';
-import { z } from 'zod';
+import { createEnv } from '@t3-oss/env-core';
+import { z } from 'zod/v4';
 
-export const env = createEnv({
+export const dbEnv = createEnv({
     server: {
-        POSTGRES_URL: z.string().url(),
+        /* Node */
+        NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+
+        /* Database */
+        DATABASE_URL: z.url(),
     },
-    client: {},
-    experimental__runtimeEnv: {
-        POSTGRES_URL: process.env.POSTGRES_URL,
-    },
+    runtimeEnv: process.env,
     skipValidation: !!process.env.CI || process.env.npm_lifecycle_event === 'lint',
+    emptyStringAsUndefined: true,
 });

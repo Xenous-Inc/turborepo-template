@@ -1,11 +1,13 @@
-import type { Config } from "drizzle-kit";
-import { env } from "./env";
+import type { Config } from 'drizzle-kit';
+import { dbEnv } from './env';
 
-const nonPoolingUrl = env.POSTGRES_URL.replace(":6543", ":5432");
+const nonPoolingUrl = dbEnv.DATABASE_URL.replace(':6543', ':5432');
 
-export default {
-    schema: "./src/schema.ts",
-    dialect: "postgresql",
+const config = {
+    schema: './src/schema/_index.ts',
+    dialect: 'postgresql',
     dbCredentials: { url: nonPoolingUrl },
-    casing: "snake_case",
+    casing: 'snake_case',
 } satisfies Config;
+
+export default config;

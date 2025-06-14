@@ -1,16 +1,17 @@
 {
     "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-    "files": {
-        "include": [
-            "**/*.js",
-            "**/*.ts",
-            "**/*.jsx",
-            "**/*.tsx"
-        ]
-    },
     "linter": {
         "rules": {
+            "a11y": {
+                "noLabelWithoutControl": {
+                    "level": "warn",
+                    "options": {
+                        "inputComponents": ["Checkbox", "Radio", "Switch"]
+                    }
+                }
+            },
             "nursery": {
+                "noStaticElementInteractions": "error",
                 "useSortedClasses": {
                     "level": "warn",
                     "options": {
@@ -21,16 +22,12 @@
                             "classList",
                             "ngClass"
                         ],
-                        "functions": [
-                            "cn",
-                            "cx",
-                            "clsx",
-                            "cva",
-                            "tw",
-                            "tw.*"
-                        ]
+                        "functions": ["cn", "cx", "clsx", "cva", "tw", "tw.*"]
                     }
                 }
+            },
+            "suspicious": {
+                "noArrayIndexKey": "off"
             }
         }
     }

@@ -1,0 +1,25 @@
+services:
+    web:
+        container_name: xenous-web
+        build:
+            context: .
+            dockerfile: ./apps/web/Dockerfile
+        env_file:
+            - path: ./.env
+              required: false
+            - path: ./apps/web/.env.local
+              required: true
+        ports:
+            - 127.0.0.1:3001:3001
+    # server:
+    #     container_name: xenous-server
+    #     build:
+    #         context: .
+    #         dockerfile: ./apps/server/Dockerfile
+    #     env_file:
+    #         - path: ./.env
+    #           required: false
+    #         - path: ./apps/server/.env.local
+    #           required: true
+    #     ports:
+    #         - 127.0.0.1:3000:3000

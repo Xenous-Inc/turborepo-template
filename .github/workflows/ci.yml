@@ -27,12 +27,8 @@ jobs:
             - name: Setup
               uses: ./tooling/github/setup
 
-            - name: Copy env
-              shell: bash
-              run: cp .env.example .env
-
             - name: Lint & Format
-              run: pnpm run ci
+              run: pnpm run ci && pnpm run check:ws
 
     typecheck:
         runs-on: ubuntu-latest
@@ -43,4 +39,4 @@ jobs:
               uses: ./tooling/github/setup
 
             - name: Typecheck
-              run: pnpm typecheck
+              run: pnpm run typecheck

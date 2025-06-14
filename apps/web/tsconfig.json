@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schemastore.org/tsconfig.json",
+    "extends": "@xenous/tsconfig/base.json",
+    "compilerOptions": {
+        /** Base Options */
+        "module": "esnext",
+        "lib": ["ES2022", "dom", "dom.iterable"],
+        "jsx": "preserve",
+
+        /** Plugins */
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+
+        /** Aliases */
+        "baseUrl": "./",
+        "paths": {
+            "~/env": ["./env.ts"],
+            "~/orpc": ["./orpc/index.ts"],
+            "~/orpc/*": ["./orpc/*"],
+            "~/public/*": ["./public/*"],
+            "~/*": ["./src/*"]
+        }
+    },
+    "include": [
+        "./**/*.ts",
+        "./**/*.tsx",
+        "./.next/types/**/*.ts",
+        "./next-env.d.ts",
+        ".next/types/**/*.ts"
+    ],
+    "exclude": ["public"],
+    "references": [
+        {
+            "path": "../server"
+        }
+    ]
+}

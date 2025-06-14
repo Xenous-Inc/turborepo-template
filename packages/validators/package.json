@@ -1,24 +1,38 @@
 {
-    "$schema": "https://json.schemastore.org/package.json",
+    "$schema": "https://schemastore.org/package.json",
     "name": "@xenous/validators",
     "version": "0.1.0",
     "private": true,
     "type": "module",
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "default": "./src/index.ts"
+        "./const": {
+            "types": "./dist/src/const/_index.d.ts",
+            "default": "./src/const/_index.ts"
+        },
+        "./helpers": {
+            "types": "./dist/src/helpers/_index.d.ts",
+            "default": "./src/helpers/_index.ts"
+        },
+        "./model": {
+            "types": "./dist/src/model/_index.d.ts",
+            "default": "./src/model/_index.ts"
+        },
+        "./payload": {
+            "types": "./dist/src/payload/_index.d.ts",
+            "default": "./src/payload/_index.ts"
         }
     },
     "scripts": {
-        "build": "tsc",
         "clean": "git clean -xdf .cache .turbo dist node_modules",
         "dev": "tsc",
-        "format-and-lint": "biome check .",
+        "build": "tsc",
+        "check": "biome check .",
+        "check:fix": "biome check . --write",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit --emitDeclarationOnly false"
     },
     "dependencies": {
+        "libphonenumber-js": "^1.11.19",
         "zod": "catalog:"
     },
     "devDependencies": {

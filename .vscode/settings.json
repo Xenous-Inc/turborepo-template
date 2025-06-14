@@ -2,9 +2,9 @@
     "$schema": "vscode://schemas/settings/user",
     "editor.codeActionsOnSave": {
         "quickfix.biome": "explicit",
-        "source.organizeImports.biome": "explicit"
+        "source.organizeImports.biome": "never"
     },
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "biomejs.biome",
     "[javascript,typescript,typescriptreact]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
@@ -45,6 +45,7 @@
     "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "typescript.preferences.autoImportFileExcludePatterns": [
+        "zod/dist/types/index.d.ts",
         "next/router.d.ts",
         "next/dist/client/router.d.ts"
     ],
