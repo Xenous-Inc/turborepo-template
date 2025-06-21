@@ -1,0 +1,77 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "files": {
+        "ignoreUnknown": false,
+        "ignore": [
+            "node_modules",
+            "build",
+            "dist",
+            "routeTree.gen.ts",
+            ".next",
+            ".turbo",
+            ".cache",
+            ".zed",
+            ".vscode",
+            ".nuxt"
+        ]
+    },
+    "organizeImports": {
+        "enabled": true
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "correctness": {
+                "useExhaustiveDependencies": "warn",
+                "noUnusedVariables": "warn",
+                "noConstantCondition": "warn",
+                "noUnusedImports": "warn"
+            },
+            "nursery": {
+                "noEnum": "error"
+            },
+            "style": {
+                "useImportType": "warn",
+                "useConsistentArrayType": {
+                    "level": "warn",
+                    "options": {
+                        "syntax": "shorthand"
+                    }
+                },
+                "noNonNullAssertion": "error"
+            }
+        }
+    },
+    "formatter": {
+        "enabled": true,
+        "useEditorconfig": true
+    },
+    "javascript": {
+        "formatter": {
+            "quoteProperties": "preserve",
+            "jsxQuoteStyle": "single",
+            "trailingCommas": "all",
+            "arrowParentheses": "asNeeded",
+            "quoteStyle": "single",
+            "lineWidth": 120,
+            "semicolons": "always"
+        }
+    },
+    "json": {
+        "formatter": {
+            "trailingCommas": "none"
+        }
+    },
+    "css": {
+        "formatter": {
+            "enabled": true,
+            "quoteStyle": "single"
+        }
+    },
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    }
+}

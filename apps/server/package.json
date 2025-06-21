@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schemastore.org/package.json",
+    "name": "@xenous/server",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "clean": "git clean -xdf .cache .turbo dist node_modules",
+        "dev": "pnpm with-env tsx watch src/index.ts",
+        "tunnel": "bore local 3000 --to bore.pub --port 56045",
+        "build": "NODE_ENV=production pnpm with-env tsup",
+        "start": "NODE_ENV=production pnpm with-env node dist/src/index.js",
+        "check": "biome check .",
+        "check:fix": "biome check . --write",
+        "ci": "biome ci",
+        "typecheck": "tsc --noEmit",
+        "with-env": "CI=true dotenvx run -f .env.local -f ../../.env --"
+    },
+    "dependencies": {
+        "@better-auth/expo": "^1.2.8",
+        "@hono/node-server": "^1.14.0",
+        "@orpc/client": "^1.2.0",
+        "@orpc/server": "^1.2.0",
+        "@t3-oss/env-core": "catalog:",
+        "@xenous/db": "workspace:^",
+        "better-auth": "^1.2.8",
+        "hono": "^4.7.6",
+        "jiti": "catalog:",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "catalog:",
+        "@dotenvx/dotenvx": "catalog:",
+        "@total-typescript/ts-reset": "^0.6.1",
+        "@types/node": "catalog:node22",
+        "@xenous/biome-config": "workspace:*",
+        "@xenous/tsconfig": "workspace:*",
+        "tsup": "^8.5.0",
+        "tsx": "^4.19.2",
+        "typescript": "catalog:"
+    }
+}

@@ -1,0 +1,12 @@
+@layer base {
+    :root {
+        --radius: 0.5rem;
+
+        --page-spacing: 0.5rem;
+
+        --popup-min-width: min(20rem, calc(100vw - var(--page-spacing) * 4));
+        --popup-max-width: min(48rem, calc(100vw - var(--page-spacing) * 4));
+        --popup-min-height: min(16rem, 75svh);
+        --popup-max-height: min(36rem, 75svh);
+    }
+}

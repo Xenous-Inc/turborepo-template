@@ -1,12 +1,9 @@
-/*
- * This file is not used for any compilation purpose, it is only used
- * for Tailwind Intellisense & Autocompletion in the source files
- */
+import web from '@xenous/tailwind-config/web';
 import type { Config } from 'tailwindcss';
 
-import baseConfig from '@xenous/tailwind-config/web';
-
-export default {
-    content: ['./src/**/*.tsx'],
-    presets: [baseConfig],
+const config = {
+    content: web.content,
+    presets: [web],
 } satisfies Config;
+
+export default config;

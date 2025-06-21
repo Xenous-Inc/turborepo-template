@@ -1,0 +1,17 @@
+@import 'tailwind.css';
+@import 'sizes.css';
+@import 'theme.css';
+
+@layer base {
+    * {
+        @apply min-w-0 border-border;
+    }
+
+    dialog:modal {
+        max-width: 100vw;
+    }
+
+    html {
+        @apply scroll-smooth;
+    }
+}

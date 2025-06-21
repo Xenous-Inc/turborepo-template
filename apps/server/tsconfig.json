@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemastore.org/tsconfig.json",
+    "extends": "@xenous/tsconfig/base.json",
+    "compilerOptions": {
+        /** Base Options */
+        "jsx": "react-jsx",
+        "jsxImportSource": "hono/jsx",
+        "types": ["node"],
+
+        /** Aliases */
+        "baseUrl": "./",
+        "paths": {
+            "~/env": ["./env.ts"],
+            "~/*": ["./src/*"]
+        },
+
+        /** Transpile using Bundler (not tsc) */
+        "composite": true,
+        "noEmit": false,
+        "outDir": "dist"
+    },
+    "include": ["./**/*.ts", "./**/*.tsx"],
+    "exclude": ["dist", ".tsup"]
+}

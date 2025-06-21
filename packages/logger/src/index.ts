@@ -1,2 +1,12 @@
-export { logger } from './logger';
-export { colors as loggerColors } from './helpers';
+import { LogLevels, createConsola } from 'consola';
+import { isProduction } from 'std-env';
+
+export const logger = createConsola({
+    level: isProduction ? LogLevels.info : LogLevels.verbose,
+    formatOptions: {
+        columns: isProduction ? 80 : undefined,
+        colors: true,
+        compact: false,
+        date: true,
+    },
+});

@@ -1,42 +1,39 @@
 {
-    "$schema": "https://json.schemastore.org/package.json",
+    "$schema": "https://schemastore.org/package.json",
     "name": "xenous",
     "private": true,
     "engines": {
-        "node": ">=20.9.0"
+        "node": ">=22.11",
+        "pnpm": "^10"
     },
-    "packageManager": "pnpm@9.11.0",
+    "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac",
     "scripts": {
         "prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
-        "build": "turbo build",
         "clean": "git clean -xdf node_modules",
         "clean:workspaces": "turbo clean",
-        "db:generate": "turbo db:generate",
-        "db:push": "turbo db:push",
-        "db:studio": "turbo db:studio",
-        "dev": "turbo dev --parallel",
-        "format": "turbo format --continue -- --cache --cache-location node_modules/.cache/.prettiercache",
-        "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
-        "lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
-        "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-        "lint:ws": "pnpm dlx sherif@latest",
-        "postinstall": "pnpm lint:ws && pnpm db:generate",
-        "typecheck": "turbo typecheck",
-        "ui-add": "pnpm -F ui ui-add",
-        "rename": "bash ./rename.sh"
+        "dev": "turbo dev",
+        "dev:server": "turbo -F @xenous/server dev",
+        "dev:web": "turbo -F @xenous/web dev",
+        "dev:native": "turbo -F @xenous/native dev",
+        "build": "turbo build",
+        "check": "turbo run check --continue",
+        "check:fix": "turbo run check --continue -- --write",
+        "check:ws": "pnpm dlx sherif@latest",
+        "ci": "turbo run ci --continue",
+        "typecheck": "turbo run typecheck --continue",
+        "postinstall": "pnpm check:ws",
+        "db:studio": "turbo -F @xenous/sb db:studio",
+        "db:push": "turbo -F @xenous/db db:push",
+        "db:generate": "turbo -F @xenous/db db:generate",
+        "db:migrate": "turbo -F @xenous/db db:migrate",
+        "deps:check": "pnpm dlx taze -r",
+        "deps:update": "pnpm dlx taze -r -w"
     },
     "devDependencies": {
-        "@turbo/gen": "^1.13.2",
-        "@xenous/prettier-config": "workspace:*",
-        "knip": "^5.30.2",
-        "lint-staged": "^15.2.2",
-        "prettier": "^3.2.5",
-        "turbo": "^1.13.2",
-        "typescript": "^5.4.4"
-    },
-    "prettier": "@xenous/prettier-config",
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx}": "turbo --output-logs none lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-        "*.{js,jsx,ts,tsx,html,css}": "pnpm prettier --check --write"
+        "@biomejs/biome": "catalog:",
+        "@turbo/gen": "^2.5.4",
+        "@xenous/biome-config": "workspace:*",
+        "turbo": "^2.5.4",
+        "typescript": "catalog:"
     }
 }

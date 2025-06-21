@@ -1,53 +1,93 @@
-# Xenous Turborepo Template
+# Xenous Monorepo
 
-## Quick Start
 
-To get it running, follow the steps below:
 
-### 0. Requirements
+## Features
 
--   Node.js, version `20.9.0` or higher
--   PNPM, version `9.11.0`
+- **TypeScript** - For type safety and improved developer experience
+- **Next.js** - Full-stack React framework
+- **React Native** - Build mobile apps using React
+- **Expo** - Tools for React Native development
+- **TailwindCSS** - Utility-first CSS for rapid UI development
+- **shadcn/ui** - Reusable UI components
+- **Hono** - Lightweight, performant server framework
+- **oRPC** - End-to-end type-safe APIs with OpenAPI integration
+- **Node.js** - Runtime environment
+- **Drizzle** - TypeScript-first ORM
+- **PostgreSQL** - Database engine
+- **Better Auth** - Authentication framework
+- **Turborepo** - Optimized monorepo build system
+- **Biome** - Linting and formatting
 
-The best option is to use NVM and Corepack via `corepack enable`, so required versions will be installed automatically
 
-### 1. Bootstrap project
+
+## Getting Started
+
+First, install the dependencies:
+
+- Node.js, version `22.11.0` or higher
+- PNPM, version `10.11.1`
+- Bore, for tunneling server (optional)
 
 ```bash
-# Rename project
-pnpm rename <name_instead_of_xenous>
+# Use required Node version if using NVM
+nvm use
+
+# Use required pnpm version
+corepack enable
 
 # Install dependencies
-pnpm i
-
-# Configure environment variables
-# There is an `.env.example` in the root directory you can use for reference
-cp .env.example .env
+pnpm install
 ```
 
-### 2. When it's time to add a new package
+## When it's time to add a new package
 
 To add a new package, simply run `pnpm turbo gen init` in the monorepo root. This will prompt you for a package name as well as if you want to install any dependencies to the new package (of course you can also do this yourself later).
 
 The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as well as configures all the necessary configurations for tooling around your package such as formatting, linting and typechecking. When the package is created, you're ready to go build out the package.
 
-## FAQ
+## Project Structure
 
-## Deployment
+```
+.github
+  └─ workflows
+      └─ CI with pnpm cache setup
+.vscode
+  └─ Recommended extensions and settings for VSCode users
+apps
+  ├─ native
+  │   └─ Mobile application (React Native, Expo)
+  ├─ server
+  │   └─ Backend API (Hono, ORPC)
+  └─ web
+      └─ Web application (Next.js)
+packages
+  ├─ db
+  │   └─ Typesafe db schema using Drizzle & Postgres
+  ├─ logger
+  │   └─ Simple logger utility using consola
+  ├─ ui
+  │   └─ UI package for the webapp using shadcn-ui
+  └─ validators
+      └─ Zod validation schemas
+tooling
+  ├─ biome
+  │   └─ Shared biome configuration
+  ├─ tailwind
+  │   └─ Shared tailwind configuration
+  └─ typescript
+      └─ Shared tsconfig you can extend from
+```
 
-### Next.js
+## Available Scripts
 
-#### Prerequisites
-
-> **Note**
-> Please note that the Next.js application with tRPC must be deployed in order for the Expo app to communicate with the server in a production environment.
-
-#### Deploy to Vercel
-
-Let's deploy the Next.js application to [Vercel](https://vercel.com). If you've never deployed a Turborepo app there, don't worry, the steps are quite straightforward. You can also read the [official Turborepo guide](https://vercel.com/docs/concepts/monorepos/turborepo) on deploying to Vercel.
-
-1. Create a new project on Vercel, select the `apps/nextjs` folder as the root directory. Vercel's zero-config system should handle all configurations for you.
-
-2. Add your `DATABASE_URL` environment variable.
-
-3. Done! Your app should successfully deploy. Assign your domain and use that instead of `localhost` for the `url` in the Expo app so that your Expo app can communicate with your backend when you are not in development.
+- `pnpm dev`: Start all applications in development mode
+- `pnpm dev:server`: Start only the server
+- `pnpm dev:web`: Start only the web application
+- `pnpm dev:native`: Start the React Native/Expo development server
+- `pnpm build`: Build all applications
+- `pnpm check`: Run Biome formatting and linting
+- `pnpm check:fix`: Fix Biome formatting and linting issues
+- `pnpm typecheck`: Check TypeScript types across all apps
+- `pnpm db:push`: Push schema changes to database
+- `pnpm db:studio`: Open database studio UI
