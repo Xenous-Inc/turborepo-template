@@ -6,8 +6,6 @@
 
 - **TypeScript** - For type safety and improved developer experience
 - **Next.js** - Full-stack React framework
-- **React Native** - Build mobile apps using React
-- **Expo** - Tools for React Native development
 - **TailwindCSS** - Utility-first CSS for rapid UI development
 - **shadcn/ui** - Reusable UI components
 - **Hono** - Lightweight, performant server framework
@@ -26,7 +24,7 @@
 First, install the dependencies:
 
 - Node.js, version `22.11.0` or higher
-- PNPM, version `10.11.1`
+- PNPM, version `10.12.1`
 - Bore, for tunneling server (optional)
 
 ```bash
@@ -55,8 +53,6 @@ The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as w
 .vscode
   └─ Recommended extensions and settings for VSCode users
 apps
-  ├─ native
-  │   └─ Mobile application (React Native, Expo)
   ├─ server
   │   └─ Backend API (Hono, ORPC)
   └─ web
@@ -84,7 +80,6 @@ tooling
 - `pnpm dev`: Start all applications in development mode
 - `pnpm dev:server`: Start only the server
 - `pnpm dev:web`: Start only the web application
-- `pnpm dev:native`: Start the React Native/Expo development server
 - `pnpm build`: Build all applications
 - `pnpm check`: Run Biome formatting and linting
 - `pnpm check:fix`: Fix Biome formatting and linting issues
