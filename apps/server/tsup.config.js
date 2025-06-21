@@ -16,6 +16,9 @@ export default defineConfig({
     clean: true,
     bundle: true,
 
+    noExternal: ['@xenous/db'],
+    skipNodeModulesBundle: false,
+
     dts: {
         compilerOptions: {
             composite: false,

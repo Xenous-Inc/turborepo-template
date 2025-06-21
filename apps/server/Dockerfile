@@ -1,5 +1,5 @@
-ARG APP_DIRNAME="web"
-ARG APP_PKG_NAME="@xenous/web"
+ARG APP_DIRNAME="server"
+ARG APP_PKG_NAME="@xenous/server"
 
 
 
@@ -121,23 +121,26 @@ RUN echo "DOCKER=true" > .env
 ARG NODE_ENV="production"
 RUN echo "NODE_ENV=$NODE_ENV" >> .env
 
-# API
-ARG NEXT_PUBLIC_SERVER_URL
-RUN if [[ -v NEXT_PUBLIC_SERVER_URL ]]; then echo "NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL" >> .env; fi
+# Database
+ARG DATABASE_URL
+RUN echo "DATABASE_URL=$DATABASE_URL" >> .env
 
-# Next Devtools (optional)
-ARG NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED
-RUN if [[ -v NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED ]]; then echo "NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED=$NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED" >> .env; fi
+# Auth
+ARG BETTER_AUTH_SECRET
+RUN echo "BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET" >> .env
 
-# TanStack Query Devtools (optional)
-ARG NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED
-RUN if [[ -v NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED ]]; then echo "NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED=$NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED" >> .env; fi
+ARG BETTER_AUTH_URL
+RUN echo "BETTER_AUTH_URL=$BETTER_AUTH_URL" >> .env
+
+# Cors
+ARG CORS_ORIGIN
+RUN echo "CORS_ORIGIN=$CORS_ORIGIN" >> .env
 
 
 
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                               Builder                                              ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+##                                            Builder                                           ##
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 
 
@@ -152,9 +155,9 @@ RUN pnpm run build
 
 
 
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                               Runner                                               ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+##                                            Runner                                            ##
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 
 
@@ -163,18 +166,16 @@ ARG APP_DIRNAME
 WORKDIR /app
 
 RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-USER nextjs
+RUN adduser --system --uid 1001 hono
+USER hono
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/app/api-reference/config/next-config-js/output#automatically-copying-traced-files
-COPY --from=builder --chown=nextjs:nodejs /app/apps/$APP_DIRNAME/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/apps/$APP_DIRNAME/.next/static ./apps/$APP_DIRNAME/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/$APP_DIRNAME/public ./apps/$APP_DIRNAME/public
+COPY --from=production-deps --chown=hono:nodejs /app/node_modules ./node_modules
+COPY --from=production-deps --chown=hono:nodejs /app/apps/$APP_DIRNAME/node_modules ./apps/$APP_DIRNAME/node_modules
+COPY --from=builder --chown=hono:nodejs /app/apps/$APP_DIRNAME/dist/src ./apps/$APP_DIRNAME
 
 ARG PORT=3001
 ENV PORT="$PORT"
 
 ENV APP_DIRNAME="$APP_DIRNAME"
 
-ENTRYPOINT PORT=$PORT node apps/$APP_DIRNAME/server.js
+ENTRYPOINT PORT=$PORT node apps/$APP_DIRNAME/index.js
