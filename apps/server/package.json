@@ -14,7 +14,7 @@
         "check:fix": "biome check . --write",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit",
-        "with-env": "CI=true dotenvx run -f .env.local -f ../../.env --"
+        "with-env": "dotenvx run -f .env.local -f ../../.env --"
     },
     "dependencies": {
         "@better-auth/expo": "^1.2.8",
