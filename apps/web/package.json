@@ -13,7 +13,7 @@
         "check:fix": "biome check . --write",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit",
-        "with-env": "dotenv -e ./.env.local -e ../../.env -c --"
+        "with-env": "dotenvx run -f .env.local -f ../../.env --"
     },
     "dependencies": {
         "@orpc/client": "^1.2.0",
@@ -38,6 +38,7 @@
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
+        "@dotenvx/dotenvx": "catalog:",
         "@tanstack/react-query-devtools": "^5.79.0",
         "@total-typescript/ts-reset": "^0.6.1",
         "@types/node": "catalog:node22",
@@ -46,7 +47,6 @@
         "@xenous/biome-config": "workspace:*",
         "@xenous/tailwind-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
-        "dotenv-cli": "catalog:",
         "tailwindcss": "catalog:",
         "typescript": "catalog:"
     }
