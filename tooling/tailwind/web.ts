@@ -53,6 +53,7 @@ const config = {
         animate,
         plugin(tw => {
             tw.addVariant('inert', '&:is([inert], [inert] *)');
+            tw.addVariant('specificity', '&:not(#spc)');
         }),
     ],
 } satisfies Config;
