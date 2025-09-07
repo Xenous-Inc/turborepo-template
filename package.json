@@ -6,7 +6,7 @@
         "node": ">=22.11",
         "pnpm": "^10"
     },
-    "packageManager": "pnpm@10.12.4+sha512.5ea8b0deed94ed68691c9bad4c955492705c5eeb8a87ef86bc62c74a26b037b08ff9570f108b2e4dbd1dd1a9186fea925e527f141c648e85af45631074680184",
+    "packageManager": "pnpm@10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67",
     "scripts": {
         "prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
         "clean": "git clean -xdf node_modules",
@@ -14,7 +14,6 @@
         "dev": "turbo dev",
         "dev:server": "turbo -F @xenous/server dev",
         "dev:web": "turbo -F @xenous/web dev",
-        "dev:native": "turbo -F @xenous/native dev",
         "build": "turbo build",
         "check": "turbo run check --continue",
         "check:fix": "turbo run check --continue -- --write",
@@ -31,9 +30,9 @@
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
-        "@turbo/gen": "^2.5.4",
+        "@turbo/gen": "^2.5.6",
         "@xenous/biome-config": "workspace:*",
-        "turbo": "^2.5.4",
+        "turbo": "^2.5.6",
         "typescript": "catalog:"
     }
 }

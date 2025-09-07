@@ -5,11 +5,12 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "clean": "git clean -xdf .cache .turbo dist node_modules",
-        "dev": "pnpm with-env tsx watch src/index.ts",
-        "tunnel": "bore local 3000 --to bore.pub --port 56045",
-        "build": "NODE_ENV=production pnpm with-env tsup",
-        "start": "NODE_ENV=production pnpm with-env node dist/src/index.js",
+        "clean": "git clean -xdf .cache .turbo .nitro .output node_modules",
+        "prepare": "pnpm with-env nitro prepare",
+        "dev": "pnpm with-env nitro dev",
+        "prebuild": "pnpm with-env nitro prepare && tsc",
+        "build": "pnpm with-env nitro build",
+        "start": "NODE_ENV=production pnpm with-env node .output/server/index.mjs",
         "check": "biome check .",
         "check:fix": "biome check . --write",
         "ci": "biome ci",
@@ -18,13 +19,11 @@
     },
     "dependencies": {
         "@better-auth/expo": "^1.2.8",
-        "@hono/node-server": "^1.14.0",
         "@orpc/client": "^1.2.0",
         "@orpc/server": "^1.2.0",
         "@t3-oss/env-core": "catalog:",
         "@xenous/db": "workspace:^",
         "better-auth": "^1.2.8",
-        "hono": "^4.7.6",
         "jiti": "catalog:",
         "zod": "catalog:"
     },
@@ -35,8 +34,8 @@
         "@types/node": "catalog:node22",
         "@xenous/biome-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
-        "tsup": "^8.5.0",
-        "tsx": "^4.19.2",
+        "h3": "^1.15.4",
+        "nitropack": "^2.12.4",
         "typescript": "catalog:"
     }
 }

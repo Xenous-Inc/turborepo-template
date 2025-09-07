@@ -1,14 +1,18 @@
 {
     "$schema": "https://schemastore.org/tsconfig.json",
-    "extends": "@xenous/tsconfig/base.json",
+    "extends": ["./.nitro/types/tsconfig.json", "@xenous/tsconfig/base.json"],
     "compilerOptions": {
         /** Base Options */
-        "jsx": "react-jsx",
-        "jsxImportSource": "hono/jsx",
-        "types": ["node"],
+        "module": "esnext",
+        "lib": ["DOM"],
+        "jsx": "preserve",
+
+        /** Preact */
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
 
         /** Aliases */
-        "baseUrl": "./",
+        "baseUrl": ".",
         "paths": {
             "~/env": ["./env.ts"],
             "~/*": ["./src/*"]
@@ -17,8 +21,7 @@
         /** Transpile using Bundler (not tsc) */
         "composite": true,
         "noEmit": false,
-        "outDir": "dist"
-    },
-    "include": ["./**/*.ts", "./**/*.tsx"],
-    "exclude": ["dist", ".tsup"]
+        "emitDeclarationOnly": true,
+        "outDir": ".nitro/dist"
+    }
 }

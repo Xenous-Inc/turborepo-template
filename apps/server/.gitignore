@@ -1,2 +1,4 @@
-# local db
-*.db*
+# build outputs
+.data
+.nitro
+.output

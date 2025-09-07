@@ -1,7 +1,7 @@
-# Build outputs
+# build outputs
 .next/
 
-# Deployment
+# deployment
 .vercel
 .netlify
 .wrangler

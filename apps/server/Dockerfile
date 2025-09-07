@@ -54,7 +54,7 @@ RUN pnpm add -g turbo@^2
 
 # Prune
 COPY . .
-RUN turbo prune --scope=$APP_PKG_NAME --docker
+RUN pnpm turbo prune --scope=$APP_PKG_NAME --docker
 
 
 
@@ -68,7 +68,8 @@ FROM pnpm AS base
 WORKDIR /app
 
 COPY .gitignore .gitignore
-COPY --from=pruner /app/out/json/ .
+COPY .env* .env
+COPY --from=pruner /app/out/json .
 
 
 
@@ -115,32 +116,38 @@ ARG TURBO_TOKEN
 ENV TURBO_TOKEN="$TURBO_TOKEN"
 
 # Docker
-RUN echo "DOCKER=true" > .env
+ENV DOCKER=true
+RUN echo "DOCKER=$DOCKER" >> .env
 
 # Node environment
 ARG NODE_ENV="production"
+ENV NODE_ENV="$NODE_ENV"
 RUN echo "NODE_ENV=$NODE_ENV" >> .env
 
 # Database
 ARG DATABASE_URL
-RUN echo "DATABASE_URL=$DATABASE_URL" >> .env
+RUN if [[ -n "${DATABASE_URL+x}" ]]; then \
+        echo "DATABASE_URL=$DATABASE_URL" >> .env; fi
 
 # Auth
 ARG BETTER_AUTH_SECRET
-RUN echo "BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET" >> .env
+RUN if [[ -n "${BETTER_AUTH_SECRET+x}" ]]; then \
+        echo "BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET" >> .env; fi
 
 ARG BETTER_AUTH_URL
-RUN echo "BETTER_AUTH_URL=$BETTER_AUTH_URL" >> .env
+RUN if [[ -n "${BETTER_AUTH_URL+x}" ]]; then \
+        echo "BETTER_AUTH_URL=$BETTER_AUTH_URL" >> .env; fi
 
 # Cors
 ARG CORS_ORIGIN
-RUN echo "CORS_ORIGIN=$CORS_ORIGIN" >> .env
+RUN if [[ -n "${CORS_ORIGIN+x}" ]]; then \
+        echo "CORS_ORIGIN=$CORS_ORIGIN" >> .env; fi
 
 
 
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                            Builder                                           ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+##                                               Builder                                              ##
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 
 
@@ -148,34 +155,34 @@ FROM env AS builder
 ARG APP_PKG_NAME
 WORKDIR /app
 
-COPY --from=pruner /app/out/full/ .
-COPY --from=dev-deps /app/ .
+COPY --from=pruner /app/out/full .
+COPY --from=dev-deps /app .
+COPY --from=env /app/.env .env
 
 RUN pnpm run build
+RUN find / -type f -name '.env*' -delete
 
 
 
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                            Runner                                            ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+##                                               Runner                                               ##
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 
 
-FROM node AS runner
+FROM env AS runner
 ARG APP_DIRNAME
 WORKDIR /app
 
 RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 hono
-USER hono
+RUN adduser --system --uid 1001 nitro
+USER nitro
 
-COPY --from=production-deps --chown=hono:nodejs /app/node_modules ./node_modules
-COPY --from=production-deps --chown=hono:nodejs /app/apps/$APP_DIRNAME/node_modules ./apps/$APP_DIRNAME/node_modules
-COPY --from=builder --chown=hono:nodejs /app/apps/$APP_DIRNAME/dist/src ./apps/$APP_DIRNAME
+COPY --from=builder --chown=nitro:nodejs /app/apps/$APP_DIRNAME/.output .
 
-ARG PORT=3001
+ARG PORT=3000
 ENV PORT="$PORT"
 
 ENV APP_DIRNAME="$APP_DIRNAME"
 
-ENTRYPOINT PORT=$PORT node apps/$APP_DIRNAME/index.js
+ENTRYPOINT PORT=$PORT node server/index.mjs

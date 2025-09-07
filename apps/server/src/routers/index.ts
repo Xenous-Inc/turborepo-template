@@ -1,9 +1,9 @@
-import { protectedProcedure, publicProcedure } from '../lib/orpc';
+import { env } from '~/env';
 import { todoRouter } from './todo';
 
 export const appRouter = {
     healthCheck: publicProcedure.handler(() => {
-        return 'OK';
+        return `OK "${env.NODE_ENV}"`;
     }),
     privateData: protectedProcedure.handler(({ context }) => {
         return {
@@ -13,4 +13,5 @@ export const appRouter = {
     }),
     todo: todoRouter,
 };
+
 export type AppRouter = typeof appRouter;

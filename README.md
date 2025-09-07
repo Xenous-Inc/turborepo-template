@@ -8,7 +8,7 @@
 - **Next.js** - Full-stack React framework
 - **TailwindCSS** - Utility-first CSS for rapid UI development
 - **shadcn/ui** - Reusable UI components
-- **Hono** - Lightweight, performant server framework
+- **Nitro + H3** - Universal server toolkit
 - **oRPC** - End-to-end type-safe APIs with OpenAPI integration
 - **Node.js** - Runtime environment
 - **Drizzle** - TypeScript-first ORM
@@ -24,7 +24,7 @@
 First, install the dependencies:
 
 - Node.js, version `22.11.0` or higher
-- PNPM, version `10.12.1`
+- PNPM, version `10.15.1`
 - Bore, for tunneling server (optional)
 
 ```bash
@@ -33,6 +33,9 @@ nvm use
 
 # Use required pnpm version
 corepack enable
+
+# Copy env files
+[ -f .env.example ] && cp .env.example .env; find apps -name ".env.local.example" -exec sh -c 'cp "$1" "${1%.example}"' _ {} \;
 
 # Install dependencies
 pnpm install
@@ -54,7 +57,7 @@ The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as w
   └─ Recommended extensions and settings for VSCode users
 apps
   ├─ server
-  │   └─ Backend API (Hono, ORPC)
+  │   └─ Backend API (Nitro, H3, ORPC)
   └─ web
       └─ Web application (Next.js)
 packages
@@ -83,6 +86,11 @@ tooling
 - `pnpm build`: Build all applications
 - `pnpm check`: Run Biome formatting and linting
 - `pnpm check:fix`: Fix Biome formatting and linting issues
+- `pnpm check:ws`: Run Shering linting
 - `pnpm typecheck`: Check TypeScript types across all apps
-- `pnpm db:push`: Push schema changes to database
 - `pnpm db:studio`: Open database studio UI
+- `pnpm db:generate`: Generate database schema changes
+- `pnpm db:migrate`: Run database schema migrations
+- `pnpm db:push`: Push schema changes to database
+- `pnpm deps:check`: Check for available dependency updates
+- `pnpm deps:update`: Update dependencies

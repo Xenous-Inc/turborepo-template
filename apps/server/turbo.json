@@ -4,13 +4,9 @@
     "tasks": {
         "build": {
             "dependsOn": ["^build"],
-            "outputs": ["dist/**"]
+            "outputs": [".output/**", ".nitro/**"]
         },
         "dev": {
-            "with": ["tunnel"],
-            "persistent": true
-        },
-        "tunnel": {
             "persistent": true
         }
     }
