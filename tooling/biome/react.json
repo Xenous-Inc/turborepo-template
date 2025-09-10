@@ -23,7 +23,8 @@
                             "ngClass"
                         ],
                         "functions": ["cn", "cx", "clsx", "cva", "tw", "tw.*"]
-                    }
+                    },
+                    "fix": "safe"
                 }
             },
             "suspicious": {
