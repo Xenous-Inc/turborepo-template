@@ -28,7 +28,7 @@
         "deps:check": "pnpm dlx taze -r",
         "deps:update": "pnpm dlx taze -r -w",
         "rename": "bash ./rename.sh",
-        "postrename": "pnpm check:ws -f"
+        "postrename": "pnpm check:ws -f && pnpm check:fix --linter-enabled false"
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
