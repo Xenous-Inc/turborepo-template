@@ -37,6 +37,9 @@ corepack enable
 # Copy env files
 [ -f .env.example ] && cp .env.example .env; find apps -name ".env.local.example" -exec sh -c 'cp "$1" "${1%.example}"' _ {} \;
 
+# Rename project
+pnpm rename <name_instead_of_xenous>
+
 # Install dependencies
 pnpm install
 ```

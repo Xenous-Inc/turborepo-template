@@ -26,7 +26,9 @@
         "db:generate": "turbo -F @xenous/db db:generate",
         "db:migrate": "turbo -F @xenous/db db:migrate",
         "deps:check": "pnpm dlx taze -r",
-        "deps:update": "pnpm dlx taze -r -w"
+        "deps:update": "pnpm dlx taze -r -w",
+        "rename": "bash ./rename.sh",
+        "postrename": "pnpm check:ws -f"
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
