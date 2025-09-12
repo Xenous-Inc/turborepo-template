@@ -2,19 +2,19 @@
     "$schema": "https://turborepo.com/schema.json",
     "extends": ["//"],
     "tasks": {
-        "studio": {
+        "db:studio": {
             "cache": false,
             "persistent": true
         },
-        "push": {
+        "db:push": {
             "cache": false,
             "persistent": true
         },
-        "migrate": {
+        "db:migrate": {
             "cache": false,
             "persistent": true
         },
-        "generate": {
+        "db:generate": {
             "cache": false,
             "persistent": true
         }

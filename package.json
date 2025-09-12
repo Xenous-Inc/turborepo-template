@@ -21,7 +21,7 @@
         "ci": "turbo run ci --continue",
         "typecheck": "turbo run typecheck --continue",
         "postinstall": "pnpm check:ws",
-        "db:studio": "turbo -F @xenous/sb db:studio",
+        "db:studio": "turbo -F @xenous/db db:studio",
         "db:push": "turbo -F @xenous/db db:push",
         "db:generate": "turbo -F @xenous/db db:generate",
         "db:migrate": "turbo -F @xenous/db db:migrate",
