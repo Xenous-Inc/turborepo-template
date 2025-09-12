@@ -1,6 +1,17 @@
 {
-    "version": "0.2.0",
+    "version": "0.1.0",
     "configurations": [
+        {
+            "name": "Server",
+            "type":"node-terminal",
+            "request": "launch",
+            "command": "pnpm dev",
+            "cwd": "${workspaceFolder}/apps/server",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "sourceMaps": true
+        },
         {
             "name": "Web",
             "type": "node-terminal",
