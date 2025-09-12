@@ -12,6 +12,6 @@
     }
 
     html {
-        @apply scroll-smooth;
+        @apply motion-safe:scroll-smooth;
     }
 }
