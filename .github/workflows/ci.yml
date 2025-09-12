@@ -20,9 +20,11 @@ env:
 
 jobs:
     lint_and_format:
+        name: Lint & Format
         runs-on: ubuntu-latest
         steps:
-          - uses: actions/checkout@v4
+          - name: Checkout
+            uses: actions/checkout@v4
 
           - name: Setup
             uses: ./tooling/github/setup
@@ -31,9 +33,11 @@ jobs:
             run: pnpm run ci && pnpm run check:ws
 
     typecheck:
+        name: Typecheck
         runs-on: ubuntu-latest
         steps:
-          - uses: actions/checkout@v4
+          - name: Checkout
+            uses: actions/checkout@v4
 
           - name: Setup
             uses: ./tooling/github/setup
