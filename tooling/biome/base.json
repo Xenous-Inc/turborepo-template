@@ -1,22 +1,30 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
     "files": {
         "ignoreUnknown": false,
-        "ignore": [
-            "node_modules",
-            "build",
-            "dist",
-            "routeTree.gen.ts",
-            ".next",
-            ".turbo",
-            ".cache",
-            ".zed",
-            ".vscode",
-            ".nuxt"
+        "includes": [
+            "**",
+            "!node_modules",
+            "!build",
+            "!dist",
+            "!routeTree.gen.ts",
+            "!.next",
+            "!.turbo",
+            "!.cache",
+            "!.zed",
+            "!.vscode",
+            "!.nuxt"
         ]
     },
-    "organizeImports": {
-        "enabled": true
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": "on",
+                "useSortedAttributes": "on",
+                "useSortedProperties": "on"
+            }
+        }
     },
     "linter": {
         "enabled": true,
@@ -28,9 +36,6 @@
                 "noConstantCondition": "warn",
                 "noUnusedImports": "warn"
             },
-            "nursery": {
-                "noEnum": "error"
-            },
             "style": {
                 "useImportType": "warn",
                 "useConsistentArrayType": {
@@ -39,13 +44,17 @@
                         "syntax": "shorthand"
                     }
                 },
-                "noNonNullAssertion": "error"
+                "noNonNullAssertion": "error",
+                "noEnum": "error"
             }
         }
     },
     "formatter": {
         "enabled": true,
-        "useEditorconfig": true
+        "useEditorconfig": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineEnding": "lf"
     },
     "javascript": {
         "formatter": {

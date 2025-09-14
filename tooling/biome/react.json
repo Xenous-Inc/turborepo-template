@@ -1,17 +1,22 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
     "linter": {
         "rules": {
             "a11y": {
+                "noStaticElementInteractions": "error",
                 "noLabelWithoutControl": {
                     "level": "warn",
                     "options": {
-                        "inputComponents": ["Checkbox", "Radio", "Switch"]
+                        "inputComponents": [
+                            "Input",
+                            "Checkbox",
+                            "Radio",
+                            "Switch"
+                        ]
                     }
                 }
             },
             "nursery": {
-                "noStaticElementInteractions": "error",
                 "useSortedClasses": {
                     "level": "warn",
                     "options": {
