@@ -1,11 +1,11 @@
 export {
-    stripAnsi,
-    centerAlign,
-    rightAlign,
-    leftAlign,
     align,
     box,
+    centerAlign,
+    colorize,
     colors,
     getColor,
-    colorize,
+    leftAlign,
+    rightAlign,
+    stripAnsi,
 } from 'consola/utils';

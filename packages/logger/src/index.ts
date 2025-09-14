@@ -1,4 +1,4 @@
-import { LogLevels, createConsola } from 'consola';
+import { createConsola, LogLevels } from 'consola';
 import { isProduction } from 'std-env';
 
 export const logger = createConsola({

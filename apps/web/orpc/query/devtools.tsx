@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { env } from '~/env';
 
 const ReactQueryDevtoolsProduction = lazy(() =>

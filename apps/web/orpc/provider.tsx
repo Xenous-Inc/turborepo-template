@@ -1,10 +1,10 @@
 'use client';
 
-import { type QueryClient, QueryClientProvider, isServer } from '@tanstack/react-query';
+import { isServer, type QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createQueryClient } from './query/client';
 import { TanstackQueryDevtools } from './query/devtools';
 
-let clientQueryClientSingleton: QueryClient | undefined = undefined;
+let clientQueryClientSingleton: QueryClient | undefined;
 const getQueryClient = () => {
     if (isServer) {
         // Server: always make a new query client

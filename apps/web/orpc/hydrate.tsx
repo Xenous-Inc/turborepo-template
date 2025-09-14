@@ -1,5 +1,5 @@
 import type { OperationKey, OperationType, ProcedureUtils } from '@orpc/tanstack-query';
-import { HydrationBoundary, type QueryKey, dehydrate } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary, type QueryKey } from '@tanstack/react-query';
 import { cache } from 'react';
 import { createQueryClient } from './query/client';
 
