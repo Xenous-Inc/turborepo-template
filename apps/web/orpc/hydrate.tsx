@@ -31,7 +31,6 @@ const isORPCQueryKey = (queryKey: QueryKey): queryKey is OperationKey<OperationT
 
 const prefetch = <
     T extends ReturnType<
-        // biome-ignore lint/suspicious/noExplicitAny: we want to accept all possible query options
         ProcedureUtils<any, any, any, any>['queryOptions' | 'infiniteOptions' | 'experimental_streamedOptions']
     >,
 >(
@@ -42,7 +41,6 @@ const prefetch = <
     if (!isORPCQueryKey(queryOptions.queryKey)) return;
 
     if (queryOptions.queryKey[1]?.type === 'infinite') {
-        // biome-ignore lint/suspicious/noExplicitAny: i'm too lazy to type queryOptions properly, but it certainly matches input expectations
         void queryClient.prefetchInfiniteQuery(queryOptions as any);
     } else {
         void queryClient.prefetchQuery(queryOptions);

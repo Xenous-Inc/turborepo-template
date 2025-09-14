@@ -46,6 +46,10 @@
                 },
                 "noNonNullAssertion": "error",
                 "noEnum": "error"
+            },
+            "suspicious": {
+                "noUnknownAtRules": "off",
+                "noExplicitAny": "off"
             }
         }
     },
