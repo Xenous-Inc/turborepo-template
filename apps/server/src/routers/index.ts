@@ -1,3 +1,4 @@
+import type { RouterClient } from '@orpc/server';
 import { env } from '~/env';
 import { todoRouter } from './todo';
 
@@ -15,3 +16,5 @@ export const appRouter = {
 };
 
 export type AppRouter = typeof appRouter;
+
+export type AppRouterClient = RouterClient<AppRouter>;
