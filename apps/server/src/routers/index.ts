@@ -1,3 +1,5 @@
+import '#imports';
+
 import type { RouterClient } from '@orpc/server';
 import { env } from '~/env';
 import { todoRouter } from './todo';

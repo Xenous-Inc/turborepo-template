@@ -14,14 +14,15 @@
         /** Aliases */
         "baseUrl": ".",
         "paths": {
+            "#imports": ["./.nitro/types/nitro-imports.d.ts"],
             "~/env": ["./env.ts"],
             "~/*": ["./src/*"]
         },
 
-        /** Transpile using Bundler (not tsc) */
+        /** Allow using project references */
         "composite": true,
         "noEmit": false,
         "emitDeclarationOnly": true,
-        "outDir": ".nitro/dist"
+        "outDir": ".output/types"
     }
 }

@@ -13,7 +13,7 @@
 
         /** Keep TSC performant in monorepos */
         "incremental": true,
-        "disableSourceOfProjectReferenceRedirect": true,
+        "disableSourceOfProjectReferenceRedirect": false, // disable because project references doesn't work well with it
         "tsBuildInfoFile": "${configDir}/.cache/tsbuildinfo.json",
 
         /** Strictness */

@@ -8,8 +8,8 @@
         "clean": "git clean -xdf .cache .turbo .nitro .output node_modules",
         "prepare": "pnpm with-env nitro prepare",
         "dev": "pnpm with-env nitro dev",
-        "prebuild": "pnpm with-env nitro prepare && tsc",
-        "build": "pnpm with-env nitro build",
+        "prebuild": "pnpm with-env nitro prepare",
+        "build": "concurrently 'pnpm with-env nitro build' 'tsdown'",
         "start": "NODE_ENV=production pnpm with-env node .output/server/index.mjs",
         "check": "biome check .",
         "check:fix": "biome check . --write",
@@ -34,8 +34,10 @@
         "@types/node": "catalog:node22",
         "@xenous/biome-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
+        "concurrently": "^9.2.1",
         "h3": "^1.15.4",
         "nitropack": "^2.12.4",
+        "tsdown": "^0.15.6",
         "typescript": "catalog:"
     }
 }
