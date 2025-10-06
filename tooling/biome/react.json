@@ -14,7 +14,8 @@
                             "Switch"
                         ]
                     }
-                }
+                },
+                "useSemanticElements": "off"
             },
             "nursery": {
                 "useSortedClasses": {
