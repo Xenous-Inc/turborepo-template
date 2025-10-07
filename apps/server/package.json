@@ -19,8 +19,8 @@
     },
     "dependencies": {
         "@better-auth/expo": "^1.2.8",
-        "@orpc/client": "^1.2.0",
-        "@orpc/server": "^1.2.0",
+        "@orpc/client": "^1.9.3",
+        "@orpc/server": "^1.9.3",
         "@t3-oss/env-core": "catalog:",
         "@xenous/db": "workspace:^",
         "better-auth": "^1.2.8",
@@ -36,7 +36,7 @@
         "@xenous/tsconfig": "workspace:*",
         "concurrently": "^9.2.1",
         "h3": "^1.15.4",
-        "nitropack": "^2.12.4",
+        "nitropack": "^2.12.6",
         "tsdown": "^0.15.6",
         "typescript": "catalog:"
     }
