@@ -20,7 +20,9 @@
     "dependencies": {
         "@better-auth/expo": "^1.2.8",
         "@orpc/client": "^1.9.3",
+        "@orpc/openapi": "^1.9.3",
         "@orpc/server": "^1.9.3",
+        "@orpc/zod": "^1.9.3",
         "@t3-oss/env-core": "catalog:",
         "@xenous/db": "workspace:^",
         "better-auth": "^1.2.8",
