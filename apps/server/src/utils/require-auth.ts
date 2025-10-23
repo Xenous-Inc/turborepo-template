@@ -1,19 +1,15 @@
-import type { EventHandler } from 'h3';
+import { defineMiddleware, HTTPError } from 'nitro/h3';
 
 /**
  * Middleware used to require authentication for a route.
  *
  * Can be extended to check for specific roles or permissions.
  */
-export const requireAuth: EventHandler = async event => {
-    const session = await auth.api.getSession({ headers: event.headers });
-
-    if (!session) {
-        throw createError({
+export const requireAuth = defineMiddleware(async event => {
+    if (!event.context.session) {
+        throw new HTTPError({
             statusCode: 401,
             statusMessage: 'Unauthorized',
         });
     }
-
-    event.context = { ...event.context, ...createContext({ event }) };
-};
+});

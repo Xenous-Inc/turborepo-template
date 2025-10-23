@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import z from 'zod';
 
 export const safeArray = <T extends z.ZodType>(schema: T) => {
     return z

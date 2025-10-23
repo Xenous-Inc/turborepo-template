@@ -1,7 +1,8 @@
+import { defineHandler, html } from 'nitro/h3';
 import { env } from '~/env';
 
-export default defineEventHandler(async _event => {
-    return `
+export default defineHandler(() => {
+    return html`
       <meta charset="utf-8">
       <h1>This is your brand new Nitro project 🚀 </h1>
       <p>Get started by editing the <code>server/routes/index.ts</code> file.</p>

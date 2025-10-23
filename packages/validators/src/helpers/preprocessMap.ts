@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import z from 'zod';
 
 export const preprocessMap = <Key extends z.ZodTypeAny = z.ZodTypeAny, Value extends z.ZodTypeAny = z.ZodTypeAny>(
     mapSchema: z.ZodMap<Key, Value>,

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import z from 'zod';
 
 export const numberLikeSchema = z
     .union([z.string().length(0), z.nan(), z.number().nullish()])

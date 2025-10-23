@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import z from 'zod';
 
 export const dateLikeSchema = z
     .union([z.undefined(), z.null(), z.coerce.number(), z.string(), z.date()])

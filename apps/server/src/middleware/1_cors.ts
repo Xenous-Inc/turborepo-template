@@ -1,13 +1,16 @@
+import { defineMiddleware } from 'nitro/h3';
 import { env } from '~/env';
 
-export default defineEventHandler(event => {
-    const origin = getHeader(event, 'origin');
+export default defineMiddleware(async (event, next) => {
+    const origin = event.req.headers.get('origin');
 
-    setResponseHeader(event, 'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    setResponseHeader(event, 'Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    setResponseHeader(event, 'Access-Control-Allow-Credentials', 'true');
+    event.res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    event.res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    event.res.headers.set('Access-Control-Allow-Credentials', 'true');
 
     if (origin && env.CORS_ORIGIN.includes(origin)) {
-        setResponseHeader(event, 'Access-Control-Allow-Origin', origin);
+        event.res.headers.set('Access-Control-Allow-Origin', origin);
     }
+
+    return await next();
 });

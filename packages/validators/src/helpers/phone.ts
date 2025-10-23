@@ -1,5 +1,5 @@
 import { ParseError, parsePhoneNumberWithError } from 'libphonenumber-js/mobile';
-import { z } from 'zod';
+import z from 'zod';
 
 export const phoneSchema = z
     .string()

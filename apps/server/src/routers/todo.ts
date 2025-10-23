@@ -1,7 +1,8 @@
 import { db } from '@xenous/db/client';
 import { todo } from '@xenous/db/schema';
 import { eq } from 'drizzle-orm';
-import { z } from 'zod/v4';
+import z from 'zod';
+import { o, publicProcedure } from '~/utils/orpc';
 
 export const todoRouter = o.router({
     getAll: publicProcedure.handler(async () => {

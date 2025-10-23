@@ -1,6 +1,6 @@
 import { coolify } from '@t3-oss/env-core/presets-zod';
 import { createEnv } from '@t3-oss/env-nextjs';
-import { z } from 'zod/v4';
+import z from 'zod';
 
 export const env = createEnv({
     extends: [coolify()],

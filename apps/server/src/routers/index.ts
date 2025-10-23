@@ -1,7 +1,6 @@
-import '#imports';
-
 import type { RouterClient } from '@orpc/server';
 import { env } from '~/env';
+import { o, protectedProcedure, publicProcedure } from '~/utils/orpc';
 import { todoRouter } from './todo';
 
 export const appRouter = o.router({

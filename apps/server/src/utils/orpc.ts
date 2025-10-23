@@ -1,6 +1,7 @@
 import { ORPCError, os } from '@orpc/server';
+import type { H3EventContext } from 'nitro/h3';
 
-export const o = os.$context<Context>();
+export const o = os.$context<H3EventContext>();
 
 export const publicProcedure = o;
 

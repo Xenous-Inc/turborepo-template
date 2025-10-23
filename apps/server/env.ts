@@ -1,7 +1,7 @@
 import { createEnv } from '@t3-oss/env-core';
 import { coolify } from '@t3-oss/env-core/presets-zod';
 import { dbEnv } from '@xenous/db/env';
-import z from 'zod/v4';
+import z from 'zod';
 
 export const env = createEnv({
     extends: [dbEnv, coolify()],
