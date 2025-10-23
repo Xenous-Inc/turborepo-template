@@ -17,6 +17,7 @@
         "build": "turbo build",
         "check": "turbo run check --continue",
         "check:fix": "turbo run check --continue -- --write",
+        "check:unsafe": "turbo run check --continue -- --write --unsafe",
         "check:ws": "pnpm dlx sherif@latest",
         "ci": "turbo run ci --continue",
         "typecheck": "turbo run typecheck --continue",

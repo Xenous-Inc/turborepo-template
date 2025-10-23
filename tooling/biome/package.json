@@ -5,7 +5,7 @@
     "private": true,
     "type": "module",
     "exports": {
-        "./base": "./base.json",
+        "./base": "./base.jsonc",
         "./react": "./react.json",
         "./restirct-env": "./restirct-env.json"
     },

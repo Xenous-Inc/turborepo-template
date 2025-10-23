@@ -56,6 +56,7 @@
     "formatter": {
         "enabled": true,
         "useEditorconfig": true,
+        // for some reason editor config isn't resolved right in monorepo setup
         "indentStyle": "space",
         "indentWidth": 4,
         "lineEnding": "lf"
