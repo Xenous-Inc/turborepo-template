@@ -4,7 +4,7 @@ import type { RouterClient } from '@orpc/server';
 import { env } from '~/env';
 import { todoRouter } from './todo';
 
-export const appRouter = {
+export const appRouter = o.router({
     healthCheck: publicProcedure.handler(() => {
         return `OK "${env.NODE_ENV}"`;
     }),
@@ -15,7 +15,7 @@ export const appRouter = {
         };
     }),
     todo: todoRouter,
-};
+});
 
 export type AppRouter = typeof appRouter;
 

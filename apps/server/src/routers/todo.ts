@@ -3,7 +3,7 @@ import { todo } from '@xenous/db/schema';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod/v4';
 
-export const todoRouter = {
+export const todoRouter = o.router({
     getAll: publicProcedure.handler(async () => {
         return await db.select().from(todo);
     }),
@@ -27,4 +27,4 @@ export const todoRouter = {
         await db.delete(todo).where(eq(todo.id, input.id));
         return { success: true };
     }),
-};
+});
