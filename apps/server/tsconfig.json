@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemastore.org/tsconfig.json",
-    "extends": ["./.nitro/types/tsconfig.json", "@xenous/tsconfig/base.json"],
+    "extends": ["@xenous/tsconfig/base.json"],
     "compilerOptions": {
         /** Base Options */
         "module": "esnext",
