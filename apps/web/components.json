@@ -4,8 +4,8 @@
     "rsc": true,
     "tsx": true,
     "tailwind": {
-        "config": "tailwind.config.ts",
-        "css": "../../packages/ui/src/styles/globals.scss",
+        "config": "",
+        "css": "../../packages/ui/src/styles/globals.css",
         "baseColor": "neutral",
         "cssVariables": true
     },
@@ -13,8 +13,8 @@
         "components": "~/shared/ui",
         "hooks": "~/shared/hooks",
         "lib": "~/shared/lib",
-        "ui": "@xenous/ui",
-        "utils": "@xenous/ui/lib"
+        "utils": "@xenous/ui/lib/utils",
+        "ui": "@xenous/ui"
     },
     "iconLibrary": "lucide"
 }

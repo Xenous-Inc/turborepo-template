@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { cn } from '@xenous/ui/lib';
+import { cn } from '@xenous/ui/lib/utils';
 import { orpc } from '~/orpc';
 
 const TITLE_TEXT = `

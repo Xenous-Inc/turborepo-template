@@ -39,15 +39,14 @@
     "devDependencies": {
         "@biomejs/biome": "catalog:",
         "@dotenvx/dotenvx": "catalog:",
+        "@tailwindcss/postcss": "catalog:",
         "@tanstack/react-query-devtools": "^5.90.2",
         "@total-typescript/ts-reset": "^0.6.1",
         "@types/node": "catalog:node22",
         "@types/react": "catalog:react19",
         "@types/react-dom": "catalog:react19",
         "@xenous/biome-config": "workspace:*",
-        "@xenous/tailwind-config": "workspace:*",
         "@xenous/tsconfig": "workspace:*",
-        "tailwindcss": "catalog:",
         "typescript": "catalog:"
     }
 }

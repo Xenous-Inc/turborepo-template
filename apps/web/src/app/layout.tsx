@@ -1,6 +1,6 @@
-import '@xenous/ui/styles';
+import '~/styles/globals.css';
 
-import { cn } from '@xenous/ui/lib';
+import { cn } from '@xenous/ui/lib/utils';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Providers } from './(_providers)';
@@ -55,7 +55,7 @@ export default ({ children }: React.PropsWithChildren) => {
         <html lang={'en'} suppressHydrationWarning>
             <body
                 className={cn(
-                    'bg-background font-geist-sans text-foreground antialiased',
+                    'bg-background font-sans text-foreground antialiased',
                     geistSans.variable,
                     geistMono.variable,
                 )}

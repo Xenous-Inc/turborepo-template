@@ -1,12 +1,23 @@
-@layer base {
-    :root {
-        --radius: 0.5rem;
+:root {
+    --radius: 0.5rem;
 
-        --page-spacing: 0.5rem;
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
 
-        --popup-min-width: min(20rem, calc(100vw - var(--page-spacing) * 4));
-        --popup-max-width: min(48rem, calc(100vw - var(--page-spacing) * 4));
-        --popup-min-height: min(16rem, 75svh);
-        --popup-max-height: min(36rem, 75svh);
-    }
+    --popup-min-width: min(20rem, calc(100vw - var(--spacing) * 4));
+    --popup-max-width: min(48rem, calc(100vw - var(--spacing) * 4));
+    --popup-min-height: min(16rem, 75svh);
+    --popup-max-height: min(36rem, 75svh);
+}
+
+@theme inline {
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    --spacing-popup-min-width: var(--popup-min-width);
+    --spacing-popup-max-width: var(--popup-max-width);
+    --spacing-popup-min-height: var(--popup-min-height);
+    --spacing-popup-max-height: var(--popup-max-height);
 }

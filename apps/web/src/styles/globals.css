@@ -1,0 +1,6 @@
+@import '@xenous/ui/globals.css';
+
+@theme inline {
+    --font-sans: var(--font-geist-sans), serif;
+    --font-mono: var(--font-geist-mono), monospace;
+}
