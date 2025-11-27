@@ -1,5 +1,5 @@
 ARG APP_DIRNAME="server"
-ARG APP_PKG_NAME="@xenous/server"
+ARG APP_PKG_NAME="server"
 
 
 
@@ -9,7 +9,7 @@ ARG APP_PKG_NAME="@xenous/server"
 
 
 
-FROM node:22-alpine AS node
+FROM node:24-alpine AS node
 
 # Telemetry environment
 ENV NEXT_TELEMETRY_DISABLED=true

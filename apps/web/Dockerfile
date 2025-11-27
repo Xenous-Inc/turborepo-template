@@ -1,5 +1,5 @@
 ARG APP_DIRNAME="web"
-ARG APP_PKG_NAME="@xenous/web"
+ARG APP_PKG_NAME="web"
 
 
 
@@ -9,7 +9,7 @@ ARG APP_PKG_NAME="@xenous/web"
 
 
 
-FROM node:22-alpine AS node
+FROM node:24-alpine AS node
 
 # Telemetry environment
 ENV NEXT_TELEMETRY_DISABLED=true
