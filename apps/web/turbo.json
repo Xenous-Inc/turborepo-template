@@ -10,7 +10,7 @@
             "persistent": true
         },
         "typecheck": {
-            "dependsOn": ["@xenous/server#build"]
+            "dependsOn": ["server#build"]
         }
     }
 }
