@@ -7,6 +7,8 @@ export default defineConfig({
     unbundle: false,
     clean: true,
 
+    hash: false,
+
     dts: {
         emitDtsOnly: true,
     },
