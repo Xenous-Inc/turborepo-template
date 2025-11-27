@@ -46,7 +46,7 @@
         "@types/react": "catalog:react19",
         "@types/react-dom": "catalog:react19",
         "@xenous/biome-config": "workspace:*",
-        "@xenous/tsconfig": "workspace:*",
+        "@xenous/typescript": "workspace:*",
         "typescript": "catalog:"
     }
 }

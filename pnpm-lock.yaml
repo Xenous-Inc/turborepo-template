@@ -124,7 +124,7 @@ importers:
       '@xenous/biome-config':
         specifier: workspace:*
         version: link:../../tooling/biome
-      '@xenous/tsconfig':
+      '@xenous/typescript':
         specifier: workspace:*
         version: link:../../tooling/typescript
       concurrently:
@@ -227,7 +227,7 @@ importers:
       '@xenous/biome-config':
         specifier: workspace:*
         version: link:../../tooling/biome
-      '@xenous/tsconfig':
+      '@xenous/typescript':
         specifier: workspace:*
         version: link:../../tooling/typescript
       typescript:
@@ -261,7 +261,7 @@ importers:
       '@xenous/biome-config':
         specifier: workspace:*
         version: link:../../tooling/biome
-      '@xenous/tsconfig':
+      '@xenous/typescript':
         specifier: workspace:*
         version: link:../../tooling/typescript
       drizzle-kit:
@@ -286,7 +286,7 @@ importers:
       '@xenous/biome-config':
         specifier: workspace:*
         version: link:../../tooling/biome
-      '@xenous/tsconfig':
+      '@xenous/typescript':
         specifier: workspace:*
         version: link:../../tooling/typescript
       typescript:
@@ -323,7 +323,7 @@ importers:
       '@xenous/biome-config':
         specifier: workspace:*
         version: link:../../tooling/biome
-      '@xenous/tsconfig':
+      '@xenous/typescript':
         specifier: workspace:*
         version: link:../../tooling/typescript
       postcss:
@@ -357,7 +357,7 @@ importers:
       '@xenous/biome-config':
         specifier: workspace:*
         version: link:../../tooling/biome
-      '@xenous/tsconfig':
+      '@xenous/typescript':
         specifier: workspace:*
         version: link:../../tooling/typescript
       typescript:
@@ -372,7 +372,11 @@ importers:
 
   tooling/github: {}
 
-  tooling/typescript: {}
+  tooling/typescript:
+    devDependencies:
+      '@biomejs/biome':
+        specifier: 'catalog:'
+        version: 2.2.5
 
 packages:
 

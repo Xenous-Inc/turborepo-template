@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemastore.org/tsconfig.json",
-    "extends": "@xenous/tsconfig/internal-package.json",
+    "extends": "@xenous/typescript/internal-package.json",
     "compilerOptions": {
         "jsx": "react-jsx",
         "baseUrl": "./",

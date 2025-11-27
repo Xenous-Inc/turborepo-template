@@ -30,7 +30,7 @@
     "devDependencies": {
         "@biomejs/biome": "catalog:",
         "@xenous/biome-config": "workspace:*",
-        "@xenous/tsconfig": "workspace:*",
+        "@xenous/typescript": "workspace:*",
         "typescript": "catalog:"
     }
 }

@@ -35,7 +35,7 @@
         "@total-typescript/ts-reset": "^0.6.1",
         "@types/node": "catalog:node22",
         "@xenous/biome-config": "workspace:*",
-        "@xenous/tsconfig": "workspace:*",
+        "@xenous/typescript": "workspace:*",
         "concurrently": "^9.2.1",
         "nitro": "^3.0.1-alpha.1",
         "tsdown": "^0.15.6",

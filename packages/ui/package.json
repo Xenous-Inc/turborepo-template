@@ -33,7 +33,7 @@
         "@tailwindcss/postcss": "catalog:",
         "@types/react": "catalog:react19",
         "@xenous/biome-config": "workspace:*",
-        "@xenous/tsconfig": "workspace:*",
+        "@xenous/typescript": "workspace:*",
         "postcss": "^8.5.6",
         "react": "catalog:react19",
         "tailwindcss": "catalog:",

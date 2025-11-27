@@ -47,7 +47,7 @@
         "@biomejs/biome": "catalog:",
         "@dotenvx/dotenvx": "catalog:",
         "@xenous/biome-config": "workspace:*",
-        "@xenous/tsconfig": "workspace:*",
+        "@xenous/typescript": "workspace:*",
         "drizzle-kit": "^0.30.6",
         "typescript": "catalog:"
     }
