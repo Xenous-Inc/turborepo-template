@@ -13,6 +13,7 @@
         "check:fix": "biome check . --write",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit",
+        "ui-add": "pnpm dlx shadcn@latest add",
         "with-env": "dotenvx run -f .env.local -f ../../.env --"
     },
     "dependencies": {
