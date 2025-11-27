@@ -26,7 +26,7 @@
         "module": "preserve",
         "moduleResolution": "bundler",
         "noEmit": true,
-		"verbatimModuleSyntax": true,
+        "verbatimModuleSyntax": true
     },
     "exclude": ["node_modules", "build", "dist", ".next", ".expo"]
 }

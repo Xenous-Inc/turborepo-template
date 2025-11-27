@@ -1,0 +1,10 @@
+{
+    "root": false,
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+    "extends": ["@xenous/biome-config/base"],
+    "json": {
+        "parser": {
+            "allowComments": true
+        }
+    }
+}
