@@ -20,9 +20,7 @@
         "enabled": true,
         "actions": {
             "source": {
-                "organizeImports": "on",
-                "useSortedAttributes": "on",
-                "useSortedProperties": "on"
+                "organizeImports": "on"
             }
         }
     },
@@ -31,25 +29,25 @@
         "rules": {
             "recommended": true,
             "correctness": {
-                "useExhaustiveDependencies": "warn",
-                "noUnusedVariables": "warn",
                 "noConstantCondition": "warn",
-                "noUnusedImports": "warn"
+                "noUnusedImports": "warn",
+                "noUnusedVariables": "warn",
+                "useExhaustiveDependencies": "warn"
             },
             "style": {
-                "useImportType": "warn",
+                "noEnum": "error",
+                "noNonNullAssertion": "error",
                 "useConsistentArrayType": {
                     "level": "warn",
                     "options": {
                         "syntax": "shorthand"
                     }
                 },
-                "noNonNullAssertion": "error",
-                "noEnum": "error"
+                "useImportType": "warn"
             },
             "suspicious": {
-                "noUnknownAtRules": "off",
-                "noExplicitAny": "off"
+                "noExplicitAny": "off",
+                "noUnknownAtRules": "off"
             }
         }
     },

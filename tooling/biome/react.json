@@ -3,7 +3,6 @@
     "linter": {
         "rules": {
             "a11y": {
-                "noStaticElementInteractions": "error",
                 "noLabelWithoutControl": {
                     "level": "warn",
                     "options": {
@@ -15,19 +14,14 @@
                         ]
                     }
                 },
+                "noStaticElementInteractions": "error",
                 "useSemanticElements": "off"
             },
             "nursery": {
                 "useSortedClasses": {
                     "level": "warn",
                     "options": {
-                        "attributes": [
-                            "class",
-                            "className",
-                            "class:list",
-                            "classList",
-                            "ngClass"
-                        ],
+                        "attributes": ["className", "classList", "ngClass"],
                         "functions": ["cn", "cx", "clsx", "cva", "tw", "tw.*"]
                     },
                     "fix": "safe"
