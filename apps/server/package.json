@@ -18,14 +18,14 @@
         "with-env": "dotenvx run -f .env.local -f ../../.env --"
     },
     "dependencies": {
-        "@better-auth/expo": "^1.2.8",
-        "@orpc/client": "^1.9.3",
-        "@orpc/openapi": "^1.9.3",
-        "@orpc/server": "^1.9.3",
-        "@orpc/zod": "^1.9.3",
+        "@better-auth/expo": "catalog:",
+        "@orpc/client": "catalog:orpc",
+        "@orpc/openapi": "catalog:orpc",
+        "@orpc/server": "catalog:orpc",
+        "@orpc/zod": "catalog:orpc",
         "@t3-oss/env-core": "catalog:",
         "@xenous/db": "workspace:^",
-        "better-auth": "^1.2.8",
+        "better-auth": "catalog:",
         "jiti": "catalog:",
         "zod": "catalog:"
     },
