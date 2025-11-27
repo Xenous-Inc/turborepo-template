@@ -54,7 +54,7 @@ The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as w
 ```
 .github
   └─ workflows
-      └─ CI with pnpm cache setup
+      └─ CI with pnpm cache setup and Versioning
 .vscode
   └─ Recommended extensions and settings for VSCode users
 apps
@@ -74,8 +74,6 @@ packages
 tooling
   ├─ biome
   │   └─ Shared biome configuration
-  ├─ tailwind
-  │   └─ Shared tailwind configuration
   └─ typescript
       └─ Shared tsconfig you can extend from
 ```
@@ -88,11 +86,12 @@ tooling
 - `pnpm build`: Build all applications
 - `pnpm check`: Run Biome formatting and linting
 - `pnpm check:fix`: Fix Biome formatting and linting issues
+- `pnpm check:unsafe`: Unsafe fix Biome formatting and linting issues
 - `pnpm check:ws`: Run Shering linting
 - `pnpm typecheck`: Check TypeScript types across all apps
 - `pnpm db:studio`: Open database studio UI
+- `pnpm db:push`: Push schema changes to database
 - `pnpm db:generate`: Generate database schema changes
 - `pnpm db:migrate`: Run database schema migrations
-- `pnpm db:push`: Push schema changes to database
 - `pnpm deps:check`: Check for available dependency updates
 - `pnpm deps:update`: Update dependencies

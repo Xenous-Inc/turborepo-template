@@ -15,8 +15,6 @@
         "dev:server": "turbo -F server dev",
         "dev:web": "turbo -F web dev",
         "build": "turbo build",
-        "build:server": "turbo -F server build",
-        "build:web": "turbo -F web build",
         "check": "turbo run check --continue",
         "check:fix": "turbo run check --continue -- --write",
         "check:unsafe": "turbo run check --continue -- --write --unsafe",
