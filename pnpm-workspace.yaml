@@ -23,10 +23,10 @@ catalogs:
     node22:
         '@types/node': ^24.10
     react19:
-        '@types/react': ~19.2.0
-        '@types/react-dom': ~19.2.0
-        react: ~19.2.0
-        react-dom: ~19.2.0
+        '@types/react': ~19.2.3
+        '@types/react-dom': ~19.2.3
+        react: ~19.2.3
+        react-dom: ~19.2.3
     orpc:
         '@orpc/client': ^1.11.3
         '@orpc/openapi': ^1.11.3
