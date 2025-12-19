@@ -7,7 +7,7 @@
     "exports": {
         "./base": "./base.jsonc",
         "./react": "./react.json",
-        "./restirct-env": "./restirct-env.json"
+        "./restrict-env": "./restrict-env.json"
     },
     "scripts": {
         "clean": "git clean -xdf .cache .turbo node_modules",

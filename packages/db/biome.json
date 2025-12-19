@@ -1,5 +1,8 @@
 {
     "root": false,
     "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-    "extends": ["@xenous/biome-config/base"]
+    "extends": [
+        "@xenous/biome-config/base",
+        "@xenous/biome-config/restrict-env"
+    ]
 }

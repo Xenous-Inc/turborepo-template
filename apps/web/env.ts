@@ -1,3 +1,5 @@
+/** biome-ignore-all lint/style/noProcessEnv: bypass this rule for env files, we can use process.env only here */
+
 import { coolify } from '@t3-oss/env-core/presets-zod';
 import { createEnv } from '@t3-oss/env-nextjs';
 import z from 'zod';

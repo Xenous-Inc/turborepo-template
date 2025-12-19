@@ -2,7 +2,6 @@
     "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
     "linter": {
         "enabled": true,
-        "includes": ["!**/env.ts"],
         "rules": {
             "style": {
                 "noProcessEnv": "error",

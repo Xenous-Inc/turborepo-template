@@ -4,6 +4,6 @@
     "extends": [
         "@xenous/biome-config/base",
         "@xenous/biome-config/react",
-        "@xenous/biome-config/restirct-env"
+        "@xenous/biome-config/restrict-env"
     ]
 }
