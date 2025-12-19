@@ -1,9 +1,9 @@
 import { createORPCClient } from '@orpc/client';
 import { RPCLink } from '@orpc/client/fetch';
-import type { InferRouterInputs, InferRouterOutputs } from '@orpc/server';
+import type { InferRouterInputs, InferRouterOutputs, RouterClient } from '@orpc/server';
 import { createTanstackQueryUtils } from '@orpc/tanstack-query';
 import { env } from '~/env';
-import type { AppRouter, AppRouterClient } from '../../server/src/routers';
+import type { AppRouter } from '../../server/src/routers';
 
 const link = new RPCLink({
     url: `${env.NEXT_PUBLIC_SERVER_URL}/rpc`,
@@ -15,7 +15,7 @@ const link = new RPCLink({
     },
 });
 
-const client: AppRouterClient = createORPCClient(link);
+const client: RouterClient<AppRouter> = createORPCClient(link);
 
 const orpc = createTanstackQueryUtils(client);
 
