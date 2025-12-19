@@ -31,5 +31,10 @@
                 "noArrayIndexKey": "off"
             }
         }
+    },
+    "css": {
+        "parser": {
+            "tailwindDirectives": true
+        }
     }
 }
