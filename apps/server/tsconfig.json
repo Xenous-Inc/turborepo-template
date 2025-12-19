@@ -4,7 +4,7 @@
     "compilerOptions": {
         /** Base Options */
         "module": "esnext",
-        "lib": ["DOM"],
+        "lib": ["ES2024", "DOM"],
         "jsx": "preserve",
 
         /** Preact */
