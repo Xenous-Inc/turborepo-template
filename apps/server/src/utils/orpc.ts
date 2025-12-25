@@ -1,12 +1,12 @@
 import { ORPCError, os } from '@orpc/server';
-import type { H3EventContext } from 'nitro/h3';
+import type { ORPCContext } from './context';
 
-export const o = os.$context<H3EventContext>();
+export const o = os.$context<ORPCContext>();
 
 export const publicProcedure = o;
 
 const requireAuth = o.middleware(async ({ context, next }) => {
-    if (!context.session?.user) {
+    if (!context.session || !context.user) {
         throw new ORPCError('UNAUTHORIZED');
     }
 
@@ -14,6 +14,7 @@ const requireAuth = o.middleware(async ({ context, next }) => {
         context: {
             ...context,
             session: context.session,
+            user: context.user,
         },
     });
 });

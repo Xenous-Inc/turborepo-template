@@ -1,11 +1,14 @@
 import { OpenAPIHandler } from '@orpc/openapi/fetch';
 import { OpenAPIReferencePlugin } from '@orpc/openapi/plugins';
 import { RPCHandler } from '@orpc/server/fetch';
+import { RequestHeadersPlugin, ResponseHeadersPlugin } from '@orpc/server/plugins';
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4';
 import { defineHandler } from 'nitro/h3';
 import { appRouter } from '~/routers';
 
-const rpcHandler = new RPCHandler(appRouter);
+const rpcHandler = new RPCHandler(appRouter, {
+    plugins: [new RequestHeadersPlugin(), new ResponseHeadersPlugin()],
+});
 
 const apiHandler = new OpenAPIHandler(appRouter, {
     plugins: [
