@@ -4,6 +4,7 @@ import { createEnv } from '@t3-oss/env-core';
 import { coolify } from '@t3-oss/env-core/presets-zod';
 import { dbEnv } from '@xenous/db/env';
 import z from 'zod';
+import { version } from './package.json';
 
 export const env = createEnv({
     extends: [dbEnv, coolify()],
@@ -23,6 +24,9 @@ export const env = createEnv({
             .union([z.string(), z.array(z.string())])
             .transform(value => (Array.isArray(value) ? value : value.split(',')))
             .pipe(z.array(z.string())),
+
+        /* Version */
+        VERSION: z.literal(version).catch(version),
     },
     runtimeEnv: process.env,
     skipValidation: !!process.env.CI || process.env.npm_lifecycle_event === 'lint',

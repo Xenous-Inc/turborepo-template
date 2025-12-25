@@ -24,5 +24,6 @@
         "noEmit": false,
         "emitDeclarationOnly": true,
         "outDir": ".output/types"
-    }
+    },
+    "include": ["src", "**/*.ts", "**/*.tsx", "./package.json"]
 }

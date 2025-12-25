@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import { defineNitroConfig } from 'nitro/config';
+import { env } from './env';
 
 // https://nitro.build/config
 export default defineNitroConfig({
@@ -20,5 +21,14 @@ export default defineNitroConfig({
     },
     experimental: {
         typescriptBundlerResolution: true,
+        openAPI: true,
+    },
+    openAPI: {
+        route: '/api/docs/openapi.json',
+        meta: { version: env.VERSION },
+        ui: {
+            scalar: false,
+            swagger: false,
+        },
     },
 });

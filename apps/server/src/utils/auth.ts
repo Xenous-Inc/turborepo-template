@@ -2,6 +2,7 @@ import { db } from '@xenous/db/client';
 import * as schema from '@xenous/db/schema';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { openAPI } from 'better-auth/plugins';
 import { env } from '~/env';
 
 export const auth = betterAuth({
@@ -14,5 +15,13 @@ export const auth = betterAuth({
     trustedOrigins: env.CORS_ORIGIN,
     emailAndPassword: {
         enabled: true,
+    },
+    plugins: [openAPI({ disableDefaultReference: true })],
+    advanced: {
+        defaultCookieAttributes: {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+        },
     },
 });
