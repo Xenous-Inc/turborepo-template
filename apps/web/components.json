@@ -1,20 +1,21 @@
 {
     "$schema": "https://ui.shadcn.com/schema.json",
-    "style": "new-york",
+    "style": "base-vega",
     "rsc": true,
     "tsx": true,
     "tailwind": {
         "config": "",
-        "css": "../../packages/ui/src/styles/globals.css",
+        "css": "./src/styles/globals.css",
         "baseColor": "neutral",
-        "cssVariables": true
+        "cssVariables": true,
+        "prefix": ""
     },
     "aliases": {
         "components": "~/shared/ui",
         "hooks": "~/shared/hooks",
-        "lib": "~/shared/lib",
+        "lib": "@xenous/ui/lib",
         "utils": "@xenous/ui/lib/utils",
         "ui": "@xenous/ui"
     },
-    "iconLibrary": "lucide"
+    "iconLibrary": "tabler"
 }
