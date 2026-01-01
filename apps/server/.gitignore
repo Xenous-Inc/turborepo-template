@@ -1,4 +1,4 @@
-# build outputs
-.data
-.nitro
+# Build outputs
+/out/
 .output
+.nitro/

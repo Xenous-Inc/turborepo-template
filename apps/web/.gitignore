@@ -1,10 +1,17 @@
-# build outputs
-.next/
+# Build outputs
+/.next/
+/out/
+.vinxi
+.output
+.react-router/
+.tanstack/
+.nitro/
 
-# deployment
+# Deployment
 .vercel
 .netlify
 .wrangler
+.alchemy
 
-# typescript
+# TypeScript
 next-env.d.ts

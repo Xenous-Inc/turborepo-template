@@ -4,16 +4,16 @@
         "ignoreUnknown": false,
         "includes": [
             "**",
-            "!node_modules",
-            "!build",
-            "!dist",
-            "!routeTree.gen.ts",
-            "!.next",
-            "!.turbo",
-            "!.cache",
-            "!.zed",
-            "!.vscode",
-            "!.nuxt"
+            "!**/.next",
+            "!**/dist",
+            "!**/build",
+            "!**/.turbo",
+            "!**/.zed",
+            "!**/.vscode",
+            "!**/routeTree.gen.ts",
+            "!**/.expo",
+            "!**/node_modules",
+            "!**/.cache"
         ]
     },
     "assist": {
