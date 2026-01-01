@@ -34,6 +34,9 @@
         "db:push": "pnpm with-env drizzle-kit push",
         "db:generate": "pnpm with-env drizzle-kit generate",
         "db:migrate": "pnpm with-env drizzle-kit migrate",
+        "db:start": "docker compose up postgres -d",
+        "db:stop": "docker compose stop postgres",
+        "db:down": "docker compose down postgres",
         "with-env": "dotenvx run -f ../../.env --"
     },
     "dependencies": {

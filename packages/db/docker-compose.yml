@@ -1,0 +1,21 @@
+services:
+    postgres:
+        container_name: xenous-postgres
+        image: supabase/postgres:17.6.1.067
+        environment:
+            POSTGRES_DB: default
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+        ports:
+          - 127.0.0.1:5432:5432
+        volumes:
+          - xenous_postgres_data:/var/lib/postgresql
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        restart: unless-stopped
+
+volumes:
+  xenous_postgres_data:
