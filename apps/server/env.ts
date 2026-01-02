@@ -16,14 +16,14 @@ export const env = createEnv({
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 
         /* Auth */
-        BETTER_AUTH_SECRET: process.env.NODE_ENV === 'production' ? z.string() : z.string().optional(),
-        BETTER_AUTH_URL: process.env.NODE_ENV === 'production' ? z.url() : z.url().optional(),
+        BETTER_AUTH_SECRET: z.string().min(32),
+        BETTER_AUTH_URL: z.url(),
 
         /* Cors */
         CORS_ORIGIN: z
-            .union([z.string(), z.array(z.string())])
+            .union([z.string(), z.array(z.url())])
             .transform(value => (Array.isArray(value) ? value : value.split(',')))
-            .pipe(z.array(z.string())),
+            .pipe(z.array(z.url())),
 
         /* Version */
         VERSION: z.literal(version).catch(version),
