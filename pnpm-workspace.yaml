@@ -7,9 +7,9 @@ catalog:
     '@better-auth/expo': ^1.4.3
     '@biomejs/biome': ^2.3.10
     '@dotenvx/dotenvx': ^1.51.0
-    '@tailwindcss/postcss': ^4.1.17
     '@t3-oss/env-core': ^0.13.8
     '@t3-oss/env-nextjs': ^0.13.8
+    '@tailwindcss/postcss': ^4.1.17
     '@tanstack/react-form': ^1.26.0
     '@tanstack/react-query': ^5.90.11
     '@tanstack/react-query-devtools': ^5.90.11
@@ -22,21 +22,22 @@ catalog:
 catalogs:
     node22:
         '@types/node': ^24.10
-    react19:
-        '@types/react': ~19.2.3
-        '@types/react-dom': ~19.2.3
-        react: ~19.2.3
-        react-dom: ~19.2.3
     orpc:
         '@orpc/client': ^1.11.3
         '@orpc/openapi': ^1.11.3
         '@orpc/server': ^1.11.3
         '@orpc/tanstack-query': ^1.11.3
         '@orpc/zod': ^1.11.3
+    react19:
+        '@types/react': ~19.2.3
+        '@types/react-dom': ~19.2.3
+        react: ~19.2.3
+        react-dom: ~19.2.3
 
 onlyBuiltDependencies:
   - '@biomejs/biome'
   - '@parcel/watcher'
   - core-js-pure
   - esbuild
+  - msw
   - sharp
