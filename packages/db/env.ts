@@ -12,6 +12,6 @@ export const dbEnv = createEnv({
         DATABASE_URL: z.url(),
     },
     runtimeEnv: process.env,
-    skipValidation: !!process.env.CI || process.env.npm_lifecycle_event === 'lint',
+    skipValidation: !!process.env.CI,
     emptyStringAsUndefined: true,
 });

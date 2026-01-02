@@ -40,6 +40,6 @@ export const env = createEnv({
         /* TanStack Query Devtools */
         NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED: process.env.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED,
     },
-    skipValidation: !!process.env.CI || process.env.npm_lifecycle_event === 'lint',
+    skipValidation: !!process.env.CI,
     emptyStringAsUndefined: true,
 });
