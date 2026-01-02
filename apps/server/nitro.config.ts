@@ -1,4 +1,3 @@
-import { fileURLToPath } from 'node:url';
 import { defineNitroConfig } from 'nitro/config';
 import { env } from './env';
 
@@ -8,10 +7,6 @@ export default defineNitroConfig({
     builder: 'rolldown',
     compatibilityDate: 'latest',
     serverDir: './src',
-    alias: {
-        '~/env': fileURLToPath(new URL('./env.ts', import.meta.url)),
-        '~/*': fileURLToPath(new URL('./src/*', import.meta.url)),
-    },
     routeRules: {
         '/**': { cors: true },
     },

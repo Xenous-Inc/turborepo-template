@@ -14,7 +14,6 @@
         /** Aliases */
         "baseUrl": ".",
         "paths": {
-            "#imports": ["./.nitro/types/nitro-imports.d.ts"],
             "~/env": ["./env.ts"],
             "~/*": ["./src/*"]
         },
