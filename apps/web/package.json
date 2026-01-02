@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "clean": "git clean -xdf .cache .turbo .next node_modules",
-        "dev": "pnpm with-env next dev --turbopack --port=3001",
+        "dev": "pnpm with-env next dev --turbo --port=3001",
         "build": "pnpm with-env next build",
         "start": "pnpm with-env next start",
         "check": "biome check .",
@@ -29,7 +29,7 @@
         "@xenous/validators": "workspace:*",
         "better-auth": "catalog:",
         "jiti": "catalog:",
-        "next": "15.3.0",
+        "next": "15.3.8",
         "nuqs": "^2.7.1",
         "react": "catalog:react19",
         "react-dom": "catalog:react19",
