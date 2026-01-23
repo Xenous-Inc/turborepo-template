@@ -32,13 +32,13 @@ const TanstackQueryDevtools: React.FC = () => {
     return (
         <>
             {env.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && (
-                <ReactQueryDevtools position={'bottom'} buttonPosition={'bottom-right'} initialIsOpen={false} />
+                <ReactQueryDevtools position='bottom' buttonPosition='bottom-right' initialIsOpen={false} />
             )}
             {env.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && showDevtools && (
                 <Suspense fallback={null}>
                     <ReactQueryDevtoolsProduction
-                        position={'bottom'}
-                        buttonPosition={'bottom-right'}
+                        position='bottom'
+                        buttonPosition='bottom-right'
                         initialIsOpen={false}
                     />
                 </Suspense>
@@ -46,6 +46,5 @@ const TanstackQueryDevtools: React.FC = () => {
         </>
     );
 };
-TanstackQueryDevtools.displayName = 'TanstackQueryDevtools';
 
 export { TanstackQueryDevtools };

@@ -38,6 +38,5 @@ const ORPCProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
         </QueryClientProvider>
     );
 };
-ORPCProvider.displayName = 'ORPCProvider';
 
 export { ORPCProvider };

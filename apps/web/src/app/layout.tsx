@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
 export default ({ children }: React.PropsWithChildren) => {
     return (
-        <html lang={'en'} suppressHydrationWarning>
+        <html lang='en' suppressHydrationWarning>
             <body
                 className={cn(
                     'bg-background font-sans text-foreground antialiased',
@@ -61,7 +61,7 @@ export default ({ children }: React.PropsWithChildren) => {
                 )}
             >
                 <Providers>
-                    <div className={'grid h-svh grid-rows-[auto_1fr]'}>{children}</div>
+                    <div className='grid h-svh grid-rows-[auto_1fr]'>{children}</div>
                 </Providers>
             </body>
         </html>

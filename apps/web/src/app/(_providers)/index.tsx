@@ -16,6 +16,5 @@ const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
         </ToastProvider>
     );
 };
-Providers.displayName = 'Providers';
 
 export { Providers };

@@ -9,6 +9,5 @@ const RwdotProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
         </>
     );
 };
-RwdotProvider.displayName = 'RwdotProvider';
 
 export { RwdotProvider };

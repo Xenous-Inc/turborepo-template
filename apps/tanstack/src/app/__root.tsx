@@ -64,13 +64,13 @@ export const Route = createRootRouteWithContext<TanStackRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
     return (
-        <html lang={'en'} suppressHydrationWarning>
+        <html lang='en' suppressHydrationWarning>
             <head>
                 <HeadContent />
             </head>
-            <body className={'bg-background font-sans text-foreground antialiased'}>
+            <body className='bg-background font-sans text-foreground antialiased'>
                 <Providers>
-                    <div className={'grid h-svh grid-rows-[auto_1fr]'}>{children}</div>
+                    <div className='grid h-svh grid-rows-[auto_1fr]'>{children}</div>
                     <Scripts />
                 </Providers>
             </body>

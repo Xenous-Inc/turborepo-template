@@ -52,6 +52,5 @@ const HydrateClient: React.FC<React.PropsWithChildren> = ({ children }) => {
 
     return <HydrationBoundary state={dehydrate(queryClient)}>{children}</HydrationBoundary>;
 };
-HydrateClient.displayName = 'HydrateClient';
 
 export { HydrateClient, prefetch };
