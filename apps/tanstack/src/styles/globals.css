@@ -1,0 +1,6 @@
+@import '@xenous/ui/globals.css';
+
+@theme inline {
+    --font-sans: 'Geist Variable', serif;
+    --font-mono: 'Geist Mono Variable', monospace;
+}

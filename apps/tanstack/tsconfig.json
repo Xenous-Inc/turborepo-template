@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemastore.org/tsconfig.json",
+    "extends": "@xenous/typescript/base.json",
+    "compilerOptions": {
+        /** Base Options */
+        "module": "esnext",
+        "lib": ["ES2024", "DOM", "DOM.Iterable"],
+        "jsx": "preserve",
+        "types": ["vite/client"],
+
+        /** Aliases */
+        "baseUrl": "./",
+        "paths": {
+            "~/env": ["./env.ts"],
+            "~/orpc": ["./orpc/index.ts"],
+            "~/orpc/*": ["./orpc/*"],
+            "~/public/*": ["./public/*"],
+            "~/*": ["./src/*"]
+        }
+    },
+    "include": ["./**/*.ts", "./**/*.tsx"],
+    "exclude": ["public"],
+    "references": [
+        {
+            "path": "../server"
+        }
+    ]
+}

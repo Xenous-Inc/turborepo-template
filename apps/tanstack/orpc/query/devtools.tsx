@@ -1,0 +1,49 @@
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { env } from '~/env';
+
+const ReactQueryDevtoolsProduction = lazy(() =>
+    import('@tanstack/react-query-devtools/production').then(module => ({
+        default: module.ReactQueryDevtools,
+    })),
+);
+
+const DevtoolsProductionStorageKey = 'tanstack-query-devtools-production';
+
+const TanstackQueryDevtools: React.FC = () => {
+    const [showDevtools, setShowDevtools] = useState(() => {
+        if (typeof window === 'undefined') return false;
+
+        return localStorage.getItem(DevtoolsProductionStorageKey) === 'true';
+    });
+
+    useEffect(() => {
+        // @ts-expect-error
+        window.toggleDevtools = () => {
+            setShowDevtools(prev => {
+                localStorage.setItem(DevtoolsProductionStorageKey, (!prev).toString());
+                return !prev;
+            });
+        };
+    }, []);
+
+    return (
+        <>
+            {env.VITE_QUERY_DEVTOOLS_ENABLED && (
+                <ReactQueryDevtools position={'bottom'} buttonPosition={'bottom-right'} initialIsOpen={false} />
+            )}
+            {env.VITE_QUERY_DEVTOOLS_ENABLED && showDevtools && (
+                <Suspense fallback={null}>
+                    <ReactQueryDevtoolsProduction
+                        position={'bottom'}
+                        buttonPosition={'bottom-right'}
+                        initialIsOpen={false}
+                    />
+                </Suspense>
+            )}
+        </>
+    );
+};
+TanstackQueryDevtools.displayName = 'TanstackQueryDevtools';
+
+export { TanstackQueryDevtools };

@@ -1,0 +1,17 @@
+# Build outputs
+/.next/
+/out/
+.vinxi
+.output
+.react-router/
+.tanstack/
+.nitro/
+
+# Deployment
+.vercel
+.netlify
+.wrangler
+.alchemy
+
+# Devtools
+com.chrome.devtools.json
