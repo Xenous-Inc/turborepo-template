@@ -15,3 +15,6 @@
 
 # TypeScript
 next-env.d.ts
+
+# Devtools
+com.chrome.devtools.json

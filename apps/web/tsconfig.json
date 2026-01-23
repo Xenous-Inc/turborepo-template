@@ -17,7 +17,6 @@
         /** Aliases */
         "baseUrl": "./",
         "paths": {
-            "@xenous/ui": ["../../packages/ui/src"],
             "~/env": ["./env.ts"],
             "~/orpc": ["./orpc/index.ts"],
             "~/orpc/*": ["./orpc/*"],
