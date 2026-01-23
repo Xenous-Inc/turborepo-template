@@ -31,10 +31,16 @@ const TanstackQueryDevtools: React.FC = () => {
 
     return (
         <>
-            {env.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && <ReactQueryDevtools initialIsOpen={false} />}
+            {env.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && (
+                <ReactQueryDevtools position={'bottom'} buttonPosition={'bottom-right'} initialIsOpen={false} />
+            )}
             {env.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && showDevtools && (
                 <Suspense fallback={null}>
-                    <ReactQueryDevtoolsProduction />
+                    <ReactQueryDevtoolsProduction
+                        position={'bottom'}
+                        buttonPosition={'bottom-right'}
+                        initialIsOpen={false}
+                    />
                 </Suspense>
             )}
         </>
