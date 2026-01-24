@@ -34,7 +34,7 @@
         "deps:update": "pnpm dlx taze -r -w",
         "ruler:apply": "pnpm dlx @intellectronica/ruler@latest apply --local-only",
         "rename": "bash ./rename.sh",
-        "postrename": "pnpm check:ws -f && pnpm check:fix --linter-enabled false"
+        "postrename": "pnpm check:ws -f && pnpm check:fix -- --linter-enabled false"
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
