@@ -25,6 +25,7 @@
         "@orpc/zod": "catalog:orpc",
         "@t3-oss/env-core": "catalog:",
         "@xenous/db": "workspace:^",
+        "@xenous/logger": "workspace:^",
         "better-auth": "catalog:",
         "jiti": "catalog:",
         "zod": "catalog:"
