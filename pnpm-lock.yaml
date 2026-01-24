@@ -271,6 +271,9 @@ importers:
       '@xenous/typescript':
         specifier: workspace:*
         version: link:../../tooling/typescript
+      server:
+        specifier: workspace:*
+        version: link:../server
       shadcn:
         specifier: ^3.7.0
         version: 3.7.0(@types/node@24.10.9)(hono@4.11.2)(typescript@5.8.3)

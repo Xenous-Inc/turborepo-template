@@ -1,5 +1,5 @@
-ARG APP_DIRNAME="web"
-ARG APP_PKG_NAME="web"
+ARG APP_DIRNAME="tanstack"
+ARG APP_PKG_NAME="tanstack"
 
 
 
@@ -12,7 +12,6 @@ ARG APP_PKG_NAME="web"
 FROM node:24-alpine AS node
 
 # Telemetry environment
-ENV NEXT_TELEMETRY_DISABLED=true
 ENV TURBO_TELEMETRY_DISABLED=true
 
 
@@ -125,19 +124,22 @@ ENV NODE_ENV="$NODE_ENV"
 RUN echo "NODE_ENV=$NODE_ENV" >> .env
 
 # API
-ARG NEXT_PUBLIC_SERVER_URL
-RUN if [[ -n "${NEXT_PUBLIC_SERVER_URL+x}" ]]; then \
-    echo "NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL" >> .env; fi
+ARG SERVER_URL
+RUN if [[ -n "${SERVER_URL+x}" ]]; then \
+    echo "SERVER_URL=$SERVER_URL" >> .env; fi
 
-# Next Devtools (optional)
-ARG NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED
-RUN if [[ -n "${NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED=$NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED" >> .env; fi
+ARG VITE_SERVER_URL
+RUN if [[ -n "${VITE_SERVER_URL+x}" ]]; then \
+    echo "VITE_SERVER_URL=$VITE_SERVER_URL" >> .env; fi
 
-# TanStack Query Devtools (optional)
-ARG NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED
-RUN if [[ -n "${NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED=$NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED" >> .env; fi
+# TanStack Devtools (optional)
+ARG VITE_ROUTER_DEVTOOLS_ENABLED
+RUN if [[ -n "${VITE_ROUTER_DEVTOOLS_ENABLED+x}" ]]; then \
+    echo "VITE_ROUTER_DEVTOOLS_ENABLED=$VITE_ROUTER_DEVTOOLS_ENABLED" >> .env; fi
+
+ARG VITE_QUERY_DEVTOOLS_ENABLED
+RUN if [[ -n "${VITE_QUERY_DEVTOOLS_ENABLED+x}" ]]; then \
+    echo "VITE_QUERY_DEVTOOLS_ENABLED=$VITE_QUERY_DEVTOOLS_ENABLED" >> .env; fi
 
 
 
@@ -171,18 +173,14 @@ ARG APP_DIRNAME
 WORKDIR /app
 
 RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-USER nextjs
+RUN adduser --system --uid 1001 nitro
+USER nitro
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/app/api-reference/config/next-config-js/output#automatically-copying-traced-files
-COPY --from=builder --chown=nextjs:nodejs /app/apps/$APP_DIRNAME/.next/standalone .
-COPY --from=builder --chown=nextjs:nodejs /app/apps/$APP_DIRNAME/.next/static ./apps/$APP_DIRNAME/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/$APP_DIRNAME/public ./apps/$APP_DIRNAME/public
+COPY --from=builder --chown=nitro:nodejs /app/apps/$APP_DIRNAME/.output .
 
-ARG PORT=3001
+ARG PORT=3002
 ENV PORT="$PORT"
 
 ENV APP_DIRNAME="$APP_DIRNAME"
 
-ENTRYPOINT PORT=$PORT node apps/$APP_DIRNAME/server.js
+ENTRYPOINT PORT=$PORT node server/index.mjs

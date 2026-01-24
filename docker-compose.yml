@@ -1,7 +1,19 @@
 include:
-    - path: ./packages/db/docker-compose.yml
+  - path: ./packages/db/docker-compose.yml
 
 services:
+    tanstack:
+        container_name: xenous-tanstack
+        build:
+            context: .
+            dockerfile: ./apps/tanstack/Dockerfile
+        env_file:
+          - path: ./.env
+            required: false
+          - path: ./apps/tanstack/.env.local
+            required: true
+        ports:
+          - 127.0.0.1:3002:3002
     web:
         container_name: xenous-web
         build:
