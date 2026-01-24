@@ -1,9 +1,9 @@
 import type { OperationKey, OperationType, ProcedureUtils } from '@orpc/tanstack-query';
 import { dehydrate, HydrationBoundary, type QueryKey } from '@tanstack/react-query';
 import { cache } from 'react';
-import { createQueryClient } from './query/client';
+import { getQueryClient } from './query/client';
 
-const getQueryClient = cache(createQueryClient);
+const getCachedQueryClient = cache(getQueryClient);
 
 const isORPCQueryKey = (queryKey: QueryKey): queryKey is OperationKey<OperationType, never> => {
     if (queryKey.length !== 2) return false;
@@ -36,7 +36,7 @@ const prefetch = <
 >(
     queryOptions: T,
 ) => {
-    const queryClient = getQueryClient();
+    const queryClient = getCachedQueryClient();
 
     if (!isORPCQueryKey(queryOptions.queryKey)) return;
 
@@ -48,7 +48,7 @@ const prefetch = <
 };
 
 const HydrateClient: React.FC<React.PropsWithChildren> = ({ children }) => {
-    const queryClient = getQueryClient();
+    const queryClient = getCachedQueryClient();
 
     return <HydrationBoundary state={dehydrate(queryClient)}>{children}</HydrationBoundary>;
 };

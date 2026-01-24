@@ -1,7 +1,9 @@
-import { defaultShouldDehydrateQuery, isServer, QueryCache, QueryClient } from '@tanstack/react-query';
+import { isServer, QueryCache, QueryClient } from '@tanstack/react-query';
 import { serializer } from './serializer';
 
-export const createQueryClient = () =>
+// note: this setup isn't required with TanStack Start, but we use this for ease of using single entrypoint
+
+const createQueryClient = () =>
     new QueryClient({
         defaultOptions: {
             queries: {
@@ -9,12 +11,7 @@ export const createQueryClient = () =>
                 // above 0 to avoid refetching immediately on the client
                 staleTime: 30 * 1000,
             },
-            // https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr#streaming-with-server-components
             dehydrate: {
-                shouldDehydrateQuery: query => {
-                    // include pending queries in dehydration
-                    return defaultShouldDehydrateQuery(query) || query.state.status === 'pending';
-                },
                 serializeData: data => {
                     const [json, meta] = serializer.serialize(data);
 
