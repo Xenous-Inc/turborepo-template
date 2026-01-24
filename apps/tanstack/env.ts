@@ -13,7 +13,10 @@ export const env = createEnv({
         /* Node */
         NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
     },
-    server: {},
+    server: {
+        /* API */
+        SERVER_URL: z.url(),
+    },
     client: {
         /* API */
         VITE_SERVER_URL: z.url(),
@@ -23,7 +26,7 @@ export const env = createEnv({
         VITE_QUERY_DEVTOOLS_ENABLED: z.stringbool().optional(),
     },
     clientPrefix: 'VITE_',
-    runtimeEnv: import.meta.env,
+    runtimeEnv: { ...process.env, ...import.meta.env },
     skipValidation: !!process.env.CI,
     emptyStringAsUndefined: true,
 });

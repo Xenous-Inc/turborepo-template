@@ -2,6 +2,7 @@ import { isServer, QueryCache, QueryClient } from '@tanstack/react-query';
 import { serializer } from './serializer';
 
 // note: this setup isn't required with TanStack Start, but we use this for ease of using single entrypoint
+// fixme: make sure to get this right with https://tanstack.com/router/latest/docs/framework/react/guide/external-data-loading#critical-dehydrationhydration
 
 const createQueryClient = () =>
     new QueryClient({
