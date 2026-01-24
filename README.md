@@ -5,6 +5,7 @@
 ## Features
 
 - **TypeScript** - For type safety and improved developer experience
+- **TanStack Start** - Full-stack React framework
 - **Next.js** - Full-stack React framework
 - **TailwindCSS** - Utility-first CSS for rapid UI development
 - **shadcn/ui** - Reusable UI components
@@ -24,7 +25,7 @@
 First, install the dependencies:
 
 - Node.js, version `24.11.0` or higher
-- PNPM, version `10.23.0`
+- PNPM, version `10.28.1`
 
 ```bash
 # Use required Node version if using NVM
@@ -60,6 +61,8 @@ The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as w
 apps
   ├─ server
   │   └─ Backend API (Nitro, H3, ORPC)
+  ├─ tanstack
+  │   └─ Web application (Tanstack Start)
   └─ web
       └─ Web application (Next.js)
 packages
@@ -74,6 +77,8 @@ packages
 tooling
   ├─ biome
   │   └─ Shared biome configuration
+  ├─ github
+  │   └─ Github Actions setup configuration
   └─ typescript
       └─ Shared tsconfig you can extend from
 ```
@@ -82,6 +87,7 @@ tooling
 
 - `pnpm dev`: Start all applications in development mode
 - `pnpm dev:server`: Start only the server
+- `pnpm dev:tanstack`: Start only the tanstack application
 - `pnpm dev:web`: Start only the web application
 - `pnpm build`: Build all applications
 - `pnpm check`: Run Biome formatting and linting

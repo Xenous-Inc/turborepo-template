@@ -13,6 +13,7 @@
         "clean:ws": "turbo clean",
         "dev": "turbo dev",
         "dev:server": "turbo -F server dev",
+        "dev:tanstack": "turbo -F tanstack dev",
         "dev:web": "turbo -F web dev",
         "build": "turbo build",
         "check": "turbo run check --continue",

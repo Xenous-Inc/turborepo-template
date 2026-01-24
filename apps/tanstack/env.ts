@@ -19,8 +19,8 @@ export const env = createEnv({
         VITE_SERVER_URL: z.url(),
 
         /* TanStack Devtools */
-        VITE_QUERY_DEVTOOLS_ENABLED: z.stringbool().optional(),
         VITE_ROUTER_DEVTOOLS_ENABLED: z.stringbool().optional(),
+        VITE_QUERY_DEVTOOLS_ENABLED: z.stringbool().optional(),
     },
     clientPrefix: 'VITE_',
     runtimeEnv: import.meta.env,
