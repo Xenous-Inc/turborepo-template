@@ -18,6 +18,10 @@
             "dependsOn": ["^check:fix"],
             "cache": false
         },
+        "check:unsafe": {
+            "dependsOn": ["^check:unsafe"],
+            "cache": false
+        },
         "ci": {
             "dependsOn": ["^ci"]
         },

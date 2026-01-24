@@ -11,6 +11,7 @@
         "start": "pnpm with-env next start",
         "check": "biome check .",
         "check:fix": "biome check . --write",
+        "check:unsafe": "biome check . --write --unsafe",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit",
         "ui-add": "pnpm shadcn add",
