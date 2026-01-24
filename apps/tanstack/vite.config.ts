@@ -22,7 +22,7 @@ const config = defineConfig({
             compatibilityDate: 'latest',
         }),
         tailwindcss(),
-        tanstackStart({ router: { routesDirectory: 'app' } }),
+        tanstackStart({ router: { routesDirectory: 'app', indexToken: 'page' } }),
         viteReact(),
     ],
 });

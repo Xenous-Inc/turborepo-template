@@ -3,7 +3,9 @@ import { createFileRoute } from '@tanstack/react-router';
 import { cn } from '@xenous/ui/lib/utils';
 import { orpc } from '~/orpc';
 
-export const Route = createFileRoute('/')({ component: App });
+export const Route = createFileRoute('/')({
+    component: App,
+});
 
 const TITLE_TEXT = `
 ██╗  ██╗███████╗███╗   ██╗ ██████╗ ██╗   ██╗███████╗
