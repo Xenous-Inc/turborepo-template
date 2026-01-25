@@ -7,9 +7,9 @@ import { env } from '~/env';
 export default definePlugin(async () => {
     if (env.NODE_ENV !== 'production') return;
 
-    logger.withTag('drizzle').info('running migrations...');
+    logger.withTag('Drizzle').info('Running migrations...');
 
     await migrate(db);
 
-    logger.withTag('drizzle').info('migrations complete');
+    logger.withTag('Drizzle').info('Migrations complete');
 });
