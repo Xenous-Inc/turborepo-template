@@ -4,8 +4,7 @@ import { dbEnv } from '../env';
 import * as schema from './schema/_index';
 
 /**
- * Cache the database connection in development. This avoids creating a new connection on every HMR
- * update.
+ * Cache the database connection in development. This avoids creating a new connection on every HMR update.
  */
 const globalForDb = globalThis as unknown as {
     connection: postgres.Sql | undefined;
