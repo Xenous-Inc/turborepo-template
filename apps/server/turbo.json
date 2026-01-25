@@ -8,6 +8,10 @@
         },
         "dev": {
             "persistent": true
+        },
+        "auth:sync": {
+            "cache": false,
+            "persistent": true
         }
     }
 }
