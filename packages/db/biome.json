@@ -4,5 +4,9 @@
     "extends": [
         "@xenous/biome-config/base",
         "@xenous/biome-config/restrict-env"
-    ]
+    ],
+    "files": {
+        "ignoreUnknown": false,
+        "includes": ["!migrations"]
+    }
 }

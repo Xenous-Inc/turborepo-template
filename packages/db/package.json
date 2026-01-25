@@ -13,6 +13,10 @@
             "types": "./dist/src/client.d.ts",
             "default": "./src/client.ts"
         },
+        "./migrator": {
+            "types": "./dist/src/migrator.d.ts",
+            "default": "./src/migrator.ts"
+        },
         "./schema": {
             "types": "./dist/src/schema/_index.d.ts",
             "default": "./src/schema/_index.ts"
@@ -44,6 +48,7 @@
         "@t3-oss/env-core": "catalog:",
         "drizzle-orm": "^0.44.7",
         "drizzle-zod": "^0.8.3",
+        "find-up": "^8.0.0",
         "postgres": "^3.4.8",
         "zod": "catalog:"
     },

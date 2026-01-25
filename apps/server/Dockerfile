@@ -179,6 +179,7 @@ RUN adduser --system --uid 1001 nitro
 USER nitro
 
 COPY --from=builder --chown=nitro:nodejs /app/apps/$APP_DIRNAME/.output .
+COPY --chown=nitro:nodejs /packages/db/migrations /app/packages/db/migrations
 
 ARG PORT=3000
 ENV PORT="$PORT"
