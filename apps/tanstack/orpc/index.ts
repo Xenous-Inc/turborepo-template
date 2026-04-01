@@ -42,4 +42,4 @@ type RouterInputs = InferRouterInputs<AppRouter>;
 
 type RouterOutputs = InferRouterOutputs<AppRouter>;
 
-export { orpc, type ORPCRouterClient, type RouterInputs, type RouterOutputs };
+export { type ORPCRouterClient, orpc, type RouterInputs, type RouterOutputs };
