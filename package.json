@@ -8,7 +8,6 @@
     },
     "packageManager": "pnpm@10.28.1+sha512.7d7dbbca9e99447b7c3bf7a73286afaaf6be99251eb9498baefa7d406892f67b879adb3a1d7e687fc4ccc1a388c7175fbaae567a26ab44d1067b54fcb0d6a316",
     "scripts": {
-        "prepare": "pnpm ruler:apply && git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
         "clean": "git clean -xdf node_modules",
         "clean:ws": "turbo clean",
         "dev": "turbo dev",
@@ -35,8 +34,11 @@
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
+        "@commitlint/cli": "^20.5.0",
+        "@commitlint/config-conventional": "^20.5.0",
         "@turbo/gen": "^2.7.5",
         "@xenous/biome-config": "workspace:*",
+        "lefthook": "^2.1.4",
         "turbo": "^2.7.5",
         "typescript": "catalog:"
     }

@@ -39,5 +39,8 @@ onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js-pure
   - esbuild
+  - lefthook
   - msw
   - sharp
+
+minimumReleaseAge: 10080 # one week

@@ -1,0 +1,18 @@
+# Lefthook configuration
+# https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: Lint & Format
+      glob: "*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: pnpm run check:fix  -- --staged --no-errors-on-unmatched
+      stage_fixed: true
+    - name: Typecheck
+      glob: "*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx}"
+      run: pnpm typecheck -- {staged_files}
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm dlx commitlint --edit
