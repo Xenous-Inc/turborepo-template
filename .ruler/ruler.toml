@@ -4,7 +4,7 @@
 
 
 # Default agents to run when --agents is not specified
-default_agents = ["agentsmd", "cursor", "opencode"]
+default_agents = ["agentsmd", "claude", "cursor", "opencode"]
 
 
 
@@ -15,19 +15,22 @@ enabled = true
 # Global merge strategy: 'merge' or 'overwrite' (default: 'merge')
 merge_strategy = "merge"
 
-
+# --- MCP Servers ---
+# Define Model Context Protocol servers here. Two examples:
+# 1. A stdio server (local executable)
+# 2. A remote server (HTTP-based)
 
 # --- MCP Server Definitions ---
 [mcp_servers.context7]
-command = "npx"
-args = ["-y", "@upstash/context7-mcp"]
+command = "pnpx"
+args = ["@upstash/context7-mcp"]
 
 [mcp_servers.shadcn]
-command = "npx"
+command = "pnpx"
 args = ["shadcn@latest", "mcp"]
 
 [mcp_servers.better-auth]
-url = "https://mcp.chonkie.ai/better-auth/better-auth-builder/mcp"
+url = "https://mcp.better-auth.com/mcp"
 
 
 
@@ -35,3 +38,4 @@ url = "https://mcp.chonkie.ai/better-auth/better-auth-builder/mcp"
 [gitignore]
 # Enable/disable automatic .gitignore updates (default: true)
 enabled = true
+local = true  # set true to write generated ignores to .git/info/exclude instead

@@ -6,7 +6,7 @@ pre-commit:
   jobs:
     - name: Lint & Format
       glob: "*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: pnpm run check:fix  -- --staged --no-errors-on-unmatched
+      run: pnpm check:fix  -- --staged --no-errors-on-unmatched
       stage_fixed: true
     - name: Typecheck
       glob: "*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx}"
@@ -15,4 +15,4 @@ pre-commit:
 commit-msg:
   commands:
     commitlint:
-      run: pnpm dlx commitlint --edit
+      run: pnpx commitlint --edit
