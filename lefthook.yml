@@ -10,9 +10,9 @@ pre-commit:
         stage_fixed: true
       - name: Typecheck
         glob: '*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx}'
-        run: pnpm typecheck -- {staged_files}
+        run: pnpm typecheck
       - name: Audit dependencies
-        glob: 'pnpm-lock.yaml'
+        glob: pnpm-lock.yaml
         run: pnpm audit --prod --audit-level critical
 
 commit-msg:
