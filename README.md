@@ -55,7 +55,8 @@ The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as w
 ```
 .github
   └─ workflows
-      └─ CI with pnpm cache setup and Versioning
+      ├─ CI with pnpm cache setup
+      └─ Versioning workflow (disabled by default)
 .vscode
   └─ Recommended extensions and settings for VSCode users
 apps
@@ -82,6 +83,42 @@ tooling
   └─ typescript
       └─ Shared tsconfig you can extend from
 ```
+
+## Versioning with Changesets
+
+This template includes a GitHub Actions workflow for automated versioning via [Changesets](https://github.com/changesets/changesets). It is **disabled by default**.
+
+### Setup
+
+1. Install the Changesets CLI as a dev dependency:
+
+```bash
+pnpm add -Dw @changesets/cli
+```
+
+2. Initialize changesets in your project:
+
+```bash
+pnpm changeset init
+```
+
+3. Enable the workflow by renaming it:
+
+```bash
+mv .github/workflows/version.yml.disabled .github/workflows/version.yml
+```
+
+4. Once enabled, the workflow runs on every push to `main`. It will either:
+   - Open a **Version Pull Request** that bumps package versions and updates changelogs, or
+   - Publish packages if the version PR has already been merged.
+
+5. To record a change, run:
+
+```bash
+pnpm changeset
+```
+
+This will prompt you to select the affected packages and the semver bump type, then create a changeset file. Commit it with your PR.
 
 ## Available Scripts
 
