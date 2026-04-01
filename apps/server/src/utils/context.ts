@@ -16,6 +16,6 @@ export type NitroContext = Awaited<ReturnType<typeof createNitroContext>>;
 
 export type ORPCContext = NitroContext & RequestHeadersPluginContext & ResponseHeadersPluginContext;
 
-declare module 'h3' {
+declare module 'nitro/h3' {
     interface H3EventContext extends NitroContext {}
 }
