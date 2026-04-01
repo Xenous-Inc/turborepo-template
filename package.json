@@ -27,8 +27,8 @@
         "db:push": "turbo -F @xenous/db db:push",
         "db:generate": "turbo -F @xenous/db db:generate",
         "db:migrate": "turbo -F @xenous/db db:migrate",
-        "deps:check": "pnpm dlx taze -r",
-        "deps:update": "pnpm dlx taze -r -w",
+        "deps:check": "pnpm dlx taze -r --maturity-period 7",
+        "deps:update": "pnpm dlx taze -r -w --maturity-period 7",
         "ruler:apply": "pnpm dlx @intellectronica/ruler@latest apply --local-only",
         "rename": "bash ./rename.sh",
         "postrename": "pnpm check:ws -f && pnpm check:fix -- --linter-enabled false"

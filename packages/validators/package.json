@@ -33,7 +33,7 @@
         "typecheck": "tsc --noEmit --emitDeclarationOnly false"
     },
     "dependencies": {
-        "libphonenumber-js": "^1.12.35",
+        "libphonenumber-js": "^1.12.40",
         "zod": "catalog:"
     },
     "devDependencies": {
