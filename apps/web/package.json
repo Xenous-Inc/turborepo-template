@@ -48,7 +48,9 @@
         "@types/react-dom": "catalog:react19",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
+        "postcss": "^8.5.8",
         "shadcn": "^3.8.5",
+        "tailwindcss": "catalog:",
         "typescript": "catalog:"
     }
 }
