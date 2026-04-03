@@ -11,11 +11,11 @@
         "prefix": ""
     },
     "aliases": {
-        "components": "~/components",
+        "components": "@xenous/ui/components",
         "hooks": "@xenous/ui/hooks",
         "lib": "@xenous/ui/lib",
         "utils": "@xenous/ui/lib/utils",
-        "ui": "~/components"
+        "ui": "@xenous/ui/components"
     },
     "iconLibrary": "tabler"
 }

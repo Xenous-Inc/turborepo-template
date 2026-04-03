@@ -12,10 +12,10 @@
     },
     "aliases": {
         "components": "~/shared/ui",
-        "hooks": "~/shared/hooks",
-        "lib": "@xenous/ui/lib",
+        "hooks": "@xenous/ui/hooks",
+        "lib": "~/shared/lib",
         "utils": "@xenous/ui/lib/utils",
-        "ui": "@xenous/ui"
+        "ui": "@xenous/ui/components"
     },
     "iconLibrary": "tabler"
 }

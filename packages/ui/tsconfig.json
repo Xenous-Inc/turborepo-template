@@ -2,10 +2,16 @@
     "$schema": "https://schemastore.org/tsconfig.json",
     "extends": "@xenous/typescript/internal-package.json",
     "compilerOptions": {
+        /** Base Options */
+        "module": "esnext",
+        "lib": ["ES2024", "DOM", "DOM.Iterable"],
         "jsx": "react-jsx",
+
+        /** Aliases */
         "baseUrl": "./",
         "paths": {
-            "~/*": ["./src/*"]
+            "~/*": ["./src/*"],
+            "@xenous/ui/*": ["./src/*"]
         }
     },
     "include": ["src", "*.ts"]

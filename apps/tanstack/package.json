@@ -15,6 +15,7 @@
         "ci": "biome ci",
         "typecheck": "tsc --noEmit",
         "ui-add": "pnpx shadcn@latest add",
+        "postui-add": "pnpm --filter @xenous/ui restructure",
         "with-env": "dotenvx run -f .env.local -f ../../.env --"
     },
     "dependencies": {
