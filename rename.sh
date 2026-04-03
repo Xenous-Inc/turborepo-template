@@ -7,8 +7,8 @@ name=$1
 capitalized_name=$(echo "$name" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
 
 function rename_project {
-    prev_ansi_name=$(pnpm dlx figlet "$prev_name" -f "ANSI Shadow" | sed '$d')
-    ansi_name=$(pnpm dlx figlet "$name" -f "ANSI Shadow" | sed '$d')
+    prev_ansi_name=$(pnpx figlet "$prev_name" -f "ANSI Shadow" | sed '$d')
+    ansi_name=$(pnpx figlet "$name" -f "ANSI Shadow" | sed '$d')
 
     # Find and replace previos ansi name
     find . -type f -not -path '*/.git/*' -exec grep -l -z "$prev_ansi_name" {} + | while read -r file; do
