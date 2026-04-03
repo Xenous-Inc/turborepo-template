@@ -1,5 +1,5 @@
 import { definePlugin } from 'nitro';
-import type { HTTPEvent } from 'nitro/deps/h3';
+import type { HTTPEvent } from 'nitro/h3';
 import { env } from '~/env';
 
 export default definePlugin(async nitro => {

@@ -6,11 +6,9 @@
     "type": "module",
     "scripts": {
         "clean": "git clean -xdf .cache .turbo .nitro .output node_modules",
-        "prepare": "pnpm with-env nitro prepare",
-        "dev": "pnpm with-env nitro dev",
-        "prebuild": "pnpm with-env nitro prepare",
-        "build": "concurrently 'pnpm with-env nitro build' 'tsdown'",
-        "start": "NODE_ENV=production pnpm with-env node .output/server/index.mjs",
+        "dev": "pnpm with-env vite dev",
+        "build": "concurrently 'pnpm with-env vite build' 'tsdown'",
+        "start": "pnpm with-env vite preview",
         "check": "biome check .",
         "check:fix": "biome check . --write",
         "check:unsafe": "biome check . --write --unsafe",
@@ -41,8 +39,9 @@
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
         "concurrently": "^9.2.1",
-        "nitro": "3.0.1-alpha.1",
+        "nitro": "3.0.260311-beta",
         "tsdown": "^0.15.12",
-        "typescript": "catalog:"
+        "typescript": "catalog:",
+        "vite": "^8.0.3"
     }
 }

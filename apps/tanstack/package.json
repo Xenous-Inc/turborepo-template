@@ -35,7 +35,6 @@
         "@xenous/validators": "workspace:*",
         "better-auth": "catalog:",
         "jiti": "catalog:",
-        "nitro": "3.0.1-alpha.1",
         "react": "catalog:react19",
         "react-dom": "catalog:react19",
         "zod": "catalog:"

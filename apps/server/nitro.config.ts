@@ -3,9 +3,6 @@ import { env } from './env';
 
 // https://nitro.build/config
 export default defineNitroConfig({
-    preset: 'node_server',
-    builder: 'rolldown',
-    compatibilityDate: 'latest',
     serverDir: './src',
     routeRules: {
         '/**': { cors: true },

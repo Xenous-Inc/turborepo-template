@@ -1,7 +1,5 @@
-import tailwindcss from '@tailwindcss/vite';
-import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import viteReact from '@vitejs/plugin-react';
 import { createJiti } from 'jiti';
+import { nitro } from 'nitro/vite';
 import { defineConfig } from 'vite';
 
 /**
@@ -12,7 +10,7 @@ import { defineConfig } from 'vite';
 await createJiti(import.meta.url).import('./env');
 
 const config = defineConfig({
-    plugins: [tailwindcss(), tanstackStart({ router: { routesDirectory: 'app', indexToken: 'page' } }), viteReact()],
+    plugins: [nitro()],
     resolve: {
         tsconfigPaths: true,
     },
