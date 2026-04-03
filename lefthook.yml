@@ -8,12 +8,14 @@ pre-commit:
         glob: '*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx,json,jsonc}'
         run: pnpm check:fix  -- --staged --no-errors-on-unmatched
         stage_fixed: true
+        interactive: true
       - name: Typecheck
         glob: '*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx}'
         run: pnpm typecheck
       - name: Audit dependencies
         glob: pnpm-lock.yaml
         run: pnpm audit --prod --audit-level critical
+        interactive: true
 
 commit-msg:
     commands:
