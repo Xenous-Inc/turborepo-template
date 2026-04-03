@@ -4,7 +4,6 @@ import viteReact from '@vitejs/plugin-react';
 import { createJiti } from 'jiti';
 import { nitro } from 'nitro/vite';
 import { defineConfig } from 'vite';
-import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 /**
  * Import env files to validate at build time. Use jiti so we can load .ts files in here.
@@ -15,7 +14,6 @@ await createJiti(import.meta.url).import('./env');
 
 const config = defineConfig({
     plugins: [
-        viteTsConfigPaths({ projects: ['./tsconfig.json'] }),
         nitro({
             preset: 'node_server',
             builder: 'rolldown',
@@ -25,6 +23,9 @@ const config = defineConfig({
         tanstackStart({ router: { routesDirectory: 'app', indexToken: 'page' } }),
         viteReact(),
     ],
+    resolve: {
+        tsconfigPaths: true,
+    },
 });
 
 export default config;
