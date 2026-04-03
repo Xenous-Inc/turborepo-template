@@ -6,6 +6,7 @@
         "module": "esnext",
         "lib": ["ES2024", "DOM", "DOM.Iterable"],
         "jsx": "preserve",
+        "types": ["@xenous/ui/types/icon"],
 
         /** Plugins */
         "plugins": [

@@ -6,6 +6,7 @@
     "type": "module",
     "exports": {
         "./globals.css": "./src/styles/globals.css",
+        "./types/*": "./types/*.d.ts",
         "./lib/*": "./src/lib/*.ts",
         "./hooks/*": "./src/hooks/*.ts",
         "./*": "./src/components/*/index.ts"
