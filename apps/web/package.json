@@ -14,7 +14,7 @@
         "check:unsafe": "biome check . --write --unsafe",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit",
-        "ui-add": "pnpm shadcn add",
+        "ui-add": "pnpx shadcn@latest add",
         "with-env": "dotenvx run -f .env.local -f ../../.env --"
     },
     "dependencies": {
@@ -49,7 +49,6 @@
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
         "postcss": "^8.5.8",
-        "shadcn": "^3.8.5",
         "tailwindcss": "catalog:",
         "typescript": "catalog:"
     }

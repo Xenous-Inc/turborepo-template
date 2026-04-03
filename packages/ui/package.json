@@ -19,7 +19,7 @@
         "check:unsafe": "biome check . --write --unsafe",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-        "ui-add": "pnpm shadcn add"
+        "ui-add": "pnpx shadcn@latest add"
     },
     "dependencies": {
         "@base-ui/react": "^1.3.0",
