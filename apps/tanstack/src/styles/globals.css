@@ -1,6 +1,10 @@
 @import '@xenous/ui/globals.css';
 
+@import '@fontsource-variable/geist/wght.css';
+@import '@fontsource-variable/geist-mono/wght.css';
+
 @theme inline {
     --font-sans: 'Geist Variable', serif;
     --font-mono: 'Geist Mono Variable', monospace;
+    --font-unbounded: 'Unbounded Variable', sans-serif;
 }
