@@ -33,6 +33,7 @@ The server app (`apps/server`) is the API layer — both frontends talk to it. I
 - Conventional commits enforced by commitlint via Lefthook.
 - Shared dependency versions managed through pnpm catalogs. Use `"catalog:"` or `"catalog:<name>"` in package.json.
 - Scaffold new packages with `pnpm turbo gen init`.
+- Use `pnpx` instead of `npx` to execute package binaries.
 - In React components, separate logical groups (hooks, derived state, handlers, render) with blank lines for readability.
 - Read existing code in the area you're modifying before making changes — match surrounding patterns and style.
 
