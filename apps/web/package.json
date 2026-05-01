@@ -23,7 +23,7 @@
         "@orpc/server": "catalog:orpc",
         "@orpc/tanstack-query": "catalog:orpc",
         "@t3-oss/env-nextjs": "catalog:",
-        "@tabler/icons-react": "^3.40.0",
+        "@tabler/icons-react": "^3.41.1",
         "@tanstack/react-form": "catalog:",
         "@tanstack/react-query": "catalog:",
         "@xenous/logger": "workspace:*",
@@ -49,7 +49,7 @@
         "@types/react-dom": "catalog:react19",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
-        "postcss": "^8.5.8",
+        "postcss": "^8.5.10",
         "tailwindcss": "catalog:",
         "typescript": "catalog:"
     }

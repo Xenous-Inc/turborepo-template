@@ -46,12 +46,13 @@
         "drizzle-orm": "^0.44.7",
         "drizzle-zod": "^0.8.3",
         "find-up": "^8.0.0",
-        "postgres": "^3.4.8",
+        "postgres": "^3.4.9",
         "zod": "catalog:"
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
         "@dotenvx/dotenvx": "catalog:",
+        "@types/node": "catalog:node22",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
         "drizzle-kit": "^0.30.6",
