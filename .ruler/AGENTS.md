@@ -21,7 +21,10 @@ The server app (`apps/server`) is the API layer — both frontends talk to it. I
 ## Validation
 
 - Assume dev servers are already running. Never build apps to validate code.
-- To validate TypeScript or formatting, use predefined scripts: `pnpm run <script> -F <package_or_app>` (e.g. `pnpm run typecheck -F server`, `pnpm run check:fix -F @xenous/ui`).
+- Always invoke validation through turbo explicitly — never via `pnpm <script>` or `pnpm -F <pkg> <script>`. Both are cwd-dependent: from inside a package directory, `pnpm typecheck` runs that package's local `tsc` and bypasses the turbo dep graph, missing downstream breakage. `pnpm turbo run typecheck` works identically from any cwd.
+- For whole-monorepo validation: `pnpm turbo run typecheck` (or `check`, `check:fix`).
+- For scoped validation: `pnpm turbo run typecheck --filter=<pkg>`. Append `...` to include dependents (`--filter=<pkg>...`) — useful after editing a shared package like `@sln/ui` to catch breakage in its consumers.
+- The CLI flag is `--filter`, not `-F` — `-F` is pnpm-only and turbo doesn't recognize it.
 - Check `package.json` at root and per-package for all available scripts before running any commands.
 
 ## Key Conventions
