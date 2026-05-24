@@ -49,6 +49,10 @@ FROM pnpm AS pruner
 ARG APP_PKG_NAME
 WORKDIR /app
 
+# Pin pnpm to the version declared in root package.json (packageManager field)
+# before any pnpm invocation, so corepack downloads the correct release.
+COPY package.json package.json
+
 # Download Turborepo
 RUN pnpm add -g turbo@^2
 
