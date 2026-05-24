@@ -3,6 +3,7 @@ name: Version
 permissions:
     contents: write
     pull-requests: write
+    actions: write
 
 on:
     push:
@@ -19,13 +20,22 @@ jobs:
         steps:
           - name: Checkout
             uses: actions/checkout@v4
+            with:
+                fetch-depth: 0
 
           - name: Setup
             uses: ./tooling/github/setup
 
-          - name: Create Version Pull Request
+          - name: Configure git identity
+            run: |
+                git config user.name 'github-actions[bot]'
+                git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          - name: Changesets — version PR or tag
             uses: changesets/action@v1
             with:
+                version: pnpm run changeset:version
+                publish: pnpm run changeset:tag
                 title: 'chore(version): update package versions'
                 commit: 'chore(version): update package versions'
             env:
