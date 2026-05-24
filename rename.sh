@@ -12,7 +12,7 @@ function rename_project {
 
     # Find and replace previos ansi name
     find . -type f -not -path '*/.git/*' -exec grep -l -z "$prev_ansi_name" {} + | while read -r file; do
-        awk -i inplace -v old="$prev_ansi_name" -v new="$ansi_name" 'BEGIN {RS="^$"; ORS=""} {gsub(old, new)} 1' "$file"
+        PREV_ANSI="$prev_ansi_name" NEW_ANSI="$ansi_name" perl -i -0777 -pe 's/\Q$ENV{PREV_ANSI}\E/$ENV{NEW_ANSI}/g' "$file"
     done
 
     # Find and replace previos lowercase name
