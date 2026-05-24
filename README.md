@@ -25,7 +25,7 @@
 First, install the dependencies:
 
 - Node.js, version `24.11.0` or higher
-- PNPM, version `10.33.0`
+- PNPM, version `11.3.0`
 
 ```bash
 # Use required Node version if using NVM

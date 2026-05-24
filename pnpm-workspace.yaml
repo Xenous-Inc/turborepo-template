@@ -34,13 +34,16 @@ catalogs:
         react: ~19.2.6
         react-dom: ~19.2.6
 
-onlyBuiltDependencies:
-  - '@biomejs/biome'
-  - '@parcel/watcher'
-  - core-js-pure
-  - esbuild
-  - lefthook
-  - msw
-  - sharp
+allowBuilds:
+    '@parcel/watcher': true
+    esbuild: true
+    lefthook: true
+    msw: true
+    sharp: true
 
 minimumReleaseAge: 10080  # one week
+
+hoist: false  # Disable hoisting to isolate dependencies per workspace
+nodeLinker: isolated  # Ensure pnpm uses the default "isolated" node_modules structure
+linkWorkspacePackages: true  # Auto-link workspace packages when version ranges match
+engineStrict: true  # Restrict using incorrect engines

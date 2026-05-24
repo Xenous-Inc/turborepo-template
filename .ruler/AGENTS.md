@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## Project Overview
 
-Turborepo monorepo ("xenous") with three apps sharing packages and tooling. Uses pnpm workspaces with version catalogs (`pnpm-workspace.yaml`). Node.js >=24.11, pnpm ^10.
+Turborepo monorepo ("xenous") with three apps sharing packages and tooling. Uses pnpm workspaces with version catalogs (`pnpm-workspace.yaml`). Node.js >=24.11, pnpm ^11.
 
 ## Architecture
 
