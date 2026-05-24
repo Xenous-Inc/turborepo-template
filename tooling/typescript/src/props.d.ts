@@ -10,4 +10,4 @@ type PropsWithParams<T extends ParamsRecord = ParamsRecord> = {
     params: Promise<T>;
 };
 
-export type { PropsWithSearchParams, PropsWithParams };
+export type { PropsWithParams, PropsWithSearchParams };
