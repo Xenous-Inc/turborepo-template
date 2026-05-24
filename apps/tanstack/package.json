@@ -19,18 +19,18 @@
         "with-env": "dotenvx run -f .env.local -f ../../.env --"
     },
     "dependencies": {
-        "@fontsource-variable/geist": "^5.2.8",
-        "@fontsource-variable/geist-mono": "^5.2.7",
+        "@fontsource-variable/geist": "^5.2.9",
+        "@fontsource-variable/geist-mono": "^5.2.8",
         "@orpc/client": "catalog:orpc",
         "@orpc/server": "catalog:orpc",
         "@orpc/tanstack-query": "catalog:orpc",
         "@t3-oss/env-core": "catalog:",
-        "@tabler/icons-react": "^3.41.1",
+        "@tabler/icons-react": "^3.44.0",
         "@tanstack/react-form": "catalog:",
         "@tanstack/react-query": "catalog:",
-        "@tanstack/react-router": "^1.168.23",
-        "@tanstack/react-router-ssr-query": "^1.166.11",
-        "@tanstack/react-start": "^1.167.43",
+        "@tanstack/react-router": "^1.170.4",
+        "@tanstack/react-router-ssr-query": "^1.167.0",
+        "@tanstack/react-start": "^1.168.6",
         "@xenous/logger": "workspace:*",
         "@xenous/ui": "workspace:*",
         "@xenous/validators": "workspace:*",
@@ -43,19 +43,19 @@
     "devDependencies": {
         "@biomejs/biome": "catalog:",
         "@dotenvx/dotenvx": "catalog:",
-        "@tailwindcss/vite": "^4.2.4",
+        "@tailwindcss/vite": "^4.3.0",
         "@tanstack/react-query-devtools": "catalog:",
-        "@tanstack/react-router-devtools": "^1.166.13",
+        "@tanstack/react-router-devtools": "^1.167.0",
         "@total-typescript/ts-reset": "^0.6.1",
         "@types/node": "catalog:node22",
         "@types/react": "catalog:react19",
         "@types/react-dom": "catalog:react19",
-        "@vitejs/plugin-react": "^6.0.1",
+        "@vitejs/plugin-react": "^6.0.2",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
         "server": "workspace:*",
         "tailwindcss": "catalog:",
         "typescript": "catalog:",
-        "vite": "^8.0.10"
+        "vite": "^8.0.13"
     }
 }
