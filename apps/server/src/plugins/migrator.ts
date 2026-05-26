@@ -9,7 +9,11 @@ export default definePlugin(async () => {
 
     logger.withTag('Drizzle').info('Running migrations...');
 
-    await migrate(db);
-
-    logger.withTag('Drizzle').info('Migrations complete');
+    try {
+        await migrate(db);
+    } catch (error) {
+        logger.withTag('Drizzle').error('Failed to apply migrations', error);
+    } finally {
+        logger.withTag('Drizzle').info('Migrations complete');
+    }
 });
