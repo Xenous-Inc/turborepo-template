@@ -1,4 +1,5 @@
 import { QueryClientProvider } from '@tanstack/react-query';
+import { env } from '~/env';
 import { getQueryClient } from './query/client';
 import { TanstackQueryDevtools } from './query/devtools';
 
@@ -16,7 +17,7 @@ const ORPCProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (
         <QueryClientProvider client={queryClient}>
             {children}
-            <TanstackQueryDevtools />
+            {env.VITE_QUERY_DEVTOOLS_ENABLED && <TanstackQueryDevtools />}
         </QueryClientProvider>
     );
 };

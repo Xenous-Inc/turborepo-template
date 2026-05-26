@@ -1,6 +1,13 @@
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { env } from '~/env';
+
+// Devtools must be lazy-loaded and rendered client-only. A static import pulls the dev-only
+// package into the SSR bundle, which crashes the production server build with missing
+// browser globals (window/document) during render.
+const ReactQueryDevtools = lazy(() =>
+    import('@tanstack/react-query-devtools').then(module => ({
+        default: module.ReactQueryDevtools,
+    })),
+);
 
 const ReactQueryDevtoolsProduction = lazy(() =>
     import('@tanstack/react-query-devtools/production').then(module => ({
@@ -11,6 +18,7 @@ const ReactQueryDevtoolsProduction = lazy(() =>
 const DevtoolsProductionStorageKey = 'tanstack-query-devtools-production';
 
 const TanstackQueryDevtools: React.FC = () => {
+    const [isClient, setIsClient] = useState(false);
     const [showDevtools, setShowDevtools] = useState(() => {
         if (typeof window === 'undefined') return false;
 
@@ -18,6 +26,8 @@ const TanstackQueryDevtools: React.FC = () => {
     });
 
     useEffect(() => {
+        setIsClient(true);
+
         // @ts-expect-error
         window.toggleDevtools = () => {
             setShowDevtools(prev => {
@@ -27,12 +37,14 @@ const TanstackQueryDevtools: React.FC = () => {
         };
     }, []);
 
+    // Gate render on a post-mount flag so the server emits nothing for the devtools subtree —
+    // rendering them during SSR causes hydration mismatches and breaks the production build.
+    if (!isClient) return;
+
     return (
         <>
-            {env.VITE_QUERY_DEVTOOLS_ENABLED && (
-                <ReactQueryDevtools position='bottom' buttonPosition='bottom-right' initialIsOpen={false} />
-            )}
-            {env.VITE_QUERY_DEVTOOLS_ENABLED && showDevtools && (
+            <ReactQueryDevtools position='bottom' buttonPosition='bottom-right' initialIsOpen={false} />
+            {showDevtools && (
                 <Suspense fallback={null}>
                     <ReactQueryDevtoolsProduction
                         position='bottom'
