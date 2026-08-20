@@ -38,10 +38,10 @@
         "@types/node": "catalog:node22",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
-        "concurrently": "^9.2.1",
-        "nitro": "3.0.260429-beta",
+        "concurrently": "^9.2.4",
+        "nitro": "3.0.260610-beta",
         "tsdown": "^0.15.12",
         "typescript": "catalog:",
-        "vite": "^8.0.13"
+        "vite": "^8.2.1"
     }
 }

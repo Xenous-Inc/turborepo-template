@@ -6,7 +6,7 @@
         "node": ">=24.11",
         "pnpm": "^11"
     },
-    "packageManager": "pnpm@11.3.0+sha512.2c403d6594527287672b1f7056343a1f7c3634036a67ffabfcc2b3d7595d843768f8787148d1b57cf7956c90606bbd192857c363af19e96d2d0ec9ec5741d215",
+    "packageManager": "pnpm@11.21.0+sha512.521705bce689924eac72f5a3587122f362689ef6571e55ba80076fd637c11132ecffada26fad4ea79c485bfddbfd3d5a2a5b05805a77e893de71ec8a6cca3bb1",
     "scripts": {
         "prepare": "[ -d .ruler ] && pnpm ruler:apply || true",
         "clean": "git clean -xdf node_modules",
@@ -37,10 +37,10 @@
         "@biomejs/biome": "catalog:",
         "@commitlint/cli": "^20.5.3",
         "@commitlint/config-conventional": "^20.5.3",
-        "@turbo/gen": "^2.9.14",
+        "@turbo/gen": "^2.10.9",
         "@xenous/biome-config": "workspace:*",
-        "lefthook": "^2.1.6",
-        "turbo": "^2.9.14",
+        "lefthook": "^2.1.10",
+        "turbo": "^2.10.9",
         "typescript": "catalog:"
     }
 }

@@ -4,35 +4,35 @@ packages:
   - tooling/*
 
 catalog:
-    '@better-auth/expo': ^1.6.11
-    '@biomejs/biome': ^2.4.15
-    '@dotenvx/dotenvx': ^1.66.0
+    '@better-auth/expo': ^1.6.27
+    '@biomejs/biome': ^2.5.8
+    '@dotenvx/dotenvx': ^1.75.1
     '@t3-oss/env-core': ^0.13.11
     '@t3-oss/env-nextjs': ^0.13.11
-    '@tailwindcss/postcss': ^4.3.0
-    '@tanstack/react-form': ^1.32.0
-    '@tanstack/react-query': ^5.100.10
-    '@tanstack/react-query-devtools': ^5.100.10
-    better-auth: ^1.6.11
+    '@tailwindcss/postcss': ^4.3.3
+    '@tanstack/react-form': ^1.33.5
+    '@tanstack/react-query': ^5.101.4
+    '@tanstack/react-query-devtools': ^5.101.4
+    better-auth: ^1.6.27
     jiti: ^2.7.0
-    tailwindcss: ^4.3.0
+    tailwindcss: ^4.3.3
     typescript: ~5.8.3
     zod: ^4.4.3
 
 catalogs:
     node22:
-        '@types/node': ^24.12.4
+        '@types/node': ^24.13.3
     orpc:
-        '@orpc/client': ^1.14.3
-        '@orpc/openapi': ^1.14.3
-        '@orpc/server': ^1.14.3
-        '@orpc/tanstack-query': ^1.14.3
-        '@orpc/zod': ^1.14.3
+        '@orpc/client': ^1.15.0
+        '@orpc/openapi': ^1.15.0
+        '@orpc/server': ^1.15.0
+        '@orpc/tanstack-query': ^1.15.0
+        '@orpc/zod': ^1.15.0
     react19:
-        '@types/react': ~19.2.14
-        '@types/react-dom': ~19.2.3
-        react: ~19.2.6
-        react-dom: ~19.2.6
+        '@types/react': ~19.2.18
+        '@types/react-dom': ~19.2.4
+        react: ~19.2.8
+        react-dom: ~19.2.8
 
 allowBuilds:
     '@parcel/watcher': true
