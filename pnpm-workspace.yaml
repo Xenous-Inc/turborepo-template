@@ -4,20 +4,20 @@ packages:
   - tooling/*
 
 catalog:
-    '@better-auth/expo': ^1.6.27
-    '@biomejs/biome': ^2.5.8
+    '@better-auth/expo': ^1.7.3
+    '@biomejs/biome': ^2.5.12
     '@dotenvx/dotenvx': ^1.75.1
     '@t3-oss/env-core': ^0.13.11
     '@t3-oss/env-nextjs': ^0.13.11
     '@tailwindcss/postcss': ^4.3.3
     '@tanstack/react-form': ^1.33.5
-    '@tanstack/react-query': ^5.101.4
-    '@tanstack/react-query-devtools': ^5.101.4
-    better-auth: ^1.6.27
+    '@tanstack/react-query': ^5.102.8
+    '@tanstack/react-query-devtools': ^5.102.8
+    better-auth: ^1.7.3
     jiti: ^2.7.0
     tailwindcss: ^4.3.3
     typescript: ~5.8.3
-    zod: ^4.4.3
+    zod: ^4.5.4
 
 catalogs:
     node22:
@@ -30,7 +30,7 @@ catalogs:
         '@orpc/zod': ^1.15.0
     react19:
         '@types/react': ~19.2.18
-        '@types/react-dom': ~19.2.4
+        '@types/react-dom': ~19.2.7
         react: ~19.2.8
         react-dom: ~19.2.8
 

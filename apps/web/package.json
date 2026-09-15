@@ -31,8 +31,8 @@
         "@xenous/validators": "workspace:*",
         "better-auth": "catalog:",
         "jiti": "catalog:",
-        "next": "15.3.8",
-        "nuqs": "^2.9.5",
+        "next": "^15.5.25",
+        "nuqs": "^2.10.1",
         "react": "catalog:react19",
         "react-dom": "catalog:react19",
         "rwdot": "^0.0.5",
@@ -49,7 +49,7 @@
         "@types/react-dom": "catalog:react19",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
-        "postcss": "^8.5.26",
+        "postcss": "^8.5.28",
         "tailwindcss": "catalog:",
         "typescript": "catalog:"
     }
