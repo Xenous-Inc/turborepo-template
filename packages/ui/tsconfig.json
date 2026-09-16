@@ -8,7 +8,6 @@
         "jsx": "react-jsx",
 
         /** Aliases */
-        "baseUrl": "./",
         "paths": {
             "~/*": ["./src/*"],
             "@xenous/ui/*": ["./src/*"]

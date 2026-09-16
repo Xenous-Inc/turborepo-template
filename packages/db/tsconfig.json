@@ -1,5 +1,9 @@
 {
     "$schema": "https://schemastore.org/tsconfig.json",
     "extends": "@xenous/typescript/internal-package.json",
+    "compilerOptions": {
+        /** TS>=6 no longer auto-discovers @types under pnpm isolated node_modules */
+        "types": ["node"]
+    },
     "include": ["src", "*.ts"]
 }

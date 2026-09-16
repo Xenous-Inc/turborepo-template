@@ -6,10 +6,9 @@
         "module": "esnext",
         "lib": ["ES2024", "DOM", "DOM.Iterable"],
         "jsx": "preserve",
-        "types": ["vite/client", "@xenous/ui/types/icon"],
+        "types": ["node", "vite/client", "@xenous/ui/types/icon"],
 
         /** Aliases */
-        "baseUrl": "./",
         "paths": {
             "@xenous/ui/*": ["../../packages/ui/src/*"],
             "~/env": ["./env.ts"],

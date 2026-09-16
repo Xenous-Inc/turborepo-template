@@ -5,6 +5,7 @@
         /** Base Options */
         "module": "esnext",
         "lib": ["ES2024", "DOM"],
+        "types": ["node"],
         "jsx": "preserve",
 
         /** Preact */
@@ -12,7 +13,6 @@
         "jsxFragmentFactory": "Fragment",
 
         /** Aliases */
-        "baseUrl": ".",
         "paths": {
             "~/env": ["./env.ts"],
             "~/*": ["./src/*"]

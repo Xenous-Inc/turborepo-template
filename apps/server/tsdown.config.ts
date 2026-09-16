@@ -9,6 +9,9 @@ export default defineConfig({
 
     hash: false,
 
+    /** tsdown >=0.22 emits .d.mts for ESM packages; project references expect .d.ts */
+    outExtensions: () => ({ dts: '.d.ts' }),
+
     dts: {
         emitDtsOnly: true,
     },

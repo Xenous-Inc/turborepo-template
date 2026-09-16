@@ -16,7 +16,7 @@ catalog:
     better-auth: ^1.7.3
     jiti: ^2.7.0
     tailwindcss: ^4.3.3
-    typescript: ~5.8.3
+    typescript: ^6.0.3
     zod: ^4.5.4
 
 catalogs:
