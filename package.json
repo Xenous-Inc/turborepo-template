@@ -30,8 +30,7 @@
         "deps:check": "pnpx taze --recursive --include-locked --maturity-period 7",
         "deps:update": "pnpx taze --recursive --write --maturity-period 7",
         "ruler:apply": "pnpx @intellectronica/ruler@latest apply --local-only",
-        "rename": "bash ./rename.sh",
-        "postrename": "pnpm check:ws -f && pnpm check:fix -- --linter-enabled false"
+        "rename": "bash ./scripts/rename.sh"
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",

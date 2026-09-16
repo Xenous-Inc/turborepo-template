@@ -1,10 +1,20 @@
 #!/bin/bash
 
+# Always operate on the repo root, not wherever this was invoked from.
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
 prev_name="xenous"
 prev_capitalized_name="Xenous"
 
 name=$1
 capitalized_name=$(echo "$name" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
+
+# This rewrites every file in the repo, so refuse anything that is not a plausible name.
+# An empty or flag-like argument would otherwise be substituted in verbatim.
+if [[ ! "$name" =~ ^[a-zA-Z][a-zA-Z0-9_-]*$ ]]; then
+    echo "usage: rename.sh <new-name>    (letters, digits, - and _; must start with a letter)" >&2
+    exit 1
+fi
 
 function rename_project {
     prev_ansi_name=$(pnpx figlet "$prev_name" -f "ANSI Shadow" | sed '$d')
@@ -94,3 +104,6 @@ function stop_spinner {
 start_spinner "Renaming $prev_name to $name"
 rename_project
 stop_spinner $?
+
+pnpm check:ws -f
+pnpm check:fix -- --linter-enabled false
