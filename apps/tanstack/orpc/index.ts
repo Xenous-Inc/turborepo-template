@@ -3,13 +3,13 @@ import { RPCLink } from '@orpc/client/fetch';
 import type { InferRouterInputs, InferRouterOutputs, RouterClient } from '@orpc/server';
 import { createTanstackQueryUtils } from '@orpc/tanstack-query';
 import { createIsomorphicFn } from '@tanstack/react-start';
-import { env } from '~/env';
+import { ENV } from 'varlock/env';
 import type { AppRouter } from '../../server/src/routers';
 
 const getLink = createIsomorphicFn()
     .server(() => {
         return new RPCLink({
-            url: `${env.SERVER_URL}/rpc`,
+            url: `${ENV.SERVER_URL}/rpc`,
             fetch: (url, options) => {
                 return fetch(url, {
                     ...options,
@@ -20,7 +20,7 @@ const getLink = createIsomorphicFn()
     })
     .client(() => {
         return new RPCLink({
-            url: `${env.VITE_SERVER_URL}/rpc`,
+            url: `${ENV.VITE_SERVER_URL}/rpc`,
             fetch: (url, options) => {
                 return fetch(url, {
                     ...options,

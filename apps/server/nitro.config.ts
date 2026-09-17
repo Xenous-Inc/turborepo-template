@@ -1,5 +1,5 @@
 import { defineNitroConfig } from 'nitro/config';
-import { env } from './env';
+import { ENV } from 'varlock/env';
 
 // https://nitro.build/config
 export default defineNitroConfig({
@@ -17,7 +17,7 @@ export default defineNitroConfig({
     },
     openAPI: {
         route: '/api/docs/openapi.json',
-        meta: { version: env.VERSION },
+        meta: { version: ENV.VERSION },
         ui: {
             scalar: false,
             swagger: false,

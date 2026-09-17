@@ -1,10 +1,10 @@
 import { Rwdot } from 'rwdot';
-import { env } from '~/env';
+import { ENV } from 'varlock/env';
 
 const RwdotProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (
         <>
-            {env.NODE_ENV === 'development' && <Rwdot showSize />}
+            {ENV.NODE_ENV === 'development' && <Rwdot showSize />}
             {children}
         </>
     );

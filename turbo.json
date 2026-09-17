@@ -1,6 +1,9 @@
 {
     "$schema": "https://turborepo.com/schema.json",
     "ui": "tui",
+    "globalDependencies": [".env.schema"],
+    "globalEnv": ["NODE_ENV", "DOCKER", "NEXT_PUBLIC_*", "VITE_*"],
+    "globalPassThroughEnv": ["CI", "HOST", "PORT", "GITHUB_*", "VARLOCK_*"],
     "tasks": {
         "build": {
             "dependsOn": ["^build"],

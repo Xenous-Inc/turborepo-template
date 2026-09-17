@@ -34,15 +34,27 @@ nvm use
 # Use required pnpm version
 corepack enable
 
-# Copy env files
-[ -f .env.example ] && cp .env.example .env; find apps -name ".env.local.example" -exec sh -c 'cp "$1" "${1%.example}"' _ {} \;
-
 # Rename project
 pnpm rename <name_instead_of_xenous>
 
 # Install dependencies
 pnpm install
 ```
+
+### Environment variables
+
+Env vars are managed by [Varlock](https://varlock.dev). The committed `.env.schema` files are the
+source of truth — there are no `.env.example` files to copy. Each key is declared by the package
+that owns it and pulled in elsewhere with `@import`, so the schema next to the code is the
+reference for what that package needs.
+
+Put secret values in the git-ignored `.env.local` of the package whose schema declares them.
+`dev` and `build` validate everything automatically, so there is no separate check step.
+
+`pnpm env:scan` checks that no secret value has been pasted into source; it also runs on
+pre-commit. Everything else is the [Varlock CLI](https://varlock.dev/reference/cli/load-and-run/),
+run from inside the package you care about — `varlock load` to see its resolved config with
+secrets masked, `varlock encrypt --file .env.local` to encrypt values at rest.
 
 ## When it's time to add a new package
 

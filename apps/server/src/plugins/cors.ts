@@ -1,6 +1,6 @@
 import { definePlugin } from 'nitro';
 import type { HTTPEvent } from 'nitro/h3';
-import { env } from '~/env';
+import { ENV } from 'varlock/env';
 
 export default definePlugin(async nitro => {
     nitro.hooks.hook('response', (res: Response, event: HTTPEvent) => {
@@ -10,7 +10,7 @@ export default definePlugin(async nitro => {
         res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         res.headers.set('Access-Control-Allow-Credentials', 'true');
 
-        if (origin && env.CORS_ORIGIN.includes(origin)) {
+        if (origin && ENV.CORS_ORIGIN.includes(origin)) {
             res.headers.set('Access-Control-Allow-Origin', origin);
         }
     });

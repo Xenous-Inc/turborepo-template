@@ -1,18 +1,14 @@
-import { createJiti } from 'jiti';
+import { varlockNextConfigPlugin } from '@varlock/nextjs-integration/plugin';
+import { ENV } from 'varlock/env';
 
-/**
- * Import env files to validate at build time. Use jiti so we can load .ts files in here.
- *
- * @type {import('./env.ts')}
- */
-const { env } = await createJiti(import.meta.url).import('./env');
+const withVarlock = varlockNextConfigPlugin();
 
 /** @type {import('next').NextConfig} */
 const config = {
-    output: env.DOCKER ? 'standalone' : undefined,
+    output: ENV.DOCKER ? 'standalone' : undefined,
     reactStrictMode: true,
 
-    devIndicators: env.NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED && {},
+    devIndicators: ENV.NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED && {},
 
     /** Enables hot reloading for local packages without a build step */
     transpilePackages: ['@xenous/logger', '@xenous/ui', '@xenous/validators'],
@@ -21,4 +17,4 @@ const config = {
     typescript: { ignoreBuildErrors: true },
 };
 
-export default config;
+export default withVarlock(config);

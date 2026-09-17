@@ -22,6 +22,7 @@
         "check:ws": "pnpx sherif@latest",
         "ci": "turbo run ci --continue",
         "typecheck": "turbo run typecheck --continue",
+        "env:scan": "bash ./scripts/env-scan.sh",
         "postinstall": "pnpm check:ws",
         "db:studio": "turbo -F @xenous/db db:studio",
         "db:push": "turbo -F @xenous/db db:push",
@@ -40,6 +41,7 @@
         "@xenous/biome-config": "workspace:*",
         "lefthook": "^2.1.12",
         "turbo": "^2.10.12",
-        "typescript": "catalog:"
+        "typescript": "catalog:",
+        "varlock": "catalog:varlock"
     }
 }

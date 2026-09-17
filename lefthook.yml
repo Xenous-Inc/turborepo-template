@@ -12,6 +12,8 @@ pre-commit:
       - name: Typecheck
         glob: '*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx}'
         run: pnpm typecheck
+      - name: Scan for leaked secrets
+        run: pnpm env:scan --staged
       - name: Audit dependencies
         glob: pnpm-lock.yaml
         run: pnpm audit --prod --audit-level critical

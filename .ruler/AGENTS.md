@@ -27,12 +27,25 @@ The server app (`apps/server`) is the API layer — both frontends talk to it. I
 - The CLI flag is `--filter`, not `-F` — `-F` is pnpm-only and turbo doesn't recognize it.
 - Check `package.json` at root and per-package for all available scripts before running any commands.
 
+## Environment variables
+
+Managed by [Varlock](https://varlock.dev). The `varlock` skill in `.agents/skills/varlock` has the
+full rules — read it before touching any env file.
+
+- `.env.schema` is committed and safe to edit. **Never read or edit** `.env` / `.env.local`.
+  Ask the user to set secret values themselves.
+- Read config via `import { ENV } from 'varlock/env'`, never `process.env` (Biome `noProcessEnv`).
+- `env.d.ts` is generated on load and committed. Never edit by hand.
+- Validate with `pnpm exec varlock load --agent` from a package directory (values redacted).
+- `dev`/`build` load env via the framework integrations; build-only config uses
+  `import 'varlock/auto-load'`. Never put auto-load in `src/` — varlock is absent from prod images.
+
 ## Key Conventions
 
 - Biome for linting+formatting (not ESLint/Prettier). Config in `tooling/biome/`. Run `pnpm check:fix` to auto-fix.
 - `import type` required for type-only imports (`verbatimModuleSyntax`).
 - No enums — use `as const` objects. No non-null assertions.
-- Env vars validated at runtime via `@t3-oss/env-*`. Each app has `.env.local.example`.
+- Env vars are managed by Varlock — see the Environment variables section below.
 - Conventional commits enforced by commitlint via Lefthook.
 - Shared dependency versions managed through pnpm catalogs. Use `"catalog:"` or `"catalog:<name>"` in package.json.
 - Scaffold new packages with `pnpm turbo gen init`.

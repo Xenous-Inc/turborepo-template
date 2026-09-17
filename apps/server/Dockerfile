@@ -72,7 +72,9 @@ FROM pnpm AS base
 WORKDIR /app
 
 COPY .gitignore .gitignore
-COPY .env* .env
+# Root varlock schema. `turbo prune` keeps package-level .env.schema files but not this one,
+# and every app schema imports it via `@import(../../)`.
+COPY .env.schema .env.schema
 COPY --from=pruner /app/out/json .
 
 
@@ -131,21 +133,21 @@ RUN echo "NODE_ENV=$NODE_ENV" >> .env
 # Database
 ARG DATABASE_URL
 RUN if [[ -n "${DATABASE_URL+x}" ]]; then \
-        echo "DATABASE_URL=$DATABASE_URL" >> .env; fi
+        echo "DATABASE_URL=$DATABASE_URL" >> packages/db/.env; fi
 
 # Auth
 ARG BETTER_AUTH_SECRET
 RUN if [[ -n "${BETTER_AUTH_SECRET+x}" ]]; then \
-        echo "BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET" >> .env; fi
+        echo "BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET" >> apps/server/.env; fi
 
 ARG BETTER_AUTH_URL
 RUN if [[ -n "${BETTER_AUTH_URL+x}" ]]; then \
-        echo "BETTER_AUTH_URL=$BETTER_AUTH_URL" >> .env; fi
+        echo "BETTER_AUTH_URL=$BETTER_AUTH_URL" >> apps/server/.env; fi
 
 # Cors
 ARG CORS_ORIGIN
 RUN if [[ -n "${CORS_ORIGIN+x}" ]]; then \
-        echo "CORS_ORIGIN=$CORS_ORIGIN" >> .env; fi
+        echo "CORS_ORIGIN=$CORS_ORIGIN" >> apps/server/.env; fi
 
 
 

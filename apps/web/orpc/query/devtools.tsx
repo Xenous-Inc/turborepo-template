@@ -2,7 +2,7 @@
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { env } from '~/env';
+import { ENV } from 'varlock/env';
 
 const ReactQueryDevtoolsProduction = lazy(() =>
     import('@tanstack/react-query-devtools/production').then(module => ({
@@ -31,10 +31,10 @@ const TanstackQueryDevtools: React.FC = () => {
 
     return (
         <>
-            {env.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && (
+            {ENV.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && (
                 <ReactQueryDevtools position='bottom' buttonPosition='bottom-right' initialIsOpen={false} />
             )}
-            {env.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && showDevtools && (
+            {ENV.NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED && showDevtools && (
                 <Suspense fallback={null}>
                     <ReactQueryDevtoolsProduction
                         position='bottom'

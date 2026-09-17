@@ -3,16 +3,16 @@ import * as schema from '@xenous/db/schema';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { openAPI } from 'better-auth/plugins';
-import { env } from '~/env';
+import { ENV } from 'varlock/env';
 
 export const auth = betterAuth({
     database: drizzleAdapter(db, {
         provider: 'pg',
         schema,
     }),
-    secret: env.BETTER_AUTH_SECRET,
-    baseURL: env.BETTER_AUTH_URL,
-    trustedOrigins: env.CORS_ORIGIN,
+    secret: ENV.BETTER_AUTH_SECRET,
+    baseURL: ENV.BETTER_AUTH_URL,
+    trustedOrigins: ENV.CORS_ORIGIN,
     emailAndPassword: {
         enabled: true,
     },

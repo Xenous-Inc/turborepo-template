@@ -2,11 +2,11 @@ import { createORPCClient } from '@orpc/client';
 import { RPCLink } from '@orpc/client/fetch';
 import type { InferRouterInputs, InferRouterOutputs, RouterClient } from '@orpc/server';
 import { createTanstackQueryUtils } from '@orpc/tanstack-query';
-import { env } from '~/env';
+import { ENV } from 'varlock/env';
 import type { AppRouter } from '../../server/src/routers';
 
 const link = new RPCLink({
-    url: `${env.NEXT_PUBLIC_SERVER_URL}/rpc`,
+    url: `${ENV.NEXT_PUBLIC_SERVER_URL}/rpc`,
     fetch: (url, options) => {
         return fetch(url, {
             ...options,

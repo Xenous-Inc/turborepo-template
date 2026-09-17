@@ -71,7 +71,9 @@ FROM pnpm AS base
 WORKDIR /app
 
 COPY .gitignore .gitignore
-COPY .env* .env
+# Root varlock schema. `turbo prune` keeps package-level .env.schema files but not this one,
+# and every app schema imports it via `@import(../../)`.
+COPY .env.schema .env.schema
 COPY --from=pruner /app/out/json .
 
 
@@ -130,20 +132,20 @@ RUN echo "NODE_ENV=$NODE_ENV" >> .env
 # API
 ARG SERVER_URL
 RUN if [[ -n "${SERVER_URL+x}" ]]; then \
-    echo "SERVER_URL=$SERVER_URL" >> .env; fi
+    echo "SERVER_URL=$SERVER_URL" >> apps/tanstack/.env; fi
 
 ARG VITE_SERVER_URL
 RUN if [[ -n "${VITE_SERVER_URL+x}" ]]; then \
-    echo "VITE_SERVER_URL=$VITE_SERVER_URL" >> .env; fi
+    echo "VITE_SERVER_URL=$VITE_SERVER_URL" >> apps/tanstack/.env; fi
 
 # TanStack Devtools (optional)
 ARG VITE_ROUTER_DEVTOOLS_ENABLED
 RUN if [[ -n "${VITE_ROUTER_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "VITE_ROUTER_DEVTOOLS_ENABLED=$VITE_ROUTER_DEVTOOLS_ENABLED" >> .env; fi
+    echo "VITE_ROUTER_DEVTOOLS_ENABLED=$VITE_ROUTER_DEVTOOLS_ENABLED" >> apps/tanstack/.env; fi
 
 ARG VITE_QUERY_DEVTOOLS_ENABLED
 RUN if [[ -n "${VITE_QUERY_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "VITE_QUERY_DEVTOOLS_ENABLED=$VITE_QUERY_DEVTOOLS_ENABLED" >> .env; fi
+    echo "VITE_QUERY_DEVTOOLS_ENABLED=$VITE_QUERY_DEVTOOLS_ENABLED" >> apps/tanstack/.env; fi
 
 
 

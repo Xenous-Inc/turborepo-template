@@ -32,6 +32,9 @@ args = ["shadcn@latest", "mcp"]
 [mcp_servers.better-auth]
 url = "https://mcp.better-auth.com/mcp"
 
+[mcp_servers.varlock-docs]
+url = "https://docs.mcp.varlock.dev/mcp"
+
 
 
 # --- Global .gitignore Configuration ---

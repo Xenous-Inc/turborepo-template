@@ -1,9 +1,9 @@
 import { createMiddleware, createServerFn } from '@tanstack/react-start';
 import { createAuthClient } from 'better-auth/react';
-import { env } from '~/env';
+import { ENV } from 'varlock/env';
 
 export const authClient = createAuthClient({
-    baseURL: env.VITE_SERVER_URL,
+    baseURL: ENV.VITE_SERVER_URL,
 });
 
 export const authMiddleware = createMiddleware().server(async ({ next, request }) => {

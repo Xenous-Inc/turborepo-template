@@ -11,6 +11,7 @@
             "!**/.zed",
             "!**/.vscode",
             "!**/routeTree.gen.ts",
+            "!**/env.d.ts",
             "!**/.expo",
             "!**/node_modules",
             "!**/.cache"

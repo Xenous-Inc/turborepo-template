@@ -6,17 +6,16 @@
     "type": "module",
     "scripts": {
         "clean": "git clean -xdf .cache .turbo .nitro .output node_modules",
-        "dev": "pnpm with-env vite dev",
-        "build": "concurrently 'pnpm with-env vite build' 'tsdown'",
-        "start": "pnpm with-env vite preview",
+        "dev": "vite dev",
+        "build": "concurrently 'vite build' 'tsdown'",
+        "start": "vite preview",
         "check": "biome check .",
         "check:fix": "biome check . --write",
         "check:unsafe": "biome check . --write --unsafe",
         "ci": "biome ci",
         "typecheck": "tsc --noEmit",
-        "auth:sync": "pnpm with-env pnpx @better-auth/cli@latest generate --config ./src/utils/auth.ts --output ../../packages/db/src/schema/auth.ts -y",
-        "postauth:sync": "pnpm turbo run check:fix --filter=@xenous/db",
-        "with-env": "dotenvx run -f .env.local -f ../../.env --"
+        "auth:sync": "varlock run -- pnpx @better-auth/cli@latest generate --config ./src/utils/auth.ts --output ../../packages/db/src/schema/auth.ts -y",
+        "postauth:sync": "pnpm turbo run check:fix --filter=@xenous/db"
     },
     "dependencies": {
         "@better-auth/expo": "catalog:",
@@ -24,18 +23,17 @@
         "@orpc/openapi": "catalog:orpc",
         "@orpc/server": "catalog:orpc",
         "@orpc/zod": "catalog:orpc",
-        "@t3-oss/env-core": "catalog:",
         "@xenous/db": "workspace:^",
         "@xenous/logger": "workspace:^",
         "better-auth": "catalog:",
-        "jiti": "catalog:",
+        "varlock": "catalog:varlock",
         "zod": "catalog:"
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
-        "@dotenvx/dotenvx": "catalog:",
         "@total-typescript/ts-reset": "^0.6.1",
         "@types/node": "catalog:node22",
+        "@varlock/vite-integration": "catalog:varlock",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
         "concurrently": "^9.2.4",

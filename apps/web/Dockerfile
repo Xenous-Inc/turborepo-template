@@ -72,7 +72,9 @@ FROM pnpm AS base
 WORKDIR /app
 
 COPY .gitignore .gitignore
-COPY .env* .env
+# Root varlock schema. `turbo prune` keeps package-level .env.schema files but not this one,
+# and every app schema imports it via `@import(../../)`.
+COPY .env.schema .env.schema
 COPY --from=pruner /app/out/json .
 
 
@@ -131,17 +133,17 @@ RUN echo "NODE_ENV=$NODE_ENV" >> .env
 # API
 ARG NEXT_PUBLIC_SERVER_URL
 RUN if [[ -n "${NEXT_PUBLIC_SERVER_URL+x}" ]]; then \
-    echo "NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL" >> .env; fi
+    echo "NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL" >> apps/web/.env; fi
 
 # Next Devtools (optional)
 ARG NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED
 RUN if [[ -n "${NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED=$NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED" >> .env; fi
+    echo "NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED=$NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED" >> apps/web/.env; fi
 
 # TanStack Query Devtools (optional)
 ARG NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED
 RUN if [[ -n "${NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED=$NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED" >> .env; fi
+    echo "NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED=$NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED" >> apps/web/.env; fi
 
 
 

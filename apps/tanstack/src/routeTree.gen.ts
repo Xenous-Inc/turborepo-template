@@ -10,22 +10,22 @@
 
 import { Route as rootRouteImport } from './app/__root'
 import { Route as PageRouteImport } from './app/page'
-import { Route as TodosPageRouteImport } from './app/todos/page'
 import { Route as DashboardPageRouteImport } from './app/dashboard/page'
+import { Route as TodosPageRouteImport } from './app/todos/page'
 
 const PageRoute = PageRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TodosPageRoute = TodosPageRouteImport.update({
-  id: '/todos/',
-  path: '/todos/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DashboardPageRoute = DashboardPageRouteImport.update({
   id: '/dashboard/',
   path: '/dashboard/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TodosPageRoute = TodosPageRouteImport.update({
+  id: '/todos/',
+  path: '/todos/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -68,18 +68,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PageRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/todos/': {
-      id: '/todos/'
-      path: '/todos'
-      fullPath: '/todos/'
-      preLoaderRoute: typeof TodosPageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dashboard/': {
       id: '/dashboard/'
       path: '/dashboard'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/todos/': {
+      id: '/todos/'
+      path: '/todos'
+      fullPath: '/todos/'
+      preLoaderRoute: typeof TodosPageRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

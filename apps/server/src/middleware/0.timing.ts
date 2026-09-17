@@ -1,9 +1,9 @@
 import { logger } from '@xenous/logger';
 import { defineMiddleware } from 'nitro/h3';
-import { env } from '~/env';
+import { ENV } from 'varlock/env';
 
 export default defineMiddleware(async (event, next) => {
-    if (env.NODE_ENV !== 'development') {
+    if (ENV.NODE_ENV !== 'development') {
         return await next();
     }
 
