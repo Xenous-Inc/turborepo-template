@@ -28,13 +28,6 @@ export type CoercedEnvSchema = {
   CORS_ORIGIN: string[];
   
   /**
-   * **VERSION**  
-   * Mirrors this app's package.json, reported in the OpenAPI doc.  
-   * ![icon](data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23808080%22%20d%3D%22M.357%209.024A12.07%2012.07%200%200%200%202.97%2019.867a12.05%2012.05%200%200%200%2010.38%204.063c7.768-.703%2013.086-9.799%209.517-16.8c-.416-1.19-2.07-.368-1.903.596q.431%201.052.713%202.155a9.98%209.98%200%200%201-3.926%2010.25a9.965%209.965%200%200%201-14.807-3.809A9.98%209.98%200%200%201%204.44%205.448a9.97%209.97%200%200%201%204.85-3.044a9.87%209.87%200%200%201%207.02.631a.333.333%200%200%201%20.155.429l-3.962%2010.62c-.107.81-.69.786-.797%200l-2.38-7.37a1.57%201.57%200%200%200-.773-.988c-1.19-.56-3.093.667-2.379%202.155l3.914%2010.441c.524%201.393%201.023%201.834%202.058%201.834s1.535-.44%202.058-1.834L20%203.94a1.036%201.036%200%200%200-.369-1.19C13.1-2.907%202.32.641.357%209.023z%22%2F%3E%3C%2Fsvg%3E)   
-   */
-  VERSION: string;
-  
-  /**
    * **NODE_ENV**  
    * ![icon](data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23808080%22%20d%3D%22M7.885%2010.23L12%203.463l4.116%206.769zm9.606%2011q-1.558%200-2.64-1.081t-1.082-2.64t1.082-2.649t2.64-1.09t2.649%201.09t1.09%202.649t-1.09%202.64t-2.649%201.082m-13.722-.5v-6.462h6.462v6.462z%22%2F%3E%3C%2Fsvg%3E)   
    */
@@ -109,11 +102,11 @@ export type CoercedEnvSchema = {
   
 };
 
-type _CoercedEnvSchema_2d75e289 = CoercedEnvSchema;
+type _CoercedEnvSchema_c968cc00 = CoercedEnvSchema;
 
 declare module 'varlock/env' {
-  export interface TypedEnvSchema extends Readonly<_CoercedEnvSchema_2d75e289> {}
-  export interface PublicTypedEnvSchema extends Readonly<Pick<_CoercedEnvSchema_2d75e289, 'BETTER_AUTH_URL' | 'CORS_ORIGIN' | 'VERSION' | 'NODE_ENV' | 'DOCKER' | 'PORT' | 'HOST' | 'COOLIFY_FQDN' | 'COOLIFY_URL' | 'COOLIFY_BRANCH' | 'COOLIFY_RESOURCE_UUID' | 'COOLIFY_CONTAINER_NAME' | 'SOURCE_COMMIT'>> {}
+  export interface TypedEnvSchema extends Readonly<_CoercedEnvSchema_c968cc00> {}
+  export interface PublicTypedEnvSchema extends Readonly<Pick<_CoercedEnvSchema_c968cc00, 'BETTER_AUTH_URL' | 'CORS_ORIGIN' | 'NODE_ENV' | 'DOCKER' | 'PORT' | 'HOST' | 'COOLIFY_FQDN' | 'COOLIFY_URL' | 'COOLIFY_BRANCH' | 'COOLIFY_RESOURCE_UUID' | 'COOLIFY_CONTAINER_NAME' | 'SOURCE_COMMIT'>> {}
 }
 
 
@@ -123,17 +116,17 @@ export type EnvSchemaAsStrings = {
       : (NonNullable<CoercedEnvSchema[Property]> extends boolean ? ('true' | 'false') : string)
 };
 
-type _EnvSchemaAsStrings_2d75e289 = EnvSchemaAsStrings;
+type _EnvSchemaAsStrings_c968cc00 = EnvSchemaAsStrings;
 declare global {
 
   // add types for global import.meta.env
-  interface ImportMetaEnv extends _EnvSchemaAsStrings_2d75e289 {}
+  interface ImportMetaEnv extends _EnvSchemaAsStrings_c968cc00 {}
   interface ImportMeta {
     readonly env: ImportMetaEnv;
   }
 
   // add types for global process.env
   namespace NodeJS {
-    interface ProcessEnv extends _EnvSchemaAsStrings_2d75e289 {}
+    interface ProcessEnv extends _EnvSchemaAsStrings_c968cc00 {}
   }
 }

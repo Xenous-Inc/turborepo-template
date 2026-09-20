@@ -1,3 +1,9 @@
+# syntax=docker/dockerfile:1
+
+# varlock resolves the env graph at container start, so the runner needs the CLI.
+# Keep this in sync with the `varlock` catalog entry in pnpm-workspace.yaml.
+FROM ghcr.io/dmno-dev/varlock:1.18.0 AS varlock
+
 ARG APP_DIRNAME="server"
 ARG APP_PKG_NAME="server"
 
@@ -106,67 +112,41 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                                 Env                                                ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-
-
-
-FROM base AS env
-WORKDIR /app
-
-# Remote Cache
-ARG TURBO_TEAM
-ENV TURBO_TEAM="$TURBO_TEAM"
-
-ARG TURBO_TOKEN
-ENV TURBO_TOKEN="$TURBO_TOKEN"
-
-# Docker
-ENV DOCKER=true
-RUN echo "DOCKER=$DOCKER" >> .env
-
-# Node environment
-ARG NODE_ENV="production"
-ENV NODE_ENV="$NODE_ENV"
-RUN echo "NODE_ENV=$NODE_ENV" >> .env
-
-# Database
-ARG DATABASE_URL
-RUN if [[ -n "${DATABASE_URL+x}" ]]; then \
-        echo "DATABASE_URL=$DATABASE_URL" >> packages/db/.env; fi
-
-# Auth
-ARG BETTER_AUTH_SECRET
-RUN if [[ -n "${BETTER_AUTH_SECRET+x}" ]]; then \
-        echo "BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET" >> apps/server/.env; fi
-
-ARG BETTER_AUTH_URL
-RUN if [[ -n "${BETTER_AUTH_URL+x}" ]]; then \
-        echo "BETTER_AUTH_URL=$BETTER_AUTH_URL" >> apps/server/.env; fi
-
-# Cors
-ARG CORS_ORIGIN
-RUN if [[ -n "${CORS_ORIGIN+x}" ]]; then \
-        echo "CORS_ORIGIN=$CORS_ORIGIN" >> apps/server/.env; fi
-
-
-
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 ##                                               Builder                                              ##
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 
 
-FROM env AS builder
+FROM base AS builder
 ARG APP_PKG_NAME
 WORKDIR /app
 
 COPY --from=pruner /app/out/full .
 COPY --from=dev-deps /app .
-COPY --from=env /app/.env .env
 
-RUN pnpm run build
-RUN find / -type f -name '.env*' -delete
+# Baked onto the image because the runtime needs them too - secret mounts do not persist.
+ENV DOCKER=true
+ARG NODE_ENV="production"
+ENV NODE_ENV="$NODE_ENV"
+
+# Env values arrive as build secrets, so they never land in a layer. Every mount is
+# optional (`required` defaults to false), which lets one Dockerfile serve all three
+# suppliers: the `*_env` file mounts for local compose, the per-variable `env=` mounts
+# for Coolify build secrets and GitHub Actions. Process env wins over the mounted file.
+RUN \
+    --mount=type=secret,id=server_env,target=/app/apps/server/.env \
+    --mount=type=secret,id=db_env,target=/app/packages/db/.env \
+    --mount=type=secret,id=DATABASE_URL,env=DATABASE_URL \
+    --mount=type=secret,id=BETTER_AUTH_SECRET,env=BETTER_AUTH_SECRET \
+    --mount=type=secret,id=BETTER_AUTH_URL,env=BETTER_AUTH_URL \
+    --mount=type=secret,id=CORS_ORIGIN,env=CORS_ORIGIN \
+    --mount=type=secret,id=TURBO_TEAM,env=TURBO_TEAM \
+    --mount=type=secret,id=TURBO_TOKEN,env=TURBO_TOKEN \
+    pnpm run build
+
+# Collapse the @import graph into a self-contained dir the runner can load.
+# Purely structural - no values are resolved, so no secrets are involved.
+RUN cd apps/server && pnpm exec varlock flatten --out-dir /app/.env-flat
 
 
 
@@ -176,9 +156,16 @@ RUN find / -type f -name '.env*' -delete
 
 
 
-FROM env AS runner
+FROM base AS runner
 ARG APP_DIRNAME
 WORKDIR /app
+
+ENV DOCKER=true
+ARG NODE_ENV="production"
+ENV NODE_ENV="$NODE_ENV"
+
+COPY --from=varlock /usr/local/bin/varlock /usr/local/bin/varlock
+COPY --from=builder /app/.env-flat ./.env-flat
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nitro
@@ -192,4 +179,4 @@ ENV PORT="$PORT"
 
 ENV APP_DIRNAME="$APP_DIRNAME"
 
-ENTRYPOINT PORT=$PORT node server/index.mjs
+ENTRYPOINT PORT=$PORT varlock run -p ./.env-flat/ -- node server/index.mjs

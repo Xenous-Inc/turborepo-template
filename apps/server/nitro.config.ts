@@ -1,9 +1,12 @@
 import { defineNitroConfig } from 'nitro/config';
-import { ENV } from 'varlock/env';
+import { version } from './package.json';
 
 // https://nitro.build/config
 export default defineNitroConfig({
     serverDir: './src',
+
+    runtimeConfig: { version },
+
     routeRules: {
         '/**': { cors: true },
     },
@@ -17,7 +20,7 @@ export default defineNitroConfig({
     },
     openAPI: {
         route: '/api/docs/openapi.json',
-        meta: { version: ENV.VERSION },
+        meta: { version },
         ui: {
             scalar: false,
             swagger: false,

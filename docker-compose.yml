@@ -7,6 +7,9 @@ services:
         build:
             context: .
             dockerfile: ./apps/server/Dockerfile
+            secrets:
+              - { source: server_env_local, target: server_env }
+              - { source: db_env_local, target: db_env }
         env_file:
           - path: ./.env
             required: false
@@ -24,6 +27,8 @@ services:
         build:
             context: .
             dockerfile: ./apps/web/Dockerfile
+            secrets:
+              - { source: web_env_local, target: web_env }
         environment:
           - HOSTNAME=0.0.0.0
         env_file:
@@ -46,6 +51,8 @@ services:
         build:
             context: .
             dockerfile: ./apps/tanstack/Dockerfile
+            secrets:
+              - { source: tanstack_env_local, target: tanstack_env }
         environment:
           - HOSTNAME=0.0.0.0
         env_file:
@@ -63,3 +70,13 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
+
+secrets:
+    server_env_local:
+        file: ./apps/server/.env.local
+    db_env_local:
+        file: ./packages/db/.env.local
+    web_env_local:
+        file: ./apps/web/.env.local
+    tanstack_env_local:
+        file: ./apps/tanstack/.env.local

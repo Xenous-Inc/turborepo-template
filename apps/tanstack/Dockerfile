@@ -1,3 +1,9 @@
+# syntax=docker/dockerfile:1
+
+# varlock resolves the env graph at container start, so the runner needs the CLI.
+# Keep this in sync with the `varlock` catalog entry in pnpm-workspace.yaml.
+FROM ghcr.io/dmno-dev/varlock:1.18.0 AS varlock
+
 ARG APP_DIRNAME="tanstack"
 ARG APP_PKG_NAME="tanstack"
 
@@ -105,66 +111,40 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                                 Env                                                ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-
-
-
-FROM base AS env
-WORKDIR /app
-
-# Remote Cache
-ARG TURBO_TEAM
-ENV TURBO_TEAM="$TURBO_TEAM"
-
-ARG TURBO_TOKEN
-ENV TURBO_TOKEN="$TURBO_TOKEN"
-
-# Docker
-ENV DOCKER=true
-RUN echo "DOCKER=$DOCKER" >> .env
-
-# Node environment
-ARG NODE_ENV="production"
-ENV NODE_ENV="$NODE_ENV"
-RUN echo "NODE_ENV=$NODE_ENV" >> .env
-
-# API
-ARG SERVER_URL
-RUN if [[ -n "${SERVER_URL+x}" ]]; then \
-    echo "SERVER_URL=$SERVER_URL" >> apps/tanstack/.env; fi
-
-ARG VITE_SERVER_URL
-RUN if [[ -n "${VITE_SERVER_URL+x}" ]]; then \
-    echo "VITE_SERVER_URL=$VITE_SERVER_URL" >> apps/tanstack/.env; fi
-
-# TanStack Devtools (optional)
-ARG VITE_ROUTER_DEVTOOLS_ENABLED
-RUN if [[ -n "${VITE_ROUTER_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "VITE_ROUTER_DEVTOOLS_ENABLED=$VITE_ROUTER_DEVTOOLS_ENABLED" >> apps/tanstack/.env; fi
-
-ARG VITE_QUERY_DEVTOOLS_ENABLED
-RUN if [[ -n "${VITE_QUERY_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "VITE_QUERY_DEVTOOLS_ENABLED=$VITE_QUERY_DEVTOOLS_ENABLED" >> apps/tanstack/.env; fi
-
-
-
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 ##                                               Builder                                              ##
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 
 
-FROM env AS builder
+FROM base AS builder
 ARG APP_PKG_NAME
 WORKDIR /app
 
 COPY --from=pruner /app/out/full .
 COPY --from=dev-deps /app .
-COPY --from=env /app/.env .env
 
-RUN pnpm run build
-RUN find / -type f -name '.env*' -delete
+# Baked onto the image because the runtime needs them too - secret mounts do not persist.
+ENV DOCKER=true
+ARG NODE_ENV="production"
+ENV NODE_ENV="$NODE_ENV"
+
+# Env values arrive as build secrets, so they never land in a layer. Every mount is
+# optional (`required` defaults to false), which lets one Dockerfile serve all three
+# suppliers: the `*_env` file mounts for local compose, the per-variable `env=` mounts
+# for Coolify build secrets and GitHub Actions. Process env wins over the mounted file.
+RUN \
+    --mount=type=secret,id=tanstack_env,target=/app/apps/tanstack/.env \
+    --mount=type=secret,id=SERVER_URL,env=SERVER_URL \
+    --mount=type=secret,id=VITE_SERVER_URL,env=VITE_SERVER_URL \
+    --mount=type=secret,id=VITE_ROUTER_DEVTOOLS_ENABLED,env=VITE_ROUTER_DEVTOOLS_ENABLED \
+    --mount=type=secret,id=VITE_QUERY_DEVTOOLS_ENABLED,env=VITE_QUERY_DEVTOOLS_ENABLED \
+    --mount=type=secret,id=TURBO_TEAM,env=TURBO_TEAM \
+    --mount=type=secret,id=TURBO_TOKEN,env=TURBO_TOKEN \
+    pnpm run build
+
+# Collapse the @import graph into a self-contained dir the runner can load.
+# Purely structural - no values are resolved, so no secrets are involved.
+RUN cd apps/tanstack && pnpm exec varlock flatten --out-dir /app/.env-flat
 
 
 
@@ -174,9 +154,16 @@ RUN find / -type f -name '.env*' -delete
 
 
 
-FROM env AS runner
+FROM base AS runner
 ARG APP_DIRNAME
 WORKDIR /app
+
+ENV DOCKER=true
+ARG NODE_ENV="production"
+ENV NODE_ENV="$NODE_ENV"
+
+COPY --from=varlock /usr/local/bin/varlock /usr/local/bin/varlock
+COPY --from=builder /app/.env-flat ./.env-flat
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nitro
@@ -189,4 +176,4 @@ ENV PORT="$PORT"
 
 ENV APP_DIRNAME="$APP_DIRNAME"
 
-ENTRYPOINT PORT=$PORT node server/index.mjs
+ENTRYPOINT PORT=$PORT varlock run -p ./.env-flat/ -- node server/index.mjs

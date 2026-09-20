@@ -3,7 +3,7 @@ import { OpenAPIReferencePlugin } from '@orpc/openapi/plugins';
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4';
 import { defineRouteMeta } from 'nitro';
 import { defineHandler } from 'nitro/h3';
-import { ENV } from 'varlock/env';
+import { useRuntimeConfig } from 'nitro/runtime-config';
 import { appRouter } from '~/routers';
 
 const openapiHandler = new OpenAPIHandler(appRouter, {
@@ -16,7 +16,7 @@ const openapiHandler = new OpenAPIHandler(appRouter, {
                     title: 'oRPC',
                     description:
                         'API Reference for oRPC Instance. To use this make sure to setup <a href="https://orpc.dev/docs/client/client-side" target="_blank" rel="noreferrer">oRPC Client</a>',
-                    version: ENV.VERSION,
+                    version: useRuntimeConfig().version,
                 },
             }),
             schemaConverters: [new ZodToJsonSchemaConverter()],

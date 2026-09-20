@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 ARG APP_DIRNAME="web"
 ARG APP_PKG_NAME="web"
 
@@ -106,63 +108,35 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                                 Env                                                ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-
-
-
-FROM base AS env
-WORKDIR /app
-
-# Remote Cache
-ARG TURBO_TEAM
-ENV TURBO_TEAM="$TURBO_TEAM"
-
-ARG TURBO_TOKEN
-ENV TURBO_TOKEN="$TURBO_TOKEN"
-
-# Docker
-ENV DOCKER=true
-RUN echo "DOCKER=$DOCKER" >> .env
-
-# Node environment
-ARG NODE_ENV="production"
-ENV NODE_ENV="$NODE_ENV"
-RUN echo "NODE_ENV=$NODE_ENV" >> .env
-
-# API
-ARG NEXT_PUBLIC_SERVER_URL
-RUN if [[ -n "${NEXT_PUBLIC_SERVER_URL+x}" ]]; then \
-    echo "NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL" >> apps/web/.env; fi
-
-# Next Devtools (optional)
-ARG NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED
-RUN if [[ -n "${NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED=$NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED" >> apps/web/.env; fi
-
-# TanStack Query Devtools (optional)
-ARG NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED
-RUN if [[ -n "${NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED+x}" ]]; then \
-    echo "NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED=$NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED" >> apps/web/.env; fi
-
-
-
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 ##                                               Builder                                              ##
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 
 
-FROM env AS builder
+FROM base AS builder
 ARG APP_PKG_NAME
 WORKDIR /app
 
 COPY --from=pruner /app/out/full .
 COPY --from=dev-deps /app .
-COPY --from=env /app/.env .env
 
-RUN pnpm run build
-RUN find / -type f -name '.env*' -delete
+# Baked onto the image because the runtime needs them too - secret mounts do not persist.
+ENV DOCKER=true
+ARG NODE_ENV="production"
+ENV NODE_ENV="$NODE_ENV"
+
+# Env values arrive as build secrets, so they never land in a layer. Every mount is
+# optional (`required` defaults to false), which lets one Dockerfile serve all three
+# suppliers: the `*_env` file mounts for local compose, the per-variable `env=` mounts
+# for Coolify build secrets and GitHub Actions. Process env wins over the mounted file.
+RUN \
+    --mount=type=secret,id=web_env,target=/app/apps/web/.env \
+    --mount=type=secret,id=NEXT_PUBLIC_SERVER_URL,env=NEXT_PUBLIC_SERVER_URL \
+    --mount=type=secret,id=NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED,env=NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED \
+    --mount=type=secret,id=NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED,env=NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED \
+    --mount=type=secret,id=TURBO_TEAM,env=TURBO_TEAM \
+    --mount=type=secret,id=TURBO_TOKEN,env=TURBO_TOKEN \
+    pnpm run build
 
 
 
@@ -172,9 +146,13 @@ RUN find / -type f -name '.env*' -delete
 
 
 
-FROM env AS runner
+FROM base AS runner
 ARG APP_DIRNAME
 WORKDIR /app
+
+ENV DOCKER=true
+ARG NODE_ENV="production"
+ENV NODE_ENV="$NODE_ENV"
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
