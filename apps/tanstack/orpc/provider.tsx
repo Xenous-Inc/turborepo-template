@@ -1,18 +1,18 @@
 import { QueryClientProvider } from '@tanstack/react-query';
+import { useRouter } from '@tanstack/react-router';
 import { ENV } from 'varlock/env';
-import { getQueryClient } from './query/client';
 import { TanstackQueryDevtools } from './query/devtools';
 
 const ORPCProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     /**
-     * Avoid useState when initializing the query client if you don't
-     * have a suspense boundary between this and the code that may
-     * suspend because React will throw away the client on the initial
-     * render if it suspends and there is no boundary
+     * The router owns the QueryClient — it is created per request in `getRouter` and handed to
+     * `setupRouterSsrQueryIntegration`, which runs with `wrapQueryClient: false` because this provider
+     * supplies it to React. Calling `getQueryClient()` here would mint a second client on every server
+     * render, leaving the loader's prefetched data in the router's client while SSR refetches into this one.
      *
-     * {@link https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr#initial-setup | TanStack Query initial setup}
+     * {@link https://tanstack.com/start/latest/docs/framework/react/guide/tanstack-query | TanStack Start + Query}
      */
-    const queryClient = getQueryClient();
+    const queryClient = useRouter().options.context.queryClient;
 
     return (
         <QueryClientProvider client={queryClient}>
