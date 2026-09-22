@@ -105,7 +105,7 @@ This template includes a GitHub Actions workflow for automated versioning via [C
 1. Install the Changesets CLI as a dev dependency:
 
 ```bash
-pnpm add -Dw @changesets/cli
+pnpm add -Dw @changesets/cli@^3
 ```
 
 2. Initialize changesets in your project:
@@ -114,15 +114,25 @@ pnpm add -Dw @changesets/cli
 pnpm changeset init
 ```
 
+Every package here is `private`, and v3 skips those by default. Add this to
+`.changeset/config.json` or nothing will be versioned or tagged:
+
+```json
+"privatePackages": { "version": true, "tag": true }
+```
+
 3. Enable the workflow by renaming it:
 
 ```bash
 mv .github/workflows/version.yml.disabled .github/workflows/version.yml
 ```
 
+To also build and push images on release, enable `build.yml` the same way and uncomment
+the `build` job at the bottom of `version.yml`.
+
 4. Once enabled, the workflow runs on every push to `main`. It will either:
    - Open a **Version Pull Request** that bumps package versions and updates changelogs, or
-   - Publish packages if the version PR has already been merged.
+   - Tag the release if that PR has already been merged, then build and push images.
 
 5. To record a change, run:
 
