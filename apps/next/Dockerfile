@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
-ARG APP_DIRNAME="web"
-ARG APP_PKG_NAME="web"
+ARG APP_DIRNAME="next"
+ARG APP_PKG_NAME="next"
 
 
 
@@ -130,7 +130,7 @@ ENV NODE_ENV="$NODE_ENV"
 # suppliers: the `*_env` file mounts for local compose, the per-variable `env=` mounts
 # for Coolify build secrets and GitHub Actions. Process env wins over the mounted file.
 RUN \
-    --mount=type=secret,id=web_env,target=/app/apps/web/.env \
+    --mount=type=secret,id=next_env,target=/app/apps/next/.env \
     --mount=type=secret,id=NEXT_PUBLIC_SERVER_URL,env=NEXT_PUBLIC_SERVER_URL \
     --mount=type=secret,id=NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED,env=NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED \
     --mount=type=secret,id=NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED,env=NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED \

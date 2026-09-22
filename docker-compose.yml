@@ -8,8 +8,8 @@ services:
             context: .
             dockerfile: ./apps/server/Dockerfile
             secrets:
-              - { source: server_env_local, target: server_env }
-              - { source: db_env_local, target: db_env }
+              - {source: server_env_local, target: server_env}
+              - {source: db_env_local, target: db_env}
         env_file:
           - path: ./.env
             required: false
@@ -22,19 +22,19 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
-    web:
-        container_name: xenous-web
+    next:
+        container_name: xenous-next
         build:
             context: .
-            dockerfile: ./apps/web/Dockerfile
+            dockerfile: ./apps/next/Dockerfile
             secrets:
-              - { source: web_env_local, target: web_env }
+              - {source: next_env_local, target: next_env}
         environment:
           - HOSTNAME=0.0.0.0
         env_file:
           - path: ./.env
             required: false
-          - path: ./apps/web/.env.local
+          - path: ./apps/next/.env.local
             required: false
         ports:
           - 127.0.0.1:3001:3001
@@ -52,7 +52,7 @@ services:
             context: .
             dockerfile: ./apps/tanstack/Dockerfile
             secrets:
-              - { source: tanstack_env_local, target: tanstack_env }
+              - {source: tanstack_env_local, target: tanstack_env}
         environment:
           - HOSTNAME=0.0.0.0
         env_file:
@@ -76,7 +76,7 @@ secrets:
         file: ./apps/server/.env.local
     db_env_local:
         file: ./packages/db/.env.local
-    web_env_local:
-        file: ./apps/web/.env.local
+    next_env_local:
+        file: ./apps/next/.env.local
     tanstack_env_local:
         file: ./apps/tanstack/.env.local

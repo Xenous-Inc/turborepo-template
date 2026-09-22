@@ -273,6 +273,100 @@ importers:
         specifier: catalog:varlock
         version: 1.18.0
 
+  apps/next:
+    dependencies:
+      '@orpc/client':
+        specifier: catalog:orpc
+        version: 1.15.0
+      '@orpc/server':
+        specifier: catalog:orpc
+        version: 1.15.0(crossws@0.4.12(srvx@0.11.22))
+      '@orpc/tanstack-query':
+        specifier: catalog:orpc
+        version: 1.15.0(@orpc/client@1.15.0)(@tanstack/query-core@5.102.8)
+      '@tabler/icons-react':
+        specifier: ^3.46.0
+        version: 3.46.0(react@19.2.8)
+      '@tanstack/react-form':
+        specifier: 'catalog:'
+        version: 1.33.5(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.7)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@tanstack/react-query':
+        specifier: 'catalog:'
+        version: 5.102.8(react@19.2.8)
+      '@varlock/nextjs-integration':
+        specifier: catalog:varlock
+        version: 1.2.2(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(varlock@1.18.0)
+      '@xenous/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@xenous/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@xenous/validators':
+        specifier: workspace:*
+        version: link:../../packages/validators
+      better-auth:
+        specifier: 'catalog:'
+        version: 1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.7)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)))(drizzle-orm@0.45.2(gel@2.2.0(supports-color@8.1.1))(kysely@0.29.5)(postgres@3.4.9))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      next:
+        specifier: ^15.5.25
+        version: 15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0)
+      nuqs:
+        specifier: ^2.10.1
+        version: 2.10.1(@tanstack/react-router@1.170.33(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react@19.2.8)
+      react:
+        specifier: catalog:react19
+        version: 19.2.8
+      react-dom:
+        specifier: catalog:react19
+        version: 19.2.8(react@19.2.8)
+      rwdot:
+        specifier: ^0.0.5
+        version: 0.0.5(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      varlock:
+        specifier: catalog:varlock
+        version: 1.18.0
+      zod:
+        specifier: 'catalog:'
+        version: 4.5.4
+    devDependencies:
+      '@biomejs/biome':
+        specifier: 'catalog:'
+        version: 2.5.12
+      '@tailwindcss/postcss':
+        specifier: 'catalog:'
+        version: 4.3.3
+      '@tanstack/react-query-devtools':
+        specifier: 'catalog:'
+        version: 5.102.8(@tanstack/react-query@5.102.8(react@19.2.8))(react@19.2.8)
+      '@total-typescript/ts-reset':
+        specifier: ^0.6.1
+        version: 0.6.1
+      '@types/node':
+        specifier: catalog:node22
+        version: 24.13.3
+      '@types/react':
+        specifier: catalog:react19
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: catalog:react19
+        version: 19.2.7(@types/react@19.2.18)
+      '@xenous/biome-config':
+        specifier: workspace:*
+        version: link:../../tooling/biome
+      '@xenous/typescript':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      postcss:
+        specifier: ^8.5.28
+        version: 8.5.28
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.3
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+
   apps/server:
     dependencies:
       '@better-auth/expo':
@@ -298,7 +392,7 @@ importers:
         version: link:../../packages/logger
       better-auth:
         specifier: 'catalog:'
-        version: 1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)))(drizzle-orm@0.45.2(kysely@0.29.5))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.7)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)))(drizzle-orm@0.45.2(gel@2.2.0(supports-color@8.1.1))(kysely@0.29.5)(postgres@3.4.9))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       varlock:
         specifier: catalog:varlock
         version: 1.18.0
@@ -362,7 +456,7 @@ importers:
         version: 3.46.0(react@19.2.8)
       '@tanstack/react-form':
         specifier: 'catalog:'
-        version: 1.33.5(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 1.33.5(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.7)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@tanstack/react-query':
         specifier: 'catalog:'
         version: 5.102.8(react@19.2.8)
@@ -386,7 +480,7 @@ importers:
         version: link:../../packages/validators
       better-auth:
         specifier: 'catalog:'
-        version: 1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)))(drizzle-orm@0.45.2(kysely@0.29.5))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.7)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)))(drizzle-orm@0.45.2(gel@2.2.0(supports-color@8.1.1))(kysely@0.29.5)(postgres@3.4.9))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       nitro:
         specifier: 3.0.260610-beta
         version: 3.0.260610-beta(chokidar@5.0.0)(dotenv@17.4.2)(drizzle-orm@0.45.2(gel@2.2.0(supports-color@8.1.1))(kysely@0.29.5)(postgres@3.4.9))(jiti@2.7.0)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0))
@@ -451,100 +545,6 @@ importers:
       vite:
         specifier: ^8.2.2
         version: 8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)
-
-  apps/web:
-    dependencies:
-      '@orpc/client':
-        specifier: catalog:orpc
-        version: 1.15.0
-      '@orpc/server':
-        specifier: catalog:orpc
-        version: 1.15.0(crossws@0.4.12(srvx@0.11.22))
-      '@orpc/tanstack-query':
-        specifier: catalog:orpc
-        version: 1.15.0(@orpc/client@1.15.0)(@tanstack/query-core@5.102.8)
-      '@tabler/icons-react':
-        specifier: ^3.46.0
-        version: 3.46.0(react@19.2.8)
-      '@tanstack/react-form':
-        specifier: 'catalog:'
-        version: 1.33.5(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@tanstack/react-query':
-        specifier: 'catalog:'
-        version: 5.102.8(react@19.2.8)
-      '@varlock/nextjs-integration':
-        specifier: catalog:varlock
-        version: 1.2.2(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(varlock@1.18.0)
-      '@xenous/logger':
-        specifier: workspace:*
-        version: link:../../packages/logger
-      '@xenous/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-      '@xenous/validators':
-        specifier: workspace:*
-        version: link:../../packages/validators
-      better-auth:
-        specifier: 'catalog:'
-        version: 1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)))(drizzle-orm@0.45.2(kysely@0.29.5))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      next:
-        specifier: ^15.5.25
-        version: 15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0)
-      nuqs:
-        specifier: ^2.10.1
-        version: 2.10.1(@tanstack/react-router@1.170.33(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react@19.2.8)
-      react:
-        specifier: catalog:react19
-        version: 19.2.8
-      react-dom:
-        specifier: catalog:react19
-        version: 19.2.8(react@19.2.8)
-      rwdot:
-        specifier: ^0.0.5
-        version: 0.0.5(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      varlock:
-        specifier: catalog:varlock
-        version: 1.18.0
-      zod:
-        specifier: 'catalog:'
-        version: 4.5.4
-    devDependencies:
-      '@biomejs/biome':
-        specifier: 'catalog:'
-        version: 2.5.12
-      '@tailwindcss/postcss':
-        specifier: 'catalog:'
-        version: 4.3.3
-      '@tanstack/react-query-devtools':
-        specifier: 'catalog:'
-        version: 5.102.8(@tanstack/react-query@5.102.8(react@19.2.8))(react@19.2.8)
-      '@total-typescript/ts-reset':
-        specifier: ^0.6.1
-        version: 0.6.1
-      '@types/node':
-        specifier: catalog:node22
-        version: 24.13.3
-      '@types/react':
-        specifier: catalog:react19
-        version: 19.2.18
-      '@types/react-dom':
-        specifier: catalog:react19
-        version: 19.2.7(@types/react@19.2.18)
-      '@xenous/biome-config':
-        specifier: workspace:*
-        version: link:../../tooling/biome
-      '@xenous/typescript':
-        specifier: workspace:*
-        version: link:../../tooling/typescript
-      postcss:
-        specifier: ^8.5.28
-        version: 8.5.28
-      tailwindcss:
-        specifier: 'catalog:'
-        version: 4.3.3
-      typescript:
-        specifier: 'catalog:'
-        version: 6.0.3
 
   packages/db:
     dependencies:
@@ -5501,7 +5501,7 @@ snapshots:
       nanostores: 1.5.3
       zod: 4.5.4
 
-  '@better-auth/drizzle-adapter@1.7.3(@better-auth/core@1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(drizzle-orm@0.45.2(kysely@0.29.5))':
+  '@better-auth/drizzle-adapter@1.7.3(@better-auth/core@1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(drizzle-orm@0.45.2(gel@2.2.0(supports-color@8.1.1))(kysely@0.29.5)(postgres@3.4.9))':
     dependencies:
       '@better-auth/core': 1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3)
       '@better-auth/utils': 0.4.2
@@ -5512,7 +5512,7 @@ snapshots:
     dependencies:
       '@better-auth/core': 1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3)
       '@better-fetch/fetch': 1.3.1
-      better-auth: 1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)))(drizzle-orm@0.45.2(kysely@0.29.5))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      better-auth: 1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.7)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)))(drizzle-orm@0.45.2(gel@2.2.0(supports-color@8.1.1))(kysely@0.29.5)(postgres@3.4.9))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       better-call: 1.4.0(zod@4.5.4)
       zod: 4.5.4
 
@@ -6685,7 +6685,7 @@ snapshots:
 
   '@tanstack/query-devtools@5.102.8': {}
 
-  '@tanstack/react-form@1.33.5(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@tanstack/react-form@1.33.5(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.7)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@tanstack/form-core': 1.33.5
       '@tanstack/react-store': 0.11.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -6923,7 +6923,7 @@ snapshots:
       srvx: 0.11.22
       tinyglobby: 0.2.17
       ufo: 1.6.4
-      vitefu: 1.1.3(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0))
+      vitefu: 1.1.3(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0))
       xmlbuilder2: 4.0.3
       zod: 4.5.4
     optionalDependencies:
@@ -7179,10 +7179,10 @@ snapshots:
 
   baseline-browser-mapping@2.11.21: {}
 
-  better-auth@1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)))(drizzle-orm@0.45.2(kysely@0.29.5))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+  better-auth@1.7.3(@tanstack/react-start@1.168.50(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.7)(supports-color@8.1.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)))(drizzle-orm@0.45.2(gel@2.2.0(supports-color@8.1.1))(kysely@0.29.5)(postgres@3.4.9))(next@15.5.25(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.13.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(varlock@1.18.0))(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
       '@better-auth/core': 1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3)
-      '@better-auth/drizzle-adapter': 1.7.3(@better-auth/core@1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(drizzle-orm@0.45.2(kysely@0.29.5))
+      '@better-auth/drizzle-adapter': 1.7.3(@better-auth/core@1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(drizzle-orm@0.45.2(gel@2.2.0(supports-color@8.1.1))(kysely@0.29.5)(postgres@3.4.9))
       '@better-auth/kysely-adapter': 1.7.3(@better-auth/core@1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)(kysely@0.29.5)
       '@better-auth/memory-adapter': 1.7.3(@better-auth/core@1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)
       '@better-auth/mongo-adapter': 1.7.3(@better-auth/core@1.7.3(@better-auth/utils@0.4.2)(@better-fetch/fetch@1.3.1)(better-call@1.4.0(zod@4.5.4))(jose@6.2.12)(kysely@0.29.5)(nanostores@1.5.3))(@better-auth/utils@0.4.2)
@@ -9087,7 +9087,7 @@ snapshots:
       fsevents: 2.3.3
       jiti: 2.7.0
 
-  vitefu@1.1.3(vite@8.2.2(@types/node@24.13.3)(jiti@2.7.0)):
+  vitefu@1.1.3(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)):
     optionalDependencies:
       vite: 8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)
 

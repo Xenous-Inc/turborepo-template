@@ -76,7 +76,7 @@ apps
   │   └─ Backend API (Nitro, H3, ORPC)
   ├─ tanstack
   │   └─ Web application (Tanstack Start)
-  └─ web
+  └─ next
       └─ Web application (Next.js)
 packages
   ├─ db
@@ -147,7 +147,7 @@ This will prompt you to select the affected packages and the semver bump type, t
 - `pnpm dev`: Start all applications in development mode
 - `pnpm dev:server`: Start only the server
 - `pnpm dev:tanstack`: Start only the tanstack application
-- `pnpm dev:web`: Start only the web application
+- `pnpm dev:next`: Start only the next application
 - `pnpm build`: Build all applications
 - `pnpm check`: Run Biome formatting and linting
 - `pnpm check:fix`: Fix Biome formatting and linting issues

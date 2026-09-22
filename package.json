@@ -13,7 +13,7 @@
         "dev": "turbo dev",
         "dev:server": "turbo -F server dev",
         "dev:tanstack": "turbo -F tanstack dev",
-        "dev:web": "turbo -F web dev",
+        "dev:next": "turbo -F next dev",
         "build": "turbo build",
         "check": "turbo run check --continue",
         "check:fix": "turbo run check:fix --continue",

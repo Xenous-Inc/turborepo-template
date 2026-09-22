@@ -35,7 +35,7 @@ catalogs:
         varlock: ^1.18.0
 
 # Varlock replaces Next.js' env loader - https://varlock.dev/integrations/nextjs/
-# Unversioned: overrides don't support `catalog:`; apps/web's direct dep pins the version.
+# Unversioned: overrides don't support `catalog:`; apps/next's direct dep pins the version.
 overrides:
     '@next/env': npm:@varlock/nextjs-integration
 
