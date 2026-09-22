@@ -13,7 +13,8 @@ export const getRouter = () => {
     const router = createRouter({
         routeTree,
         context: { queryClient, orpc },
-        defaultPreload: 'intent',
+        defaultPreload: 'intent', // run a route's loader as soon as a link is hovered or touched
+        defaultPreloadStaleTime: 0, // let Query own freshness — Router's 30s preload cache would shadow it
         scrollRestoration: true,
     });
 
