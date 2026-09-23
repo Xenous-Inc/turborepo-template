@@ -1,5 +1,9 @@
 # syntax=docker/dockerfile:1
 
+# varlock resolves the env graph at container start, so the runner needs the CLI.
+# Keep this in sync with the `varlock` catalog entry in pnpm-workspace.yaml.
+FROM ghcr.io/dmno-dev/varlock:1.18.0 AS varlock
+
 ARG APP_DIRNAME="next"
 ARG APP_PKG_NAME="next"
 
@@ -138,6 +142,10 @@ RUN \
     --mount=type=secret,id=TURBO_TOKEN,env=TURBO_TOKEN \
     pnpm run build
 
+# Collapse the @import graph into a self-contained dir the runner can load.
+# Purely structural - no values are resolved, so no secrets are involved.
+RUN cd apps/next && pnpm exec varlock flatten --out-dir /app/.env-flat
+
 
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
@@ -154,6 +162,9 @@ ENV DOCKER=true
 ARG NODE_ENV="production"
 ENV NODE_ENV="$NODE_ENV"
 
+COPY --from=varlock /usr/local/bin/varlock /usr/local/bin/varlock
+COPY --from=builder /app/.env-flat ./.env-flat
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
@@ -169,4 +180,4 @@ ENV PORT="$PORT"
 
 ENV APP_DIRNAME="$APP_DIRNAME"
 
-ENTRYPOINT PORT=$PORT node apps/$APP_DIRNAME/server.js
+ENTRYPOINT PORT=$PORT varlock run -p ./.env-flat/ -- node apps/$APP_DIRNAME/server.js
