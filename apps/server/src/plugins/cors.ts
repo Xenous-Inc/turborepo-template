@@ -12,6 +12,7 @@ export default definePlugin(async nitro => {
 
         if (origin && ENV.CORS_ORIGIN.includes(origin)) {
             res.headers.set('Access-Control-Allow-Origin', origin);
+            res.headers.append('Vary', 'Origin');
         }
     });
 });
