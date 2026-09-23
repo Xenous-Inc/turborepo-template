@@ -5,8 +5,15 @@
 /* eslint-disable */
 export type CoercedEnvSchema = {
   /**
+   * **SERVER_URL**  
+   * SSR-side URL for the `server` app; may differ from NEXT_PUBLIC_SERVER_URL on an internal network.  
+   * ![icon](data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23808080%22%20d%3D%22M24%2021V9h-2v14h8v-2zm-4-6v-4c0-1.103-.897-2-2-2h-6v14h2v-6h1.48l2.335%206h2.145l-2.333-6H18c1.103%200%202-.897%202-2m-6-4h4v4h-4zM8%2023H4c-1.103%200-2-.897-2-2V9h2v12h4V9h2v12c0%201.103-.897%202-2%202%22%2F%3E%3C%2Fsvg%3E)   
+   */
+  SERVER_URL: string;
+  
+  /**
    * **NEXT_PUBLIC_SERVER_URL**  
-   * Base URL of the `server` app.  
+   * Browser-side URL for the `server` app.  
    * ![icon](data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23808080%22%20d%3D%22M24%2021V9h-2v14h8v-2zm-4-6v-4c0-1.103-.897-2-2-2h-6v14h2v-6h1.48l2.335%206h2.145l-2.333-6H18c1.103%200%202-.897%202-2m-6-4h4v4h-4zM8%2023H4c-1.103%200-2-.897-2-2V9h2v12h4V9h2v12c0%201.103-.897%202-2%202%22%2F%3E%3C%2Fsvg%3E)   
    */
   NEXT_PUBLIC_SERVER_URL: string;
@@ -90,11 +97,11 @@ export type CoercedEnvSchema = {
   
 };
 
-type _CoercedEnvSchema_2ba916b8 = CoercedEnvSchema;
+type _CoercedEnvSchema_e558a4f9 = CoercedEnvSchema;
 
 declare module 'varlock/env' {
-  export interface TypedEnvSchema extends Readonly<_CoercedEnvSchema_2ba916b8> {}
-  export interface PublicTypedEnvSchema extends Readonly<Pick<_CoercedEnvSchema_2ba916b8, 'NEXT_PUBLIC_SERVER_URL' | 'NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED' | 'NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED' | 'NODE_ENV' | 'DOCKER' | 'PORT' | 'HOST' | 'COOLIFY_FQDN' | 'COOLIFY_URL' | 'COOLIFY_BRANCH' | 'COOLIFY_RESOURCE_UUID' | 'COOLIFY_CONTAINER_NAME' | 'SOURCE_COMMIT'>> {}
+  export interface TypedEnvSchema extends Readonly<_CoercedEnvSchema_e558a4f9> {}
+  export interface PublicTypedEnvSchema extends Readonly<Pick<_CoercedEnvSchema_e558a4f9, 'SERVER_URL' | 'NEXT_PUBLIC_SERVER_URL' | 'NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED' | 'NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED' | 'NODE_ENV' | 'DOCKER' | 'PORT' | 'HOST' | 'COOLIFY_FQDN' | 'COOLIFY_URL' | 'COOLIFY_BRANCH' | 'COOLIFY_RESOURCE_UUID' | 'COOLIFY_CONTAINER_NAME' | 'SOURCE_COMMIT'>> {}
 }
 
 
@@ -104,17 +111,17 @@ export type EnvSchemaAsStrings = {
       : (NonNullable<CoercedEnvSchema[Property]> extends boolean ? ('true' | 'false') : string)
 };
 
-type _EnvSchemaAsStrings_2ba916b8 = EnvSchemaAsStrings;
+type _EnvSchemaAsStrings_e558a4f9 = EnvSchemaAsStrings;
 declare global {
 
   // add types for global import.meta.env
-  interface ImportMetaEnv extends _EnvSchemaAsStrings_2ba916b8 {}
+  interface ImportMetaEnv extends _EnvSchemaAsStrings_e558a4f9 {}
   interface ImportMeta {
     readonly env: ImportMetaEnv;
   }
 
   // add types for global process.env
   namespace NodeJS {
-    interface ProcessEnv extends _EnvSchemaAsStrings_2ba916b8 {}
+    interface ProcessEnv extends _EnvSchemaAsStrings_e558a4f9 {}
   }
 }

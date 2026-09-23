@@ -34,7 +34,7 @@ const forwardableHeaders = (headers: Headers) => {
 };
 
 const link = new RPCLink({
-    url: `${ENV.NEXT_PUBLIC_SERVER_URL}/rpc`,
+    url: () => `${typeof window === 'undefined' ? ENV.SERVER_URL : ENV.NEXT_PUBLIC_SERVER_URL}/rpc`,
     /**
      * Server-side fetch has no cookie jar, so the incoming headers must be forwarded or every server-rendered
      * call is anonymous. A function, not a value, so the shared link reads the current request.
