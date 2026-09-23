@@ -5,28 +5,21 @@ import { getQueryClient } from './query/client';
 
 const getCachedQueryClient = cache(getQueryClient);
 
-const isORPCQueryKey = (queryKey: QueryKey): queryKey is OperationKey<OperationType, never> => {
+/** Everything that is fetched rather than triggered — `mutation` and `live` are not prefetchable. */
+const PREFETCHABLE_TYPES = new Set<unknown>(['query', 'streamed', 'infinite'] satisfies OperationType[]);
+
+const isORPCQueryKey = (queryKey: QueryKey): queryKey is OperationKey<'query' | 'streamed' | 'infinite', unknown> => {
     if (queryKey.length !== 2) return false;
 
-    const path = queryKey[0];
-    const options = queryKey[1];
+    const [path, options] = queryKey;
 
     if (!Array.isArray(path)) return false;
     if (typeof options !== 'object' || options === null) return false;
 
-    /** We don't accept input as it can be here only if it's mutationKey */
-    if ('input' in options && typeof options.input !== 'undefined') return false;
+    /** A key built without a type matches every operation on the procedure, so read it as a query. */
+    if (!('type' in options) || options.type === undefined) return true;
 
-    /** Excluding mutation because we only check for queryies */
-    const operationTypes = ['query', 'streamed', 'infinite'] satisfies OperationType[];
-
-    if (!('type' in options) || typeof options.type === 'undefined') return true;
-
-    if ('type' in options && (typeof options.type !== 'string' || operationTypes.includes(options.type))) {
-        return false;
-    }
-
-    return true;
+    return PREFETCHABLE_TYPES.has(options.type);
 };
 
 const prefetch = <
