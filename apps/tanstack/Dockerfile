@@ -1,9 +1,5 @@
 # syntax=docker/dockerfile:1
 
-# varlock resolves the env graph at container start, so the runner needs the CLI.
-# Keep this in sync with the `varlock` catalog entry in pnpm-workspace.yaml.
-FROM ghcr.io/dmno-dev/varlock:1.18.0 AS varlock
-
 ARG APP_DIRNAME="tanstack"
 ARG APP_PKG_NAME="tanstack"
 
@@ -85,28 +81,15 @@ COPY --from=pruner /app/out/json .
 
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                       Development dependencies                                     ##
+##                                            Dependencies                                            ##
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 
 
-FROM base AS dev-deps
+FROM base AS deps
 WORKDIR /app
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-
-
-
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-##                                       Production dependencies                                      ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
-
-
-
-FROM base AS production-deps
-WORKDIR /app
-
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
 
 
@@ -121,7 +104,7 @@ ARG APP_PKG_NAME
 WORKDIR /app
 
 COPY --from=pruner /app/out/full .
-COPY --from=dev-deps /app .
+COPY --from=deps /app .
 
 # Baked onto the image because the runtime needs them too - secret mounts do not persist.
 ENV DOCKER=true
@@ -162,8 +145,9 @@ ENV DOCKER=true
 ARG NODE_ENV="production"
 ENV NODE_ENV="$NODE_ENV"
 
-COPY --from=varlock /usr/local/bin/varlock /usr/local/bin/varlock
 COPY --from=builder /app/.env-flat ./.env-flat
+COPY --from=deps /app/apps/tanstack/node_modules/varlock ./node_modules/varlock
+RUN ln -s /app/node_modules/varlock/bin/cli.js /usr/local/bin/varlock
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nitro
