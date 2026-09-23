@@ -7,6 +7,9 @@ export default defineNitroConfig({
 
     runtimeConfig: { version },
 
+    /** Maps bundled frames back to `src/...`; node needs `--enable-source-maps` to read them. */
+    sourcemap: true,
+
     routeRules: {
         '/**': { cors: true },
     },

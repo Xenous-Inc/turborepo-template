@@ -179,4 +179,4 @@ ENV PORT="$PORT"
 
 ENV APP_DIRNAME="$APP_DIRNAME"
 
-ENTRYPOINT PORT=$PORT varlock run -p ./.env-flat/ -- node server/index.mjs
+ENTRYPOINT PORT=$PORT varlock run -p ./.env-flat/ -- node --enable-source-maps server/index.mjs

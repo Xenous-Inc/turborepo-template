@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { toORPCError } from '@orpc/client';
 import { ORPCError, onError } from '@orpc/server';
 import { RPCHandler } from '@orpc/server/fetch';
@@ -7,12 +8,15 @@ import { logger } from '@xenous/logger';
 import { defineHandler } from 'nitro/h3';
 import { appRouter } from '~/routers';
 
+/** Library code: installed, node's own, or bundled into the build output by nitro. */
+const FOREIGN_FRAMES = ['node_modules', 'node:internal', '.output'];
+
 /** Errors are constructed inside libraries, so the first frame outside them is our own call site. */
 const getOrigin = (error: unknown) => {
     if (!(error instanceof Error) || typeof error.stack !== 'string') return undefined;
 
     for (const line of error.stack.split('\n').slice(1)) {
-        if (line.includes('node_modules') || line.includes('node:internal')) continue;
+        if (FOREIGN_FRAMES.some(fragment => line.includes(fragment))) continue;
 
         /**
          * A frame is either `at Object.handler (src/routers/todo.ts:17:20)` or, for an anonymous function,
@@ -24,10 +28,12 @@ const getOrigin = (error: unknown) => {
 
         if (frame === null) continue;
 
-        const [, file, row, column] = frame;
+        const [, location, row, column] = frame;
 
-        if (file === undefined) continue;
+        if (location === undefined) continue;
 
+        /** Built frames are `file://` URLs, and percent-encoded where a chunk name holds `[...]`. */
+        const file = location.startsWith('file:') ? fileURLToPath(location) : location;
         const relative = path.relative(process.cwd(), file);
 
         /** A file outside the app root turns into `../..`, which reads worse than the full path. */
