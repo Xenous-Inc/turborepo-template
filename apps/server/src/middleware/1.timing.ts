@@ -15,7 +15,7 @@ export default defineMiddleware(async (event, next) => {
     const result = await next();
 
     const end = Date.now();
-    logger.withTag('H3').debug(`${event.req.method} ${event.url.toString()} took ${end - start}ms to execute`);
+    logger.withTag('Nitro').debug(`${event.req.method} ${event.url.toString()} took ${end - start}ms to execute`);
 
     return result;
 });

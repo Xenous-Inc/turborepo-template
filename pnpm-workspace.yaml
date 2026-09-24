@@ -11,11 +11,17 @@ catalog:
     '@tanstack/react-query': ^5.102.8
     '@tanstack/react-query-devtools': ^5.102.8
     better-auth: ^1.7.3
+    '@inlang/paraglide-js': ^2.24.1
+    postgres: &postgres ^3.4.9
     tailwindcss: ^4.3.3
     typescript: ^6.0.3
     zod: ^4.5.4
 
 catalogs:
+    drizzle:
+        drizzle-kit: &drizzle-kit ^0.31.10
+        drizzle-orm: &drizzle-orm ^0.45.2
+        drizzle-zod: ^0.8.3
     node22:
         '@types/node': ^24.13.3
     orpc:
@@ -38,6 +44,17 @@ catalogs:
 # Unversioned: overrides don't support `catalog:`; apps/next's direct dep pins the version.
 overrides:
     '@next/env': npm:@varlock/nextjs-integration
+
+# These packages import things they never declare, so they only resolve under the
+# hoisting that `hoist: false` below disables. Patching each one is narrower than
+# turning hoisting back on.
+packageExtensions:
+    drizzle-kit:
+        dependencies:
+            # the `api` entrypoint requires it but declares it only as a peer
+            drizzle-orm: *drizzle-orm
+            # the driver `db:migrate`/`db:push`/`db:studio` connect through
+            postgres: *postgres
 
 allowBuilds:
     '@parcel/watcher': true

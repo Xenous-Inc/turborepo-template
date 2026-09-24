@@ -1,6 +1,8 @@
 import type { RouterUtils } from '@orpc/tanstack-query';
 import type { QueryClient } from '@tanstack/react-query';
 import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
+import { getLocale, getTextDirection } from '@xenous/i18n';
+import { m } from '@xenous/i18n/messages';
 import type { ORPCRouterClient } from '~/orpc';
 import stylesheetUrl from '~/styles/globals.css?url';
 import { Providers } from './-providers';
@@ -52,7 +54,8 @@ export const Route = createRootRouteWithContext<TanStackRouterContext>()({
         meta: [
             { charSet: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { title: 'Xenous' },
+            { title: m.common_meta_title() },
+            { name: 'description', content: m.common_meta_description() },
             { name: 'apple-mobile-web-app-title', content: 'Xenous' },
         ],
     }),
@@ -61,7 +64,7 @@ export const Route = createRootRouteWithContext<TanStackRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
     return (
-        <html lang='en' suppressHydrationWarning>
+        <html lang={getLocale()} dir={getTextDirection()} suppressHydrationWarning>
             <head>
                 <HeadContent />
             </head>

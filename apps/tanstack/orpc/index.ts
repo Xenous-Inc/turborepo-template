@@ -4,6 +4,7 @@ import type { InferRouterInputs, InferRouterOutputs, RouterClient } from '@orpc/
 import { createTanstackQueryUtils } from '@orpc/tanstack-query';
 import { createIsomorphicFn } from '@tanstack/react-start';
 import { getRequestHeaders } from '@tanstack/react-start/server';
+import { getLocale, localeHeaderName } from '@xenous/i18n';
 import { ENV } from 'varlock/env';
 import type { AppRouter } from '../../server/src/routers';
 
@@ -40,15 +41,22 @@ const getLink = createIsomorphicFn()
         return new RPCLink({
             url: `${ENV.SERVER_URL}/rpc`,
             /**
-             * Server-side fetch has no cookie jar, so the incoming headers must be forwarded or every SSR
+             * Server-side fetch has no cookie jar, so the incoming headers must be forwarded or every server-rendered
              * call is anonymous. A function, not a value, so the shared link reads the current request.
+             *
+             * The locale is set last, over the raw signals this render already resolved.
              */
-            headers: () => forwardableHeaders(getRequestHeaders()),
+            headers: () => ({
+                ...forwardableHeaders(getRequestHeaders()),
+                [localeHeaderName]: getLocale(),
+            }),
         });
     })
     .client(() => {
         return new RPCLink({
             url: `${ENV.VITE_SERVER_URL}/rpc`,
+            /** `/rpc/*` has no locale prefix, so the locale travels as a header. */
+            headers: () => ({ [localeHeaderName]: getLocale() }),
             fetch: (url, options) => {
                 return fetch(url, {
                     ...options,

@@ -37,8 +37,8 @@
         "db:migrate": "drizzle-kit migrate"
     },
     "dependencies": {
-        "drizzle-orm": "^0.45.2",
-        "drizzle-zod": "^0.8.3",
+        "drizzle-orm": "catalog:drizzle",
+        "drizzle-zod": "catalog:drizzle",
         "find-up": "^8.0.0",
         "postgres": "^3.4.9",
         "varlock": "catalog:varlock",
@@ -49,7 +49,7 @@
         "@types/node": "catalog:node22",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
-        "drizzle-kit": "^0.30.6",
+        "drizzle-kit": "catalog:drizzle",
         "typescript": "catalog:"
     }
 }

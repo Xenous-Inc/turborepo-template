@@ -12,6 +12,7 @@
             "!**/.vscode",
             "!**/routeTree.gen.ts",
             "!**/env.d.ts",
+            "!**/src/paraglide",
             "!**/.expo",
             "!**/node_modules",
             "!**/.cache"

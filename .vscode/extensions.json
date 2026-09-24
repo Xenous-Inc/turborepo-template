@@ -4,6 +4,7 @@
         "yoavbls.pretty-ts-errors",
         "bradlc.vscode-tailwindcss",
         "biomejs.biome",
-        "varlock.env-spec-language"
+        "varlock.env-spec-language",
+        "inlang.vs-code-extension"
     ]
 }

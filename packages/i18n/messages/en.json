@@ -1,0 +1,18 @@
+{
+    "$schema": "https://inlang.com/schema/inlang-message-format",
+    "amber_socket_kite": "Dashboard",
+    "common_meta_description": "Type-safe monorepo starter with a Nitro API, Next.js and TanStack Start.",
+    "common_meta_title": "Xenous",
+    "gentle_juniper_coral": "Checking...",
+    "humble_iris_willow": "Private data",
+    "ivory_lantern_urn": "Welcome {name}",
+    "mellow_kettle_finch": "API Status",
+    "quiet_thistle_heron": "Locale resolution reached the server.",
+    "tidy_ember_lamp": "Loading...",
+    "tidy_umbra_lamp": "Disconnected",
+    "validators_invalid_country_code": "Invalid country code format",
+    "validators_invalid_email_format": "Invalid email format",
+    "validators_invalid_phone_format": "Invalid phone number format",
+    "validators_required": "Required",
+    "vivid_grove_tide": "Connected"
+}

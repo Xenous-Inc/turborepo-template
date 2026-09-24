@@ -1,0 +1,53 @@
+{
+    "$schema": "https://schemastore.org/package.json",
+    "name": "@xenous/i18n",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./src/index.ts",
+            "default": "./src/index.ts"
+        },
+        "./messages": {
+            "types": "./src/messages.ts",
+            "default": "./src/messages.ts"
+        },
+        "./server": {
+            "types": "./src/server.ts",
+            "default": "./src/server.ts"
+        },
+        "./strategy": {
+            "types": "./src/strategy.ts",
+            "default": "./src/strategy.ts"
+        },
+        "./zod": {
+            "types": "./src/zod.ts",
+            "default": "./src/zod.ts"
+        }
+    },
+    "scripts": {
+        "clean": "git clean -xdf .cache .turbo dist node_modules src/paraglide",
+        "compile": "node scripts/compile.ts",
+        "dev": "node scripts/compile.ts --watch",
+        "build": "tsc",
+        "check": "biome check .",
+        "check:fix": "biome check . --write",
+        "check:unsafe": "biome check . --write --unsafe",
+        "ci": "biome ci",
+        "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    },
+    "dependencies": {
+        "@inlang/paraglide-js": "catalog:",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "catalog:",
+        "@types/node": "catalog:node22",
+        "@xenous/biome-config": "workspace:*",
+        "@xenous/logger": "workspace:*",
+        "@xenous/typescript": "workspace:*",
+        "perfect-debounce": "^2.1.0",
+        "typescript": "catalog:"
+    }
+}

@@ -1,4 +1,5 @@
 import { createIsomorphicFn, createMiddleware, createServerFn } from '@tanstack/react-start';
+import { getLocale, localeHeaderName } from '@xenous/i18n';
 import { createAuthClient } from 'better-auth/react';
 import { ENV } from 'varlock/env';
 
@@ -9,9 +10,18 @@ const getBaseURL = createIsomorphicFn()
 
 export const authClient = createAuthClient({
     baseURL: getBaseURL(),
+    fetchOptions: {
+        /** Per request, not at construction: the locale changes when the user switches language. */
+        onRequest: context => {
+            context.headers.set(localeHeaderName, getLocale());
+
+            return context;
+        },
+    },
 });
 
 export const authMiddleware = createMiddleware().server(async ({ next, request }) => {
+    // Forward the user's headers so the session cookie reaches the API.
     const session = await authClient.getSession({
         fetchOptions: {
             headers: request.headers,

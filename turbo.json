@@ -1,6 +1,7 @@
 {
     "$schema": "https://turborepo.com/schema.json",
     "ui": "tui",
+    "concurrency": "15",
     "globalDependencies": [".env.schema"],
     "globalEnv": ["NODE_ENV", "DOCKER", "NEXT_PUBLIC_*", "VITE_*"],
     "globalPassThroughEnv": ["CI", "HOST", "PORT", "GITHUB_*", "VARLOCK_*"],

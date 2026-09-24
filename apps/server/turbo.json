@@ -7,6 +7,7 @@
             "outputs": [".output/**", ".nitro/**"]
         },
         "dev": {
+            "dependsOn": ["@xenous/i18n#compile"],
             "persistent": true
         },
         "auth:sync": {

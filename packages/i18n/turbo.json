@@ -1,0 +1,23 @@
+{
+    "$schema": "https://turborepo.com/schema.json",
+    "extends": ["//"],
+    "tasks": {
+        // Paraglide generates `src/paraglide` from the message files. Everything
+        // that reads the generated code depends on this task instead of running
+        // the compiler itself.
+        "compile": {
+            "inputs": ["messages/**", "project.inlang/**", "scripts/**"],
+            "outputs": ["src/paraglide/**"]
+        },
+        "build": {
+            "dependsOn": ["compile"],
+            "inputs": ["$TURBO_DEFAULT$", "src/paraglide/**"],
+            "outputs": [".cache/tsbuildinfo.json", "dist/**"]
+        },
+        "typecheck": {
+            "dependsOn": ["^typecheck", "compile"],
+            "inputs": ["$TURBO_DEFAULT$", "src/paraglide/**"],
+            "outputs": [".cache/tsbuildinfo.json"]
+        }
+    }
+}

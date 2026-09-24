@@ -13,10 +13,6 @@
             "types": "./dist/src/helpers/_index.d.ts",
             "default": "./src/helpers/_index.ts"
         },
-        "./model": {
-            "types": "./dist/src/model/_index.d.ts",
-            "default": "./src/model/_index.ts"
-        },
         "./payload": {
             "types": "./dist/src/payload/_index.d.ts",
             "default": "./src/payload/_index.ts"
@@ -33,6 +29,7 @@
         "typecheck": "tsc --noEmit --emitDeclarationOnly false"
     },
     "dependencies": {
+        "@xenous/i18n": "workspace:*",
         "libphonenumber-js": "^1.13.12",
         "zod": "catalog:"
     },
