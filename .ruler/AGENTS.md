@@ -48,7 +48,9 @@ full rules — read it before touching any env file.
 - Env vars are managed by Varlock — see the Environment variables section below.
 - Conventional commits enforced by commitlint via Lefthook.
 - Shared dependency versions managed through pnpm catalogs. Use `"catalog:"` or `"catalog:<name>"` in package.json.
-- Scaffold new packages with `pnpm turbo gen init`.
+- Scaffold new packages with `pnpm gen init`, never `pnpm turbo gen init`. `turbo gen` ignores the
+  installed `@turbo/gen` and runs `pnpm dlx` instead; that temp install does not read the
+  `allowBuilds` list in `pnpm-workspace.yaml`, so pnpm stops on esbuild's skipped build script.
 - Use `pnpx` instead of `npx` to execute package binaries.
 - In React components, separate logical groups (hooks, derived state, handlers, render) with blank lines for readability.
 - Read existing code in the area you're modifying before making changes — match surrounding patterns and style.
