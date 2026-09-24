@@ -1,10 +1,13 @@
-import { isServer, QueryCache, QueryClient } from '@tanstack/react-query';
+import { QueryCache, QueryClient } from '@tanstack/react-query';
 import { serializer } from './serializer';
 
-// note: this setup isn't required with TanStack Start, but we use this for ease of using single entrypoint
-// fixme: make sure to get this right with https://tanstack.com/router/latest/docs/framework/react/guide/external-data-loading#critical-dehydrationhydration
-
-const createQueryClient = () =>
+/**
+ * Called once per router, so each SSR request gets its own cache and the browser keeps one for the
+ * session. Creating it at module scope instead would serve one reader's data inside another's HTML.
+ *
+ * {@link https://tanstack.com/start/latest/docs/framework/react/guide/tanstack-query | TanStack Start + Query}
+ */
+export const createQueryClient = () =>
     new QueryClient({
         defaultOptions: {
             queries: {
@@ -38,20 +41,3 @@ const createQueryClient = () =>
             // },
         }),
     });
-
-let clientQueryClientSingleton: QueryClient | undefined;
-
-export const getQueryClient = () => {
-    if (isServer) {
-        // Server: always make a new query client
-        return createQueryClient();
-    }
-
-    // Browser: make a new query client if we don't already have one
-    // This is very important, so we don't re-make a new client if React
-    // suspends during the initial render. This may not be needed if we
-    // have a suspense boundary BELOW the creation of the query client
-    clientQueryClientSingleton ??= createQueryClient();
-
-    return clientQueryClientSingleton;
-};
