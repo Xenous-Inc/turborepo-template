@@ -1,15 +1,18 @@
 name: CI
 
 on:
+    # `**` matches slashes and `*` does not, so this also covers PRs into `release/1.0`.
     pull_request:
-        branches: ['*']
+        branches: ['**']
     push:
-        branches: [main, develop]
+        branches: [main, 'dev*']
     merge_group:
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: ${{ github.ref != 'refs/heads/main' &&  github.ref != 'refs/heads/develop'  }}
+    # A new run cancels the one in flight, except on main and dev*, where every commit keeps
+    # its own status. Manual cancelling still works anywhere.
+    cancel-in-progress: ${{ github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/heads/dev') }}
 
 # You can leverage Vercel Remote Caching with Turbo to speed up your builds
 # @link https://turborepo.org/docs/core-concepts/remote-caching#remote-caching-on-vercel-builds
