@@ -62,6 +62,23 @@ To add a new package, simply run `pnpm gen init` in the monorepo root. This will
 
 The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as well as configures all the necessary configurations for tooling around your package such as formatting, linting and typechecking. When the package is created, you're ready to go build out the package.
 
+## When you remove or rename an app
+
+App names are spread across config files and comments, so deleting or renaming a folder in
+`apps/` is not enough. Update or remove every mention of the old name:
+
+- `docker-compose.yml`: the service, `container_name`, Dockerfile path, env file paths and `depends_on`
+- The app's own `Dockerfile`, which copies from and runs in `apps/<name>`
+- Root `package.json`: the `dev:<name>` scripts
+- `turbo.json` and any per-app `turbo.json`
+- `.github/workflows`: the app matrix in `build.yml.disabled`
+- `.vscode/launch.json`
+- This README (Project Structure, Available Scripts) and `.ruler/AGENTS.md` (then run `pnpm ruler:apply`)
+- Code comments that name the app, like the CORS note in `apps/server/src/plugins/cors.ts`
+
+Then run `pnpm install` to refresh the lockfile, and search the repo for the old folder and
+package name to catch anything this list misses.
+
 ## Project Structure
 
 ```
