@@ -51,7 +51,11 @@
             "cva\\(([^)]*)\\)"
         ]
     ],
-    "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
+    "tailwindCSS.experimental.configFile": {
+        "apps/next/src/styles/globals.css": "apps/next/**",
+        "apps/tanstack/src/styles/globals.css": "apps/tanstack/**",
+        "packages/ui/src/styles/globals.css": "packages/ui/**"
+    },
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "typescript.preferences.autoImportFileExcludePatterns": [
         "zod/dist/types/index.d.ts",

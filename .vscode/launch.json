@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "Server",
-            "type":"node-terminal",
+            "type": "node-terminal",
             "request": "launch",
             "command": "pnpm dev",
             "cwd": "${workspaceFolder}/apps/server",
@@ -13,11 +13,22 @@
             "sourceMaps": true
         },
         {
-            "name": "Web",
+            "name": "TanStack",
             "type": "node-terminal",
             "request": "launch",
             "command": "pnpm dev",
-            "cwd": "${workspaceFolder}/apps/web",
+            "cwd": "${workspaceFolder}/apps/tanstack",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "sourceMaps": true
+        },
+        {
+            "name": "Next",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "pnpm dev",
+            "cwd": "${workspaceFolder}/apps/next",
             "skipFiles": [
                 "<node_internals>/**"
             ],
