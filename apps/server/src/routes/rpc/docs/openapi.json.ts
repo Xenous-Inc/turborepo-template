@@ -6,12 +6,30 @@ import { defineHandler } from 'nitro/h3';
 import { useRuntimeConfig } from 'nitro/runtime-config';
 import { appRouter } from '~/routers';
 
+const forwardedOrigin = ({
+    url,
+    headers,
+}: {
+    url: URL;
+    headers: Record<string, string | readonly string[] | undefined>;
+}) => {
+    const header = headers['x-forwarded-proto'];
+    const proto = (typeof header === 'string' ? header : header?.[0])?.split(',')[0]?.trim();
+
+    const forwarded = new URL(url);
+    if (proto === 'https') forwarded.protocol = 'https:';
+
+    return forwarded.origin;
+};
+
 const openapiHandler = new OpenAPIHandler(appRouter, {
     plugins: [
         new OpenAPIReferencePlugin({
             specPath: '/',
-            specGenerateOptions: event => ({
-                servers: [{ url: `${event.request.url.origin}/rpc` }],
+            specGenerateOptions: ({ request }) => ({
+                // The proxy terminates TLS, so the request Nitro sees is http and Scalar would
+                // call an http server URL from an https page. srvx does not trust forwarded headers.
+                servers: [{ url: `${forwardedOrigin(request)}/rpc` }],
                 info: {
                     title: 'oRPC',
                     description:
