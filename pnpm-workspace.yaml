@@ -4,14 +4,16 @@ packages:
   - tooling/*
 
 catalog:
+    '@base-ui/react': ^1.7.0
     '@better-auth/expo': ^1.7.3
     '@biomejs/biome': ^2.5.12
+    '@inlang/paraglide-js': ^2.24.1
     '@tailwindcss/postcss': ^4.3.3
     '@tanstack/react-form': ^1.33.5
     '@tanstack/react-query': ^5.102.8
     '@tanstack/react-query-devtools': ^5.102.8
     better-auth: ^1.7.3
-    '@inlang/paraglide-js': ^2.24.1
+    clsx: &clsx ^2.1.1
     postgres: &postgres ^3.4.9
     tailwindcss: ^4.3.3
     typescript: ^6.0.3

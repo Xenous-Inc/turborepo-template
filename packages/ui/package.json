@@ -25,10 +25,9 @@
         "restructure": "./restructure.sh && pnpm check:fix"
     },
     "dependencies": {
-        "@base-ui/react": "^1.8.0",
         "@tabler/icons-react": "^3.46.0",
         "class-variance-authority": "^0.7.1",
-        "clsx": "^2.1.1",
+        "clsx": "catalog:",
         "shadcn": "^3.8.5",
         "tailwind-merge": "^3.6.0"
     },
@@ -41,6 +40,7 @@
         "typescript": "catalog:"
     },
     "peerDependencies": {
+        "@base-ui/react": "catalog:",
         "react": "catalog:react19",
         "tailwindcss": "catalog:"
     }
