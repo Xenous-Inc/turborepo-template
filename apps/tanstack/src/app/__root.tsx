@@ -1,10 +1,16 @@
+import stylesheetUrl from '~/styles/globals.css?url';
+
+/** Keep as module imports — fontaine cannot see through a CSS `@import`. */
+import '@fontsource-variable/geist/wght.css';
+import '@fontsource-variable/geist-mono/wght.css';
+import '@fontsource-variable/unbounded/wght.css';
+
 import type { RouterUtils } from '@orpc/tanstack-query';
 import type { QueryClient } from '@tanstack/react-query';
 import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
 import { getLocale, getTextDirection } from '@xenous/i18n';
 import { m } from '@xenous/i18n/messages';
 import type { ORPCRouterClient } from '~/orpc';
-import stylesheetUrl from '~/styles/globals.css?url';
 import { Providers } from './-providers';
 
 interface TanStackRouterContext {

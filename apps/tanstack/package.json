@@ -54,6 +54,7 @@
         "@vitejs/plugin-react": "^6.1.1",
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
+        "fontaine": "^0.8.0",
         "server": "workspace:*",
         "tailwindcss": "catalog:",
         "typescript": "catalog:",

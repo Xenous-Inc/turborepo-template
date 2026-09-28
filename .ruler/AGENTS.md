@@ -57,6 +57,8 @@ full rules — read it before touching any env file.
   its `Dockerfile`, root `package.json` scripts, `turbo.json`, `.github/workflows`, `.vscode`, the
   README, this file, and code comments. The README section "When you remove or rename an app" has
   the full list. Finish by searching the repo for the old folder and package name.
+- When you add a font to `apps/tanstack`, also add it to the fontaine `fallbacks` in `vite.config.ts`.
+  `apps/tanstack/README.md` has the full steps.
 - Message keys are random word triplets (`amber_socket_kite`), which is what Sherlock generates on
   extract and what Paraglide recommends: copy changes never force a rename. Semantic keys are fine
   where the key names a fixed slot rather than a piece of copy — `validators_*` and `common_meta_*`.
