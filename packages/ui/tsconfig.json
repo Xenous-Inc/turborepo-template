@@ -5,13 +5,7 @@
         /** Base Options */
         "module": "esnext",
         "lib": ["ES2024", "DOM", "DOM.Iterable"],
-        "jsx": "react-jsx",
-
-        /** Aliases */
-        "paths": {
-            "~/*": ["./src/*"],
-            "@xenous/ui/*": ["./src/*"]
-        }
+        "jsx": "react-jsx"
     },
     "include": ["src", "*.ts", ".d.ts"]
 }

@@ -9,7 +9,7 @@
         "./types/*": "./types/*.d.ts",
         "./lib/*": "./src/lib/*.ts",
         "./hooks/*": "./src/hooks/*.ts",
-        "./*": "./src/components/*/index.ts"
+        "./components/*": "./src/components/*/index.ts"
     },
     "scripts": {
         "clean": "git clean -xdf .cache .turbo dist node_modules",
