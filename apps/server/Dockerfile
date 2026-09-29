@@ -169,4 +169,8 @@ ENV PORT="$PORT"
 
 ENV APP_DIRNAME="$APP_DIRNAME"
 
+# Compose waits on this before starting dependents, and hosts like Coolify read it too.
+HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 \
+    CMD wget --no-verbose --tries=1 --spider http://127.0.0.1:$PORT || exit 1
+
 ENTRYPOINT PORT=$PORT varlock run -p ./.env-flat/ -- node --enable-source-maps server/index.mjs
