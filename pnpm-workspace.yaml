@@ -57,6 +57,10 @@ packageExtensions:
             drizzle-orm: *drizzle-orm
             # the driver `db:migrate`/`db:push`/`db:studio` connect through
             postgres: *postgres
+    next-themes:
+        peerDependencies:
+            # its .d.ts imports React types, so without this every prop and setter is `any`
+            '@types/react': '*'
 
 allowBuilds:
     '@parcel/watcher': true

@@ -12,6 +12,7 @@ import { getLocale, getTextDirection } from '@xenous/i18n';
 import { m } from '@xenous/i18n/messages';
 import type { ORPCRouterClient } from '~/orpc';
 import { Providers } from './-providers';
+import { DEFAULT_THEME, themeInitScript } from './-providers/theme-provider';
 
 interface TanStackRouterContext {
     queryClient: QueryClient;
@@ -70,9 +71,10 @@ export const Route = createRootRouteWithContext<TanStackRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
     return (
-        <html lang={getLocale()} dir={getTextDirection()} suppressHydrationWarning>
+        <html lang={getLocale()} dir={getTextDirection()} className={DEFAULT_THEME} suppressHydrationWarning>
             <head>
                 <HeadContent />
+                <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
             </head>
             <body className='bg-background font-sans text-foreground antialiased'>
                 <Providers>
