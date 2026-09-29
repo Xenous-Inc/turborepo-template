@@ -107,6 +107,9 @@ WORKDIR /app
 COPY --from=pruner /app/out/full .
 COPY --from=deps /app .
 
+# `turbo prune` leaves out apps/server, but web's tsconfig references it and rolldown follows that.
+RUN mkdir -p apps/server && echo '{}' > apps/server/tsconfig.json
+
 # Baked onto the image because the runtime needs them too - secret mounts do not persist.
 ENV DOCKER=true
 ARG NODE_ENV="production"
