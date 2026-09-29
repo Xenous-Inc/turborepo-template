@@ -46,6 +46,8 @@ full rules — read it before touching any env file.
 - Biome for linting+formatting (not ESLint/Prettier). Config in `tooling/biome/`. Run `pnpm check:fix` to auto-fix.
 - `import type` required for type-only imports (`verbatimModuleSyntax`).
 - No enums — use `as const` objects. No non-null assertions.
+- Name enum-like `as const` objects in PascalCase and their entries in UPPER_CASE: `Theme.DARK`, not `THEME.Dark` or `Theme.dark`.
+  Give the union type the same name as the object, `type Theme = EnumItem<typeof Theme>` (`EnumItem` from `@xenous/typescript/enum`), so one import brings both.
 - Env vars are managed by Varlock — see the Environment variables section below.
 - Conventional commits enforced by commitlint via Lefthook.
 - Shared dependency versions managed through pnpm catalogs. Use `"catalog:"` or `"catalog:<name>"` in package.json.
