@@ -2,8 +2,8 @@
 
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { ORPCProvider } from '~/orpc/provider';
-import { RwdotProvider } from './RwdotProvider';
-import { ToastProvider } from './ToastProvider';
+import { RwdotProvider } from './rwdot-provider';
+import { ToastProvider } from './toast-provider';
 
 const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (

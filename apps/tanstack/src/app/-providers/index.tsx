@@ -1,7 +1,7 @@
 import { ENV } from 'varlock/env';
 import { ORPCProvider } from '~/orpc/provider';
-import { RouterDevtoolsProvider } from './RouterDevtoolsProvider';
-import { ToastProvider } from './ToastProvider';
+import { RouterDevtoolsProvider } from './router-devtools-provider';
+import { ToastProvider } from './toast-provider';
 
 const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (
