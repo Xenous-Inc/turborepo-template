@@ -1,3 +1,5 @@
+'use client';
+
 import { Rwdot } from 'rwdot';
 import { ENV } from 'varlock/env';
 
