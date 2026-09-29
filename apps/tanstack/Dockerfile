@@ -100,6 +100,7 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 
 FROM base AS builder
+ARG APP_DIRNAME
 ARG APP_PKG_NAME
 WORKDIR /app
 
@@ -115,6 +116,7 @@ ENV NODE_ENV="$NODE_ENV"
 # optional (`required` defaults to false), which lets one Dockerfile serve all three
 # suppliers: the `*_env` file mounts for local compose, the per-variable `env=` mounts
 # for Coolify build secrets and GitHub Actions. Process env wins over the mounted file.
+# A missing `env=` secret still arrives as an empty var, which would beat the file, so unset those.
 RUN \
     --mount=type=secret,id=tanstack_env,target=/app/apps/tanstack/.env \
     --mount=type=secret,id=SERVER_URL,env=SERVER_URL \
@@ -123,11 +125,15 @@ RUN \
     --mount=type=secret,id=VITE_QUERY_DEVTOOLS_ENABLED,env=VITE_QUERY_DEVTOOLS_ENABLED \
     --mount=type=secret,id=TURBO_TEAM,env=TURBO_TEAM \
     --mount=type=secret,id=TURBO_TOKEN,env=TURBO_TOKEN \
-    pnpm run build
+    for name in $(env | grep '^[^=]*=$'); do unset "${name%=}"; done \
+    && pnpm run build
 
 # Collapse the @import graph into a self-contained dir the runner can load.
 # Purely structural - no values are resolved, so no secrets are involved.
-RUN cd apps/tanstack && pnpm exec varlock flatten --out-dir /app/.env-flat
+# Codegen writes env.d.ts now, since `varlock run` rewrites it on start and the runner can't write here.
+RUN cd apps/$APP_DIRNAME \
+    && pnpm exec varlock flatten --out-dir /app/.env-flat \
+    && pnpm exec varlock codegen -p /app/.env-flat/
 
 
 
@@ -146,7 +152,7 @@ ARG NODE_ENV="production"
 ENV NODE_ENV="$NODE_ENV"
 
 COPY --from=builder /app/.env-flat ./.env-flat
-COPY --from=deps /app/apps/tanstack/node_modules/varlock ./node_modules/varlock
+COPY --from=deps /app/apps/$APP_DIRNAME/node_modules/varlock ./node_modules/varlock
 RUN ln -s /app/node_modules/varlock/bin/cli.js /usr/local/bin/varlock
 
 RUN addgroup --system --gid 1001 nodejs
