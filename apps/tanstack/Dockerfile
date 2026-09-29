@@ -126,6 +126,8 @@ RUN \
     --mount=type=secret,id=VITE_SERVER_URL,env=VITE_SERVER_URL \
     --mount=type=secret,id=VITE_ROUTER_DEVTOOLS_ENABLED,env=VITE_ROUTER_DEVTOOLS_ENABLED \
     --mount=type=secret,id=VITE_QUERY_DEVTOOLS_ENABLED,env=VITE_QUERY_DEVTOOLS_ENABLED \
+    --mount=type=secret,id=COOLIFY_URL,env=COOLIFY_URL \
+    --mount=type=secret,id=COOLIFY_PREVIEW,env=COOLIFY_PREVIEW \
     --mount=type=secret,id=TURBO_TEAM,env=TURBO_TEAM \
     --mount=type=secret,id=TURBO_TOKEN,env=TURBO_TOKEN \
     for name in $(env | grep '^[^=]*=$'); do unset "${name%=}"; done \

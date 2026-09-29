@@ -8,6 +8,8 @@ export type CoercedEnvSchema = {
    * **SERVER_URL**  
    * SSR-side URL for the `server` app; may differ from VITE_SERVER_URL on an internal network.  
    * ![icon](data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23808080%22%20d%3D%22M24%2021V9h-2v14h8v-2zm-4-6v-4c0-1.103-.897-2-2-2h-6v14h2v-6h1.48l2.335%206h2.145l-2.333-6H18c1.103%200%202-.897%202-2m-6-4h4v4h-4zM8%2023H4c-1.103%200-2-.897-2-2V9h2v12h4V9h2v12c0%201.103-.897%202-2%202%22%2F%3E%3C%2Fsvg%3E)   
+   *   
+   * @deprecated Import `serverUrl` from `~/shared/lib/serverUrl`, which points previews at the PR's server.  
    */
   SERVER_URL: string;
   
@@ -15,6 +17,8 @@ export type CoercedEnvSchema = {
    * **VITE_SERVER_URL**  
    * Browser-side URL for the `server` app.  
    * ![icon](data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23808080%22%20d%3D%22M24%2021V9h-2v14h8v-2zm-4-6v-4c0-1.103-.897-2-2-2h-6v14h2v-6h1.48l2.335%206h2.145l-2.333-6H18c1.103%200%202-.897%202-2m-6-4h4v4h-4zM8%2023H4c-1.103%200-2-.897-2-2V9h2v12h4V9h2v12c0%201.103-.897%202-2%202%22%2F%3E%3C%2Fsvg%3E)   
+   *   
+   * @deprecated Import `publicServerUrl` from `~/shared/lib/serverUrl`, which points previews at the PR's server.  
    */
   VITE_SERVER_URL: string;
   
@@ -90,6 +94,13 @@ export type CoercedEnvSchema = {
   COOLIFY_CONTAINER_NAME?: string;
   
   /**
+   * **COOLIFY_PREVIEW**  
+   * Not predefined by Coolify: set it to true in the preview deployments' env.  
+   * ![icon](data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23808080%22%20d%3D%22M23%2023a7%207%200%201%201%207-7a7.01%207.01%200%200%201-7%207m0-12a5%205%200%201%200%205%205a5.006%205.006%200%200%200-5-5%22%2F%3E%3Ccircle%20cx%3D%229%22%20cy%3D%2216%22%20r%3D%227%22%20fill%3D%22%23808080%22%2F%3E%3C%2Fsvg%3E)   
+   */
+  COOLIFY_PREVIEW?: boolean;
+  
+  /**
    * **SOURCE_COMMIT**  
    * ![icon](data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23808080%22%20d%3D%22M29%2022h-5a2.003%202.003%200%200%201-2-2v-6a2%202%200%200%201%202-2h5v2h-5v6h5ZM18%2012h-4V8h-2v14h6a2.003%202.003%200%200%200%202-2v-6a2%202%200%200%200-2-2m-4%208v-6h4v6Zm-6-8H3v2h5v2H4a2%202%200%200%200-2%202v2a2%202%200%200%200%202%202h6v-8a2%202%200%200%200-2-2m0%208H4v-2h4Z%22%2F%3E%3C%2Fsvg%3E)   
    */
@@ -97,11 +108,11 @@ export type CoercedEnvSchema = {
   
 };
 
-type _CoercedEnvSchema_98901ae6 = CoercedEnvSchema;
+type _CoercedEnvSchema_37b2a396 = CoercedEnvSchema;
 
 declare module 'varlock/env' {
-  export interface TypedEnvSchema extends Readonly<_CoercedEnvSchema_98901ae6> {}
-  export interface PublicTypedEnvSchema extends Readonly<Pick<_CoercedEnvSchema_98901ae6, 'SERVER_URL' | 'VITE_SERVER_URL' | 'VITE_ROUTER_DEVTOOLS_ENABLED' | 'VITE_QUERY_DEVTOOLS_ENABLED' | 'NODE_ENV' | 'DOCKER' | 'PORT' | 'HOST' | 'COOLIFY_FQDN' | 'COOLIFY_URL' | 'COOLIFY_BRANCH' | 'COOLIFY_RESOURCE_UUID' | 'COOLIFY_CONTAINER_NAME' | 'SOURCE_COMMIT'>> {}
+  export interface TypedEnvSchema extends Readonly<_CoercedEnvSchema_37b2a396> {}
+  export interface PublicTypedEnvSchema extends Readonly<Pick<_CoercedEnvSchema_37b2a396, 'SERVER_URL' | 'VITE_SERVER_URL' | 'VITE_ROUTER_DEVTOOLS_ENABLED' | 'VITE_QUERY_DEVTOOLS_ENABLED' | 'NODE_ENV' | 'DOCKER' | 'PORT' | 'HOST' | 'COOLIFY_FQDN' | 'COOLIFY_URL' | 'COOLIFY_BRANCH' | 'COOLIFY_RESOURCE_UUID' | 'COOLIFY_CONTAINER_NAME' | 'COOLIFY_PREVIEW' | 'SOURCE_COMMIT'>> {}
 }
 
 
@@ -111,17 +122,17 @@ export type EnvSchemaAsStrings = {
       : (NonNullable<CoercedEnvSchema[Property]> extends boolean ? ('true' | 'false') : string)
 };
 
-type _EnvSchemaAsStrings_98901ae6 = EnvSchemaAsStrings;
+type _EnvSchemaAsStrings_37b2a396 = EnvSchemaAsStrings;
 declare global {
 
   // add types for global import.meta.env
-  interface ImportMetaEnv extends _EnvSchemaAsStrings_98901ae6 {}
+  interface ImportMetaEnv extends _EnvSchemaAsStrings_37b2a396 {}
   interface ImportMeta {
     readonly env: ImportMetaEnv;
   }
 
   // add types for global process.env
   namespace NodeJS {
-    interface ProcessEnv extends _EnvSchemaAsStrings_98901ae6 {}
+    interface ProcessEnv extends _EnvSchemaAsStrings_37b2a396 {}
   }
 }

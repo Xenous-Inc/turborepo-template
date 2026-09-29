@@ -1,12 +1,12 @@
 import { createIsomorphicFn, createMiddleware, createServerFn } from '@tanstack/react-start';
 import { getLocale, localeHeaderName } from '@xenous/i18n';
 import { createAuthClient } from 'better-auth/react';
-import { ENV } from 'varlock/env';
+import { publicServerUrl, serverUrl } from './serverUrl';
 
 /** Same split as the oRPC link: the browser needs the public URL, SSR can take the internal one. */
 const getBaseURL = createIsomorphicFn()
-    .server(() => ENV.SERVER_URL)
-    .client(() => ENV.VITE_SERVER_URL);
+    .server(() => serverUrl)
+    .client(() => publicServerUrl);
 
 export const authClient = createAuthClient({
     baseURL: getBaseURL(),

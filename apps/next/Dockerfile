@@ -124,6 +124,8 @@ RUN \
     --mount=type=secret,id=NEXT_PUBLIC_SERVER_URL,env=NEXT_PUBLIC_SERVER_URL \
     --mount=type=secret,id=NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED,env=NEXT_PUBLIC_NEXT_DEVTOOLS_ENABLED \
     --mount=type=secret,id=NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED,env=NEXT_PUBLIC_QUERY_DEVTOOLS_ENABLED \
+    --mount=type=secret,id=COOLIFY_URL,env=COOLIFY_URL \
+    --mount=type=secret,id=COOLIFY_PREVIEW,env=COOLIFY_PREVIEW \
     --mount=type=secret,id=TURBO_TEAM,env=TURBO_TEAM \
     --mount=type=secret,id=TURBO_TOKEN,env=TURBO_TOKEN \
     for name in $(env | grep '^[^=]*=$'); do unset "${name%=}"; done \

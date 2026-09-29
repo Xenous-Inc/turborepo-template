@@ -5,7 +5,7 @@ import { createTanstackQueryUtils } from '@orpc/tanstack-query';
 import { createIsomorphicFn } from '@tanstack/react-start';
 import { getRequestHeaders } from '@tanstack/react-start/server';
 import { getLocale, localeHeaderName } from '@xenous/i18n';
-import { ENV } from 'varlock/env';
+import { publicServerUrl, serverUrl } from '~/shared/lib/serverUrl';
 import type { AppRouter } from '../../server/src/routers';
 
 /**
@@ -39,7 +39,7 @@ const forwardableHeaders = (headers: Headers) => {
 const getLink = createIsomorphicFn()
     .server(() => {
         return new RPCLink({
-            url: `${ENV.SERVER_URL}/rpc`,
+            url: `${serverUrl}/rpc`,
             /**
              * Server-side fetch has no cookie jar, so the incoming headers must be forwarded or every server-rendered
              * call is anonymous. A function, not a value, so the shared link reads the current request.
@@ -54,7 +54,7 @@ const getLink = createIsomorphicFn()
     })
     .client(() => {
         return new RPCLink({
-            url: `${ENV.VITE_SERVER_URL}/rpc`,
+            url: `${publicServerUrl}/rpc`,
             /** `/rpc/*` has no locale prefix, so the locale travels as a header. */
             headers: () => ({ [localeHeaderName]: getLocale() }),
             fetch: (url, options) => {

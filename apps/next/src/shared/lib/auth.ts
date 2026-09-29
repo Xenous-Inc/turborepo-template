@@ -1,6 +1,6 @@
 import { createAuthClient } from 'better-auth/react';
-import { ENV } from 'varlock/env';
+import { publicServerUrl } from './serverUrl';
 
 export const authClient = createAuthClient({
-    baseURL: ENV.NEXT_PUBLIC_SERVER_URL,
+    baseURL: publicServerUrl,
 });

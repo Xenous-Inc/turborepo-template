@@ -17,6 +17,14 @@
             "types": "./dist/src/migrator.d.ts",
             "default": "./src/migrator.ts"
         },
+        "./provision": {
+            "types": "./dist/src/provision.d.ts",
+            "default": "./src/provision.ts"
+        },
+        "./url": {
+            "types": "./dist/src/url.d.ts",
+            "default": "./src/url.ts"
+        },
         "./schema": {
             "types": "./dist/src/schema/_index.d.ts",
             "default": "./src/schema/_index.ts"
