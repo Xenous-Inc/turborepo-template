@@ -6,6 +6,10 @@
             "dependsOn": ["^build"],
             "outputs": [".output/**", ".nitro/**"]
         },
+        "build:types": {
+            "dependsOn": ["^build"],
+            "outputs": [".output/types/**"]
+        },
         "dev": {
             "dependsOn": ["@xenous/i18n#compile"],
             "persistent": true

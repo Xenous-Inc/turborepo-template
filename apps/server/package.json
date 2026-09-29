@@ -7,7 +7,8 @@
     "scripts": {
         "clean": "git clean -xdf .cache .turbo .nitro .output node_modules",
         "dev": "vite dev",
-        "build": "concurrently 'vite build' 'tsdown'",
+        "build": "concurrently 'vite build' 'pnpm build:types'",
+        "build:types": "tsdown",
         "start": "varlock run -- node --enable-source-maps .output/server/index.mjs",
         "check": "biome check .",
         "check:fix": "biome check . --write",
