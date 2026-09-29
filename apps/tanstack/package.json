@@ -21,6 +21,7 @@
         "@base-ui/react": "catalog:",
         "@fontsource-variable/geist": "^5.3.0",
         "@fontsource-variable/geist-mono": "^5.3.0",
+        "@fontsource-variable/unbounded": "^5.3.0",
         "@orpc/client": "catalog:orpc",
         "@orpc/server": "catalog:orpc",
         "@orpc/tanstack-query": "catalog:orpc",
@@ -55,7 +56,6 @@
         "@xenous/biome-config": "workspace:*",
         "@xenous/typescript": "workspace:*",
         "fontaine": "^0.8.0",
-        "server": "workspace:*",
         "tailwindcss": "catalog:",
         "typescript": "catalog:",
         "vite": "^8.2.2"
