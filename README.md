@@ -73,7 +73,7 @@ App names are spread across config files and comments, so deleting or renaming a
 - `turbo.json` and any per-app `turbo.json`
 - `.github/workflows`: the app matrix in `build.yml.disabled`
 - `.vscode/launch.json`
-- This README (Project Structure, Available Scripts) and `.ruler/AGENTS.md` (then run `pnpm ruler:apply`)
+- This README (Project Structure, Available Scripts), `.ruler/AGENTS.md` and `.ruler/CODING_STANDARDS.md` (then run `pnpm ruler:apply`)
 - Code comments that name the app, like the CORS note in `apps/server/src/plugins/cors.ts`
 
 Then run `pnpm install` to refresh the lockfile, and search the repo for the old folder and

@@ -19,6 +19,8 @@ The server app (`apps/server`) is the API layer — both frontends talk to it. I
 - **`packages/validators`** — Shared Zod 4 schemas.
 - **`packages/logger`** — Consola singleton.
 
+Frontends take data types from the oRPC router (`RouterOutputs` in each app's `orpc/`), never from `@xenous/db`. Importing it would make `@xenous/db` a frontend dependency, so `turbo prune` pulls it and its database driver into the frontend image, and a single value import would put Drizzle in the client bundle.
+
 ## Validation
 
 - Assume dev servers are already running. Never build apps to validate code. If `apps/tanstack/src/routeTree.gen.ts` is stale (TanStack Router codegen), start `pnpm dev:tanstack` briefly to regenerate it rather than running a build.
@@ -35,53 +37,29 @@ full rules — read it before touching any env file.
 
 - `.env.schema` is committed and safe to edit. **Never read or edit** `.env` / `.env.local`.
   Ask the user to set secret values themselves.
-- Read config via `import { ENV } from 'varlock/env'`, never `process.env` (Biome `noProcessEnv`).
 - `env.d.ts` is generated on load and committed. Never edit by hand.
 - Validate with `pnpm exec varlock load --agent` from a package directory (values redacted).
-- `dev`/`build` load env via the framework integrations; build-only config uses
-  `import 'varlock/auto-load'`. Never put auto-load in `src/` — varlock is absent from prod images.
+- `dev`/`build` load env via the framework integrations. How code reads env is in Coding Standards below.
 
 ## Key Conventions
 
+Code rules (TypeScript, env access, app boundaries, file layout, comments) are in the Coding
+Standards section below. Follow them when writing code; review checks against them.
+
 - Biome for linting+formatting (not ESLint/Prettier). Config in `tooling/biome/`. Run `pnpm check:fix` to auto-fix.
-- `import type` required for type-only imports (`verbatimModuleSyntax`).
-- No enums — use `as const` objects. No non-null assertions.
-- Name enum-like `as const` objects in PascalCase and their entries in UPPER_CASE: `Theme.DARK`, not `THEME.Dark` or `Theme.dark`.
-  Give the union type the same name as the object, `type Theme = EnumItem<typeof Theme>` (`EnumItem` from `@xenous/typescript/enum`), so one import brings both.
-- Env vars are managed by Varlock — see the Environment variables section below.
 - Conventional commits enforced by commitlint via Lefthook.
-- Shared dependency versions managed through pnpm catalogs. Use `"catalog:"` or `"catalog:<name>"` in package.json.
 - Scaffold new packages with `pnpm gen init`, never `pnpm turbo gen init`. `turbo gen` ignores the
   installed `@turbo/gen` and runs `pnpm dlx` instead; that temp install does not read the
   `allowBuilds` list in `pnpm-workspace.yaml`, so pnpm stops on esbuild's skipped build script.
 - Use `pnpx` instead of `npx` to execute package binaries.
 - When you remove or rename an app, also update or remove every mention of it: `docker-compose.yml`,
   its `Dockerfile`, root `package.json` scripts, `turbo.json`, `.github/workflows`, `.vscode`, the
-  README, this file, and code comments. The README section "When you remove or rename an app" has
+  README, this file, `.ruler/CODING_STANDARDS.md`, and code comments. The README section "When you remove or rename an app" has
   the full list. Finish by searching the repo for the old folder and package name.
 - When you add a font to `apps/tanstack`, also add it to the fontaine `fallbacks` in `vite.config.ts`.
   `apps/tanstack/README.md` has the full steps.
-- Message keys are random word triplets (`amber_socket_kite`), which is what Sherlock generates on
-  extract and what Paraglide recommends: copy changes never force a rename. Semantic keys are fine
-  where the key names a fixed slot rather than a piece of copy — `validators_*` and `common_meta_*`.
-- In React components, separate logical groups (hooks, derived state, handlers, render) with blank lines for readability.
 - Read existing code in the area you're modifying before making changes — match surrounding patterns and style.
-- Keep code comments short. One or two lines is usually enough, three at most. Do not write multi-paragraph comments explaining background, history, or what you considered and rejected — that belongs in the commit message or the PR, not the file.
-- Comment the *why*, never the *what*. If the code already says it, delete the comment.
-- Use plain English. Short, common words. No em-dashes, no rhetorical flourishes, no "deliberately", "precisely", "worth noting". Write like a colleague leaving a note, not like an essay.
-- Component file layout in `apps/tanstack` and `apps/next`. `entities/`, `features/` and `widgets/` are FSD *layers*; files never sit directly in a layer. Each layer contains slices, and each slice has an `index.ts` barrel plus segment folders (`ui/`, `model/`, `lib/`, `api/`):
-  - Slice folders are kebab-case — `entities/user/`, `widgets/app-header/`, `shared/ui/not-found/`. The exported component keeps its PascalCase name (`AppHeader`).
-  - Component *files* stay PascalCase — `entities/user/ui/UserAvatar.tsx`, `widgets/app-header/ui/AppHeader.tsx`. Kebab-case applies to the slice folder, not the file. No folder-per-component within a segment.
-  - Reach for a slice through its barrel (`~/widgets/app-header`, `~/entities/user`), never a deep path into `ui/`.
-  - Within a slice, import relatively (`../lib/format`). Only cross-slice imports use the `~/` alias.
-  - `shared/ui/` uses the same slice shape — `not-found/index.ts` plus `not-found/ui/NotFound.tsx` — which also mirrors `packages/ui`.
-  - `packages/ui` is that shape in kebab-case, generated by `restructure.sh` — `components/button/ui/button.tsx` plus `index.ts`.
-- Apps never import values from each other. A type-only import is the one exception, used in `apps/tanstack/orpc/index.ts` and `apps/next/orpc/index.ts`:
-  ```ts
-  import type { AppRouter } from '../../server/src/routers';
-  ```
-  It reaches server's source by relative path plus a `references` entry in the app's `tsconfig.json`, so it needs no workspace dependency, and neither frontend's `package.json` lists `server`. That is what keeps `turbo prune --scope=tanstack` from pulling `apps/server` and `packages/db` into the frontend build. Keep it type-only: `import type` is erased before the bundler resolves it, so a value import would work locally and fail only inside Docker.
 
 ## Ruler
 
-Root agent files (`CLAUDE.md`, `AGENTS.md`, etc.) are generated by [Ruler](https://ai.intellectronica.net/ruler) from `.ruler/AGENTS.md`. Never edit them directly — edit `.ruler/AGENTS.md` instead, then run `pnpm ruler:apply` to regenerate.
+Root agent files (`CLAUDE.md`, `AGENTS.md`, etc.) are generated by [Ruler](https://ai.intellectronica.net/ruler) from `.ruler/AGENTS.md` and `.ruler/CODING_STANDARDS.md`. Never edit them directly — edit the `.ruler/` files instead, then run `pnpm ruler:apply` to regenerate.
