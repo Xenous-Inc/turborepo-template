@@ -2,7 +2,8 @@ import { createORPCClient } from '@orpc/client';
 import { RPCLink } from '@orpc/client/fetch';
 import type { InferRouterInputs, InferRouterOutputs, RouterClient } from '@orpc/server';
 import { createTanstackQueryUtils } from '@orpc/tanstack-query';
-import { publicServerUrl, serverUrl } from '~/shared/lib/serverUrl';
+import { publicServerUrl } from '~/shared/lib/publicServerUrl';
+import { serverUrl } from '~/shared/lib/serverUrl';
 import type { AppRouter } from '../../server/src/routers';
 
 /**

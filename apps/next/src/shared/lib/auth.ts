@@ -1,5 +1,6 @@
 import { createAuthClient } from 'better-auth/react';
-import { publicServerUrl, serverUrl } from './serverUrl';
+import { publicServerUrl } from './publicServerUrl';
+import { serverUrl } from './serverUrl';
 
 export const authClient = createAuthClient({
     /** Same split as the oRPC link: the browser needs the public URL, SSR can take the internal one. */
