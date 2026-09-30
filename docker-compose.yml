@@ -1,5 +1,6 @@
 include:
   - path: ./packages/db/docker-compose.yml
+  - path: ./packages/storage/docker-compose.yml
 
 services:
     server:

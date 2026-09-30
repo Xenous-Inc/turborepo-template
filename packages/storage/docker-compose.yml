@@ -1,0 +1,36 @@
+services:
+    minio:
+        container_name: xenous-minio
+        # Last release with the full web console. Newer ones dropped it. Do not bump.
+        image: ghcr.io/coollabsio/minio:RELEASE.2025-04-22T22-12-26Z
+        command: server /data --console-address ":9001"
+        environment:
+            MINIO_ROOT_USER: minio
+            MINIO_ROOT_PASSWORD: password
+        ports:
+          - 127.0.0.1:9000:9000
+          - 127.0.0.1:9001:9001
+        volumes:
+          - xenous_minio_data:/data
+        # Image has `mc` but no curl or wget, so the usual HTTP probe will not work.
+        healthcheck:
+            test: [CMD, mc, ready, local]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        restart: unless-stopped
+
+    # Creates the bucket. Public read so media URLs work in the browser.
+    minio-init:
+        container_name: xenous-minio-init
+        image: ghcr.io/coollabsio/minio:RELEASE.2025-04-22T22-12-26Z
+        depends_on:
+            minio:
+                condition: service_healthy
+        entrypoint: [/bin/sh, -c, mc alias set local http://minio:9000 minio password
+                && mc mb --ignore-existing local/xenous && mc anonymous set download
+                local/xenous]
+        restart: 'no'
+
+volumes:
+    xenous_minio_data:

@@ -1,0 +1,5 @@
+{
+    "$schema": "https://schemastore.org/tsconfig.json",
+    "extends": "@xenous/typescript/internal-package.json",
+    "include": ["src", "*.ts"]
+}
