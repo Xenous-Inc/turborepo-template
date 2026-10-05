@@ -12,6 +12,9 @@ pre-commit:
       - name: Typecheck
         glob: '*.{js,ts,cjs,mjs,d.ts,d.cts,d.mts,jsx,tsx}'
         run: pnpm typecheck
+      - name: Check workspace
+        glob: ['*package.json', pnpm-workspace.yaml]
+        run: pnpm check:ws
       - name: Scan for leaked secrets
         run: pnpm env:scan --staged
       - name: Audit dependencies

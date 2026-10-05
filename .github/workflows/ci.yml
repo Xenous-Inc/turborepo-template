@@ -33,7 +33,10 @@ jobs:
             uses: ./tooling/github/setup
 
           - name: Lint & Format
-            run: pnpm run ci && pnpm run check:ws
+            run: pnpm run ci
+
+          - name: Check workspace
+            run: pnpm run check:ws
 
     typecheck:
         name: Typecheck
